@@ -19,21 +19,21 @@
   <meta name="author" content="王柏森">
   <meta name="keywords" content="">
   
-    <meta name="description" content="利用time.h函数生成一个随机数生成一个”随机数”：1234567891011#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt; &#x2F;&#x2F; 包含rand()、srand()的头文件int main() &#123;	int num;	num &#x3D; rand();	printf(&quot;%d&quot;, num);	return 0;&#125;&#x2F;&#x2F;">
+    <meta name="description" content="让电脑生成金字塔Pyramid- 老师上课讲过这个代码现在在回武汉的火车上，于是复刻了一下，听课的时候感觉很难，但其实理清楚 - 代码实现12345678910111213141516#include &lt;stdio.h&gt;int main() &#123;		int n,i,j,k;	scanf_s(&quot;%d&quot;, &amp;n);	for (i &#x3D; 1;i &lt;&#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生成一个随机数">
-<meta property="og:url" content="http://example.com/2025/11/05/%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E9%9A%8F%E6%9C%BA%E6%95%B0/index.html">
+<meta property="og:title" content="金字塔">
+<meta property="og:url" content="http://example.com/2025/11/10/%E7%94%9F%E6%88%90%E9%87%91%E5%AD%97%E5%A1%94Pyramid/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="利用time.h函数生成一个随机数生成一个”随机数”：1234567891011#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt; &#x2F;&#x2F; 包含rand()、srand()的头文件int main() &#123;	int num;	num &#x3D; rand();	printf(&quot;%d&quot;, num);	return 0;&#125;&#x2F;&#x2F;">
+<meta property="og:description" content="让电脑生成金字塔Pyramid- 老师上课讲过这个代码现在在回武汉的火车上，于是复刻了一下，听课的时候感觉很难，但其实理清楚 - 代码实现12345678910111213141516#include &lt;stdio.h&gt;int main() &#123;		int n,i,j,k;	scanf_s(&quot;%d&quot;, &amp;n);	for (i &#x3D; 1;i &lt;&#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-11-04T16:37:39.984Z">
-<meta property="article:modified_time" content="2025-11-05T13:11:00.461Z">
+<meta property="article:published_time" content="2025-11-10T07:53:13.647Z">
+<meta property="article:modified_time" content="2025-11-10T07:43:12.275Z">
 <meta property="article:author" content="王柏森">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>生成一个随机数 - Hexo</title>
+  <title>金字塔 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="生成一个随机数"></span>
+            <span id="subtitle" data-typed-text="金字塔"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-05 00:37" pubdate>
-          2025年11月5日 凌晨
+        <time datetime="2025-11-10 15:53" pubdate>
+          2025年11月10日 下午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          589 字
+          164 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          5 分钟
+          2 分钟
         
       </span>
     
@@ -270,47 +270,15 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">生成一个随机数</h1>
+            <h1 id="seo-header">金字塔</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="利用time-h函数生成一个随机数"><a href="#利用time-h函数生成一个随机数" class="headerlink" title="利用time.h函数生成一个随机数"></a>利用<code>time.h</code>函数生成一个随机数</h1><h3 id="生成一个”随机数”："><a href="#生成一个”随机数”：" class="headerlink" title="生成一个”随机数”："></a>生成一个”随机数”：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> <span class="hljs-comment">// 包含rand()、srand()的头文件</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> num;<br>	num = rand();<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, num);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//直接运行，得到41</span><br><span class="hljs-comment">//再次运行，得到41</span><br><span class="hljs-comment">//再再再次运行，还是得到41</span><br></code></pre></td></tr></table></figure>
+                <h1 id="让电脑生成金字塔Pyramid"><a href="#让电脑生成金字塔Pyramid" class="headerlink" title="让电脑生成金字塔Pyramid"></a>让电脑生成金字塔Pyramid</h1><h4 id="老师上课讲过这个代码"><a href="#老师上课讲过这个代码" class="headerlink" title="- 老师上课讲过这个代码"></a>- 老师上课讲过这个代码</h4><p>现在在回武汉的火车上，于是复刻了一下，听课的时候感觉很难，但其实理清楚</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="- 代码实现"></a>- 代码实现</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;	<br>	<span class="hljs-type">int</span> n,i,j,k;<br>	scanf_s(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>;i &lt;= n;i++) &#123;<br>		<span class="hljs-keyword">for</span> (j = <span class="hljs-number">1</span>;j &lt;= n - i;j++) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; &quot;</span>);<br>		&#125;<br>		<span class="hljs-keyword">for</span> (k = <span class="hljs-number">1</span>;k &lt;= <span class="hljs-number">2</span> * i - <span class="hljs-number">1</span>;k++) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*&quot;</span>);<br>		&#125;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>会发现这个随机数有个蛋用！！！</p>
-<h3 id="问题根源"><a href="#问题根源" class="headerlink" title="问题根源"></a>问题根源</h3><p> rand() 函数本身是伪随机数生成器，它的输出是基于一个“种子（seed）”的固定序列：</p>
-<ul>
-<li>默认情况下， rand() 的种子是固定值（通常是 1 ），所以每次运行程序，都会生成相同的随机数序列。</li>
-</ul>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>需要通过 <code>srand()</code> 函数设置随机种子，通常用“当前时间”作为种子（因为时间是持续变化的），步骤如下：</p>
-<ol>
-<li>包含头文件<code> &lt;stdlib.h&gt;</code> 和<code>&lt;time.h&gt;</code>（获取当前时间的函数）；</li>
-<li>在调用 rand() 之前，用 time(NULL) 作为参数调用<code>srand() </code>，<strong>设置动态种子</strong>。</li>
-</ol>
-<h4 id="修正后的代码"><a href="#修正后的代码" class="headerlink" title="修正后的代码"></a>修正后的代码</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> <span class="hljs-comment">// 包含rand()、srand()的头文件</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;time.h&gt;</span>   <span class="hljs-comment">// 包含time()的头文件</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> num;     <span class="hljs-comment">// 设置随机种子（用当前时间，确保每次运行种子不同）</span><br>    srand((<span class="hljs-type">unsigned</span> <span class="hljs-type">int</span>)time(<span class="hljs-literal">NULL</span>));<br>    num = rand();<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, num);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ol>
-<li>unsigned int 的基本含义</li>
-</ol>
-<ul>
-<li>unsigned 表示“无符号”，即该类型的变量只能存储非负整数（取值范围是 0 到 2^位数 - 1 ，例如 unsigned int 通常占4字节，范围是 0 ~ 4294967295 ）；</li>
-<li>与之相对的，是普通的 int （有符号整型），可以存储正、负整数和0。</li>
-</ul>
-<ol start="2">
-<li>这里用 unsigned int 的原因</li>
-</ol>
-<p>​	代码中 <code>srand((unsigned int)time(NULL))</code> 是将 time(NULL) 的返回值（ <strong>time_t 类型</strong>，通常是有符号整数）强制转换为 <code>srand() </code>要求的<strong>unsigned int 类型</strong></p>
-<ul>
-<li>time(NULL) 返回当前系统时间的“时间戳”（从1970年1月1日至今的秒数），是一个整数</li>
-<li>强制转换为 unsigned int 是为了匹配 <code>srand() </code>的参数类型，避免类型不匹配的警告&#x2F;错误。</li>
-</ul>
-<p>简单说： unsigned int 是“无符号的整数类型”，这里用来适配 <code>srand() </code>的参数要求。</p>
-<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><ul>
-<li>rand() 生成的是0到 RAND_MAX （通常是 32767 ）之间的整数；</li>
-<li>若需要指定范围的随机数（比如 [a, b] ），可以用公式： rand() % (b - a + 1) + a 。</li>
-</ul>
-<h6 id="生成一个范围在【0，100】的随机数："><a href="#生成一个范围在【0，100】的随机数：" class="headerlink" title="生成一个范围在【0，100】的随机数："></a>生成一个范围在【0，100】的随机数：</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//简化</span><br>	srand(time(<span class="hljs-literal">NULL</span>));<br>	a = rand()%<span class="hljs-number">100</span> + <span class="hljs-number">1</span> ;<br><br></code></pre></td></tr></table></figure>
-
+<p>这不最近老是用scanf输入吗，突发奇想试一试用getchar输入，结果好像发现我学的知识只能让我输入0-9的数字，以后再学吧。</p>
 
                 
               </div>
@@ -328,8 +296,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>生成一个随机数</div>
-      <div>http://example.com/2025/11/05/生成一个随机数/</div>
+      <div>金字塔</div>
+      <div>http://example.com/2025/11/10/生成金字塔Pyramid/</div>
     </div>
     <div class="license-meta">
       
@@ -341,7 +309,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月5日</div>
+          <div>2025年11月10日</div>
         </div>
       
       
@@ -373,9 +341,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/10/%E5%8F%AF%E6%B1%97%E5%A4%A7%E7%82%B9%E5%85%B5/" title="可汗大点兵">
+                      <a href="/2025/11/10/%E6%97%A5%E5%8E%86calender/" title="日历calender">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">可汗大点兵</span>
+                        <span class="hidden-mobile">日历calender</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -383,8 +351,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/05/%E5%BE%AA%E7%8E%AF%E4%B8%ADRETRY%E7%9A%84%E7%94%A8%E6%B3%95/" title="循环中RETRY的用法">
-                        <span class="hidden-mobile">循环中RETRY的用法</span>
+                      <a href="/2025/11/10/%E5%8F%AF%E6%B1%97%E5%A4%A7%E7%82%B9%E5%85%B5/" title="可汗大点兵">
+                        <span class="hidden-mobile">可汗大点兵</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
