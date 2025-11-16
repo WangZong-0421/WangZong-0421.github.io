@@ -19,21 +19,21 @@
   <meta name="author" content="王柏森">
   <meta name="keywords" content="">
   
-    <meta name="description" content="getchar与循环题目统计用户输入从键盘读取用户输入直到遇到#字符，编写程序统计读取的空格数目、读取的换行符数目以及读取的所有其他字符数目。(要求用getchar()输入字符) 程序运行结果示例1：Please input a string end by #:abc def↙jklm op↙zkm #↙space: 3,newline: 2,others: 15 程序运行结果示例2：Please">
+    <meta name="description" content="排序逻辑与赋值运算符背景今天上课做题的时候碰见一个有趣的题目，关于怎么排序 这是题干： 1234请进行程序设计，从键盘上输入三个字符，根据其在计算机内的存储方式按照从小到大的顺序输出这三个字符。字符输入方式可以使用scanf()或者getchar()输入格式：&quot;%c%c%c&quot;输出格式：&quot;%c %c %c\n&quot;    根本不会写，后来问了豆包，我写的代码： 1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="getchar与循环">
-<meta property="og:url" content="http://example.com/2025/11/14/getchar%E4%B8%8E%E5%BE%AA%E7%8E%AF/index.html">
+<meta property="og:title" content="排序逻辑与赋值运算符">
+<meta property="og:url" content="http://example.com/2025/11/16/%E6%8E%92%E5%BA%8F%E9%80%BB%E8%BE%91%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="getchar与循环题目统计用户输入从键盘读取用户输入直到遇到#字符，编写程序统计读取的空格数目、读取的换行符数目以及读取的所有其他字符数目。(要求用getchar()输入字符) 程序运行结果示例1：Please input a string end by #:abc def↙jklm op↙zkm #↙space: 3,newline: 2,others: 15 程序运行结果示例2：Please">
+<meta property="og:description" content="排序逻辑与赋值运算符背景今天上课做题的时候碰见一个有趣的题目，关于怎么排序 这是题干： 1234请进行程序设计，从键盘上输入三个字符，根据其在计算机内的存储方式按照从小到大的顺序输出这三个字符。字符输入方式可以使用scanf()或者getchar()输入格式：&quot;%c%c%c&quot;输出格式：&quot;%c %c %c\n&quot;    根本不会写，后来问了豆包，我写的代码： 1">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-11-14T12:50:29.087Z">
-<meta property="article:modified_time" content="2025-11-14T11:26:25.845Z">
+<meta property="article:published_time" content="2025-11-16T15:31:12.317Z">
+<meta property="article:modified_time" content="2025-11-16T14:49:05.607Z">
 <meta property="article:author" content="王柏森">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>getchar与循环 - Hexo</title>
+  <title>排序逻辑与赋值运算符 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="getchar与循环"></span>
+            <span id="subtitle" data-typed-text="排序逻辑与赋值运算符"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-14 20:50" pubdate>
-          2025年11月14日 晚上
+        <time datetime="2025-11-16 23:31" pubdate>
+          2025年11月16日 晚上
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          369 字
+          1.3k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          4 分钟
+          12 分钟
         
       </span>
     
@@ -270,21 +270,89 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">getchar与循环</h1>
+            <h1 id="seo-header">排序逻辑与赋值运算符</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="getchar与循环"><a href="#getchar与循环" class="headerlink" title="getchar与循环"></a>getchar与循环</h1><h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>统计用户输入<br>从键盘读取用户输入直到遇到#字符，编写程序统计读取的空格数目、读取的换行符数目以及读取的所有其他字符数目。(要求用getchar()输入字符)</p>
-<p>程序运行结果示例1：<br>Please input a string end by #:<br>abc def↙<br>jklm op↙<br>zkm #↙<br>space: 3,newline: 2,others: 15</p>
-<p>程序运行结果示例2：<br>Please input a string end by #:<br>hello friend!#↙<br>space: 1,newline: 0,others: 12</p>
-<p>输入格式: getchar()<br>输出格式：<br>输入提示信息：”Please input a string end by #:\n”<br>输出格式：”space: %d,newline: %d,others: %d\n”</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> space=<span class="hljs-number">0</span>,newline=<span class="hljs-number">0</span>,other=<span class="hljs-number">0</span>;<br>    <span class="hljs-type">char</span> content;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please input a string end by #:\n&quot;</span>);<br>    <span class="hljs-keyword">while</span>((content=getchar())!=<span class="hljs-string">&#x27;#&#x27;</span>)&#123;<br>        <span class="hljs-keyword">if</span>(content==<span class="hljs-string">&#x27; &#x27;</span>)&#123;<br>            space++;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(content==<span class="hljs-string">&#x27;\n&#x27;</span>)&#123;<br>            newline++;<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            other++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;space: %d,newline: %d,others: %d\n&quot;</span>,space,newline,other);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <h1 id="排序逻辑与赋值运算符"><a href="#排序逻辑与赋值运算符" class="headerlink" title="排序逻辑与赋值运算符"></a>排序逻辑与赋值运算符</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>今天上课做题的时候碰见一个有趣的题目，关于怎么排序</p>
+<p>这是题干：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">请进行程序设计，从键盘上输入三个字符，根据其在计算机内的存储方式按照从小到大的顺序输出这三个字符。<br>字符输入方式可以使用scanf()或者getchar()<br>输入格式：&quot;<span class="hljs-comment">%c%c%c&quot;</span><br>输出格式：&quot;<span class="hljs-comment">%c %c %c\n&quot;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><h4 id="1-为什么要把content-getchar-整个括起来"><a href="#1-为什么要把content-getchar-整个括起来" class="headerlink" title="1.为什么要把content&#x3D;getchar()整个括起来"></a>1.为什么要把content&#x3D;getchar()整个括起来</h4><p><code>=</code> 是赋值运算符，优先级低于 <code>!=</code></p>
-<h4 id="2-为什么不能在while-条件中直接定义（如-while-char-content-getchar-）"><a href="#2-为什么不能在while-条件中直接定义（如-while-char-content-getchar-）" class="headerlink" title="2.为什么不能在while 条件中直接定义（如 while (char content = getchar() != &#39;#&#39;)）"></a>2.为什么不能在while 条件中直接定义（如 <code>while (char content = getchar() != &#39;#&#39;)</code>）</h4><p>不符合 C 语言语法规范</p>
-<h4 id="3-getchar每次只读取一个字符？"><a href="#3-getchar每次只读取一个字符？" class="headerlink" title="3.getchar每次只读取一个字符？"></a>3.getchar每次只读取一个字符？</h4><p>是的，<code>getchar()</code> 函数每次<strong>仅读取一个字符</strong>。</p>
-<p>它的工作机制是从标准输入（通常是键盘）中读取一个字符，包括空格、换行符等所有可输入的字符，每次调用只处理一个字符。这也是我们在统计空格、换行符和其他字符时，能通过循环多次调用 <code>getchar()</code> 来逐个字符判断的原因。</p>
+
+
+<p>根本不会写，后来问了豆包，我写的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">char</span> k,f,c,pron;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c%c%c&quot;</span>,&amp;k,&amp;f,&amp;c);<br>    <span class="hljs-keyword">if</span>(k&gt;f)&#123;<br>        pron=k;<br>        k=f;<br>        f=pron;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(k&gt;c)&#123;<br>        pron=k;<br>        k=c;<br>        c=pron;<br>    &#125;<br>    <span class="hljs-keyword">if</span>(f&gt;c)&#123;<br>        pron=f;<br>        f=c;<br>        c=pron;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c %c %c\n&quot;</span>,k,f,c);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="排序逻辑"><a href="#排序逻辑" class="headerlink" title="排序逻辑"></a>排序逻辑</h3><p>核心是通过“两两比较、交换位置”的方式，把最小的放到最前面，中间的放中间，最大的放最后。</p>
+<p>以输入的三个字符  a、b、c  为例，我们的目标是让  a ≤ b ≤ c （这里的“≤”是按字符的ASCII码比较）。</p>
+<p>第一步：确保  a  是  a  和  b  中较小的</p>
+<p>比如输入的  a&#x3D;’r’ 、 b&#x3D;’d’ ：</p>
+<ul>
+<li>因为  ‘r’ &gt; ‘d’ ，所以交换  a  和  b ，交换后  a&#x3D;’d’ 、 b&#x3D;’r’ 。</li>
+<li>这一步完成后， a  一定是  a、b  里更小的那个。</li>
+</ul>
+<p>第二步：确保  a  是三个字符中最小的</p>
+<p>经过第一步， a  已经是  a、b  里最小的了，但还要和  c  比：<br>比如现在  a&#x3D;’d’ 、 c&#x3D;’k’ ：</p>
+<ul>
+<li>因为  ‘d’ &lt; ‘k’ ，不需要交换；<br>如果  c  更小（比如  c&#x3D;’a’ ），就交换  a  和  c ，让  a  变成最小的。</li>
+<li>这一步完成后， a  一定是三个字符中最小的那个。</li>
+</ul>
+<p>第三步：确保  b  是剩下两个里较小的</p>
+<p>经过前两步， a  已经是最小的了，现在只需要比较  b  和  c ：<br>比如现在  b&#x3D;’r’ 、 c&#x3D;’k’ ：</p>
+<ul>
+<li>因为  ‘r’ &gt; ‘k’ ，交换  b  和  c ，交换后  b&#x3D;’k’ 、 c&#x3D;’r’ 。</li>
+<li>这一步完成后， b  一定是  b、c  里更小的，而  a  已经是最小的，所以最终  a ≤ b ≤ c 。</li>
+</ul>
+<p>举个具体例子（对应题目输入  dnk ）</p>
+<p>输入的三个字符是  a&#x3D;’d’ 、 b&#x3D;’n’ 、 c&#x3D;’k’ ：</p>
+<ol>
+<li>第一步：比较  a  和  b （ ‘d’ &lt; ‘n’ ）→ 不用交换， a&#x3D;’d’ 、 b&#x3D;’n’ ；</li>
+<li>第二步：比较  a  和  c （ ‘d’ &lt; ‘k’ ）→ 不用交换， a  还是最小的；</li>
+<li>第三步：比较  b  和  c （ ‘n’ &gt; ‘k’ ）→ 交换  b  和  c ，交换后  b&#x3D;’k’ 、 c&#x3D;’n’ ；</li>
+</ol>
+<p>最终结果就是  a&#x3D;’d’ 、 b&#x3D;’k’ 、 c&#x3D;’n’ ，输出  d k n （和题目示例一致）。</p>
+<p>总结</p>
+<p>这个逻辑的本质是：</p>
+<ul>
+<li>先把最小的字符“挑出来”放到  a  的位置；</li>
+<li>再把剩下两个里较小的放到  b  的位置；</li>
+<li>最后剩下的  c  自然是最大的。</li>
+</ul>
+<p>相当于“先定最小的，再定中间的，最后定最大的”，是不是更清楚啦~</p>
+<h4 id="定义temp变量在这里的作用"><a href="#定义temp变量在这里的作用" class="headerlink" title="定义temp变量在这里的作用"></a>定义temp变量在这里的作用</h4><p>要理解 temp 的作用，首先得明确“交换两个变量的值”的逻辑——<strong>需要一个“临时容器”来暂存数据，避免交换时数据被覆盖丢失</strong>。</p>
+<ol>
+<li>temp 的含义</li>
+</ol>
+<p> temp 是一个临时变量（ temp 是“temporary（临时）”的缩写），用来临时存储字符的值，辅助完成两个字符变量的交换。</p>
+<ol start="2">
+<li>交换的实现过程（以 if (a &gt; b) 的交换为例）</li>
+</ol>
+<p>假设输入的 a&#x3D;’d’ 、 b&#x3D;’n’ （实际是字符对应的ASCII码值比较， ‘d’ 的ASCII是100， ‘n’ 是110，所以 a &gt; b 不成立；这里举个反例，比如 a&#x3D;’n’ 、 b&#x3D;’d’ ，此时 a &gt; b 成立）：</p>
+<ul>
+<li>初始状态： a&#x3D;’n’ ， b&#x3D;’d’ </li>
+<li>第一步： temp &#x3D; a;  → 把 a 的值（ ‘n’ ）暂存到 temp 里，此时 temp&#x3D;’n’ </li>
+<li>第二步： a &#x3D; b;  → 把 b 的值（ ‘d’ ）赋值给 a ，此时 a&#x3D;’d’ </li>
+<li>第三步： b &#x3D; temp;  → 把 temp 里暂存的 ‘n’ 赋值给 b ，此时 b&#x3D;’n’</li>
+</ul>
+<p>最终 a&#x3D;’d’ 、 b&#x3D;’n’ ，完成了 a 和 b 的交换，实现了 a ≤ b 。</p>
+<ol start="3">
+<li>整个排序中 temp 的作用</li>
+</ol>
+<p>代码里的3次 if 判断，都是通过 temp 做“临时容器”，依次保证：</p>
+<ul>
+<li>第一次 if ： a  ≤  b </li>
+<li>第二次 if ： a  ≤  c （此时 a 已经是前两个里最小的，再和 c 比较，确保 a 是三个里最小的）</li>
+<li>第三次 if ： b  ≤  c （此时 a 是最小的，再调整 b 和 c 的顺序，最终 a ≤ b ≤ c ）</li>
+</ul>
+<p>简单说： temp 就像一个“中转站”，在交换两个变量时，先把其中一个值存起来，避免交换过程中数据被覆盖，从而完成两个变量的数值互换。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>在C语言中，赋值运算符 &#x3D; 的逻辑是“把右边的值，赋给左边的变量”，核心是“右值给左变量”，所以等号两边的位置绝对不能交换，交换后逻辑会完全改变（甚至报错）。</p>
+<p>具体逻辑关系：</p>
+<ul>
+<li>等号左边：必须是一个<strong>“可被赋值的变量”</strong>（也叫“左值”，是内存中有明确存储地址的容器）。</li>
+<li>等号右边：可以是“变量、常量、表达式”（也叫“右值”，是一个具体的数值&#x2F;结果）。</li>
+</ul>
+<p>C语言的 <code>=</code> 是<strong>“右→左”的赋值方向</strong>，右边是“数据源”，左边是“数据的存储目标”，位置一旦颠倒，逻辑就会错误。</p>
 
                 
               </div>
@@ -302,8 +370,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>getchar与循环</div>
-      <div>http://example.com/2025/11/14/getchar与循环/</div>
+      <div>排序逻辑与赋值运算符</div>
+      <div>http://example.com/2025/11/16/排序逻辑与赋值运算符/</div>
     </div>
     <div class="license-meta">
       
@@ -315,7 +383,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月14日</div>
+          <div>2025年11月16日</div>
         </div>
       
       
@@ -347,9 +415,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/11/16/%E8%BE%93%E5%85%A5%E5%90%88%E6%B3%95%E6%80%A7%E6%A0%A1%E9%AA%8C%E4%B8%8E%E6%9D%A1%E4%BB%B6%E7%9A%84%E7%9C%9F%E5%81%87/" title="输入合法性的校验与条件的真假">
+                      <a href="/2025/11/16/%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E4%B8%8E%E6%8C%87%E9%92%88%E5%88%9D%E6%8E%A2/" title="函数的调用与指针初探">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">输入合法性的校验与条件的真假</span>
+                        <span class="hidden-mobile">函数的调用与指针初探</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -357,8 +425,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/14/%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95/" title="辗转相除法">
-                        <span class="hidden-mobile">辗转相除法</span>
+                      <a href="/2025/11/16/fabs%E5%87%BD%E6%95%B0%E4%B8%8Eabs%E5%87%BD%E6%95%B0/" title="fabs函数与abs函数">
+                        <span class="hidden-mobile">fabs函数与abs函数</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
