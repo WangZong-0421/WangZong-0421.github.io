@@ -27,7 +27,7 @@
 <meta property="og:description" content="递归调用与指针再探背景：依旧是辗转相除法求最大公约数 代码实现： 1234567int Gcd(int a, int b)&#123;    if (a % b &#x3D;&#x3D; 0)        return b;    else        return Gcd(b, a % b);&#125;  函数 Gcd 在定义中调用了自身（ return Gcd(b, a % b) ），这就是递归调用的特征—">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-20T03:44:04.515Z">
-<meta property="article:modified_time" content="2025-11-20T03:42:49.995Z">
+<meta property="article:modified_time" content="2025-11-20T04:33:58.908Z">
 <meta property="article:author" content="王柏森">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -317,7 +317,7 @@
   style D fill:#fcc,stroke:#f00,stroke-width:1px  
 </code></pre>
 
-<p>卧槽，写到这里我发现我能做到！！！我重新打开markdown试了一下：</p>
+<p>卧槽，写到这里我发现我能做到！！！我重新打开visual studio试了一下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> main&#123;<br>    x = Fx(a, a);<br>&#125;<br><br><span class="hljs-type">float</span> <span class="hljs-title function_">Fx</span><span class="hljs-params">(<span class="hljs-type">float</span> a,<span class="hljs-type">float</span> x)</span> &#123;				<span class="hljs-comment">//第一次递归将a传递给x作为初始值</span><br>	<span class="hljs-type">float</span> new_x = <span class="hljs-number">0.5</span> * (x + a / x);<br>	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(new_x-x)&lt;=EPS) &#123;<br>		<span class="hljs-keyword">return</span> new_x;<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		new_x = Fx(a,new_x);<br>        <span class="hljs-keyword">return</span> new_x;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>在试试如何实现i自加：</p>
