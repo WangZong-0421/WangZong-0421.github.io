@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="王柏森">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="排序算法背景 循环输入一列数，并找出最大值  这是我写的代码： 123456789101112131415161718192021222324#include &lt;stdio.h&gt;int find_max(int);int main() &#123;	int a[4];	for (int i &#x3D; 0;i &lt;&#x3D; 4;i++) &#123;		printf(&quot;please i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法">
+<meta property="og:url" content="http://example.com/2025/11/29/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="排序算法背景 循环输入一列数，并找出最大值  这是我写的代码： 123456789101112131415161718192021222324#include &lt;stdio.h&gt;int find_max(int);int main() &#123;	int a[4];	for (int i &#x3D; 0;i &lt;&#x3D; 4;i++) &#123;		printf(&quot;please i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-29T10:25:17.535Z">
+<meta property="article:modified_time" content="2025-11-29T12:37:31.873Z">
+<meta property="article:author" content="王柏森">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>排序算法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="排序算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-29 18:25" pubdate>
+          2025年11月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">排序算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>循环输入一列数，并找出最大值</li>
+</ul>
+<p>这是我写的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">find_max</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">4</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= <span class="hljs-number">4</span>;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;please input: \n&quot;</span>);<br>		scanf_s(<span class="hljs-string">&quot;%d&quot;</span>, &amp;a[i]);<br>	&#125;<br>	<span class="hljs-type">int</span> max = find_max(a);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The max is %d&quot;</span>, max);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">find_max</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span> &#123;<br>	<span class="hljs-type">int</span> max = a[<span class="hljs-number">0</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt;= <span class="hljs-number">4</span>;i++) &#123;<br>		<span class="hljs-keyword">if</span> (a[i] &gt; max) &#123;<br>			max = a[i];<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> max;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行，代码报错</p>
+<p>问了一下哈基米：</p>
+<p><strong>错误一：函数声明与定义不一致</strong></p>
+<ul>
+<li>你的代码：在 <code>main</code> 函数上面，你写的是 <code>int find_max(int);</code>。这意味着告诉编译器这个函数只接收<strong>一个整数</strong>。</li>
+<li>实际情况：在 <code>main</code> 函数下面，你定义的却是 <code>int find_max(int a[])</code>，这接收的是<strong>一个数组</strong>。</li>
+<li>后果：编译器会报错，因为它搞不清到底应该传什么参数。</li>
+<li><strong>修改</strong>：将开头的声明改为 <code>int find_max(int a[]);</code> 或者 <code>int find_max(int*);</code>。</li>
+</ul>
+<p><strong>错误二：数组越界</strong></p>
+<ul>
+<li>在定义a[4]时，这里的4表面数组一共有<strong>4个元素</strong>（实际上我想定义5个元素）</li>
+<li>而在后面的 a[i] (i&#x3D;4) 中，会尝试<strong>访问第五个元素</strong></li>
+<li><strong>修改</strong>：在定义时改成a[5]</li>
+</ul>
+<p>修改后：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">find_max</span><span class="hljs-params">(<span class="hljs-type">int</span>*)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= <span class="hljs-number">4</span>;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;please input: \n&quot;</span>);<br>		scanf_s(<span class="hljs-string">&quot;%d&quot;</span>, &amp;a[i]);<br>	&#125;<br>	<span class="hljs-type">int</span> max = find_max(a);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The max is %d&quot;</span>, max);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">find_max</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span> &#123;<br>	<span class="hljs-type">int</span> max = a[<span class="hljs-number">0</span>];<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt;= <span class="hljs-number">4</span>;i++) &#123;<br>		<span class="hljs-keyword">if</span> (a[i] &gt; max) &#123;<br>			max = a[i];<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> max;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="冒泡法"><a href="#冒泡法" class="headerlink" title="冒泡法"></a>冒泡法</h2><ul>
+<li>把你身边的兄弟比一下，如果你比他高，你俩就换位置，你站到他后面去</li>
+</ul>
+<p>这是我第一次写这个算法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">rank</span><span class="hljs-params">(<span class="hljs-type">int</span>*,<span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span>*)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[] = &#123; <span class="hljs-number">78</span>,<span class="hljs-number">89</span>,<span class="hljs-number">69</span>,<span class="hljs-number">98</span>,<span class="hljs-number">50</span> &#125;;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">5</span>;i &gt;= <span class="hljs-number">1</span>;i--) &#123;<br>		rank(a,i<span class="hljs-number">-1</span>);<br>	&#125;<br>	present(a);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//将找到的最小的数字依次往左排</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">rank</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> i)</span> &#123;<br>	<span class="hljs-type">int</span> temp;<br>	<span class="hljs-keyword">for</span> (;i &gt;= <span class="hljs-number">1</span>;i--) &#123;<br>		<span class="hljs-keyword">if</span> (a[i - <span class="hljs-number">1</span>] &gt; a[i]) &#123;<br>			temp = a[i - <span class="hljs-number">1</span>];<br>			a[i - <span class="hljs-number">1</span>] = a[i];<br>			a[i] = temp;<br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">//打印出更新后的数组</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span> &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= <span class="hljs-number">4</span>;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i]);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>问了一下哈基米，可知道我的代码有些可以改进的地方：</p>
+<ul>
+<li><p>结构上不合适</p>
+<p>通常来说冒泡排序的双循环一般会写在一个函数中，我把外层循环放在 <code>main</code> 里、内层循环放在 <code>rank</code> 里会让代码逻辑变得支离破碎，阅读起来比较累</p>
+</li>
+<li><p>效率上的小浪费</p>
+<p>你的策略是把最小的数冒泡到最左边（下标0）。那么第一轮结束后，<code>a[0]</code> 已经是最小的了，第二轮就不需要再检查 <code>a[0]</code> 了。但是在你的 <code>rank</code> 函数中，循环条件总是 <code>i &gt;= 1</code>，这意味着每一轮都会去检查 <code>a[0]</code> 和 <code>a[1]</code>，这是多余的比较。</p>
+<p>。。。。。等等，这傻逼Gemini叽里咕噜说啥呢！</p>
+</li>
+</ul>
+<p>我在分析这个“效率上的小浪费‘’，并想找出我的不足时，突然发现我代码并不是效率低，而是写了一个几把！</p>
+<p>因为我rank函数中的循环次数一直在减少：</p>
+<p>第一次检查<strong>a[0],a[1],a[2],a[3],a[4]</strong><br>第二次检查<strong>a[0],a[1],a[2],a[3]</strong>,a[4]<br>第三次检查<strong>a[0],a[1],a[2]</strong>,a[3],a[4]<br>第四次检查<strong>a[0],a[1]</strong>,a[2],a[3],a[4]<br>第五次检查<strong>a[0]</strong>,a[1],a[2],a[3],a[4]</p>
+<p>每一次检查的时候只会找出上述粗体元素的最小值，并往左排</p>
+<p>然后缩小范围，然而就在这个缩小范围的时候，被忽略的非粗体元素并没有保证是最大值且按从小到大的顺序</p>
+<p>我意识到我能得到正确的排序，好像全是因为巧合！</p>
+<p>于是我试了一下，如果我把需要排序的数列改成78,89,69,68,50，最后会得到：50 69 78 89 <strong>68</strong>（68&gt;89?）</p>
+<p>妈的，于是我去质问了一下哈基米：</p>
+<blockquote>
+<p><strong>真的非常抱歉！你说得对，我是完全看走眼了！</strong> 😓</p>
+<p>我也要给你点个大大的赞，作为刚学数组的新手，你能敏锐地发现这个逻辑漏洞并举出反例，这说明你对代码运行逻辑的直觉非常好，这是很多初学者（甚至包括刚才那个大意的我）容易忽略的细节。</p>
+<p>你说得非常对，之前的代码能跑通确实是<strong>巧合</strong>。</p>
+<h3 id="你的代码到底错在哪？（致命逻辑漏洞）"><a href="#你的代码到底错在哪？（致命逻辑漏洞）" class="headerlink" title="你的代码到底错在哪？（致命逻辑漏洞）"></a>你的代码到底错在哪？（致命逻辑漏洞）</h3><p>让我们用你提供的这组数字 <code>78, 89, 69, 68, 50</code> 来复盘一下，看看 <strong>68</strong> 是怎么“含冤被遗忘”在角落的。</p>
+<p>你的代码核心逻辑是：</p>
+<ol>
+<li>**内层 <code>rank</code>**：把范围内最小的数“浮”到最左边。</li>
+<li><strong>外层循环</strong>：<code>rank(a, 4)</code> -&gt; <code>rank(a, 3)</code> -&gt; <code>rank(a, 2)</code> … 范围越来越小。</li>
+</ol>
+<h4 id="案发现场还原："><a href="#案发现场还原：" class="headerlink" title="案发现场还原："></a>案发现场还原：</h4><p><strong>第一轮 <code>rank(a, 4)</code>：</strong> 也就是处理下标 0~4。</p>
+<ul>
+<li>程序一路比较交换，把最小的 <strong>50</strong> 成功送到了最左边 <code>a[0]</code>。</li>
+<li><strong>但是！</strong> 注意中间发生的一件事：<ul>
+<li>当比较 <code>69</code> 和 <code>68</code> 时，没动。</li>
+<li>当比较 <code>68</code> 和 <code>50</code> 时（在数组末尾），<code>68</code> 被换到了 <code>50</code> 的位置（也就是 <code>a[4]</code>，最右边）。</li>
+<li>此时数组大约是：<code>50, 78, 89, 69, 68</code>（大概样子）。</li>
+</ul>
+</li>
+<li><strong>关键点：68 现在处于最后一位 (下标4)。</strong></li>
+</ul>
+<p><strong>第二轮 <code>rank(a, 3)</code>：</strong> <strong>灾难发生了！</strong></p>
+<ul>
+<li>你的外层循环把参数传成了 <code>3</code>。</li>
+<li><code>rank</code> 函数里的循环是 <code>for (; i &gt;= 1; i--)</code>，此时 <code>i</code> 从 <strong>3</strong> 开始。</li>
+<li><strong>这意味着：这一轮只检查下标 0, 1, 2, 3。</strong></li>
+<li><strong>下标 4 里的那个 68，直接被无视了！</strong></li>
+<li>虽然 <code>68</code> 比 <code>89</code>（假设在下标3）要小，但程序根本不看它。</li>
+</ul>
+<p><strong>之后的每一轮</strong>，检查范围都在缩小（下标2、下标1…），那个躲在最右边角落（下标4）的 <strong>68</strong> 再也没有机会被检查，所以它就永远留在了最后面。</p>
+<hr>
+<h3 id="为什么之前的代码跑对了？"><a href="#为什么之前的代码跑对了？" class="headerlink" title="为什么之前的代码跑对了？"></a>为什么之前的代码跑对了？</h3><p>因为之前那组数 <code>&#123;78, 89, 69, 98, 50&#125;</code>，原本就在最右边的 <strong>50</strong> 是最小的，它第一轮就被送走了。而第二大的数 <strong>69</strong> 恰好不在最后一位，没被“卡住”。所以那是<strong>运气好</strong>。</p>
+</blockquote>
+<p>可以的，态度还行。</p>
+<p>在发现问题的这个过程中，我还是收获了很多，即在得到AI的修改意见后（对于效率低），没有仅仅看AI修改后的代码，而是还去复盘自己的代码：</p>
+<p>我不把打印的函数<code>present(int a[])</code>封装起来了吗？</p>
+<p>正好我可以将这个函数调用放在任意一个位置，以测试我的循环</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">rank</span><span class="hljs-params">(<span class="hljs-type">int</span>*,<span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span>*)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[] = &#123; <span class="hljs-number">78</span>,<span class="hljs-number">89</span>,<span class="hljs-number">69</span>,<span class="hljs-number">68</span>,<span class="hljs-number">50</span> &#125;;<span class="hljs-comment">//98</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">5</span>;i &gt;= <span class="hljs-number">1</span>;i--) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n第%d次排序&quot;</span>, <span class="hljs-number">6</span> - i);present(a);<br>		rank(a,i<span class="hljs-number">-1</span>);<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n得到最后的结果：&quot;</span>);<br>	present(a);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//将找到的最小的数字依次往左排</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">rank</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> i)</span> &#123;<br>	<span class="hljs-type">int</span> temp;<br>	<span class="hljs-keyword">for</span> (;i &gt;= <span class="hljs-number">1</span>;i--) &#123;<br>		<span class="hljs-keyword">if</span> (a[i - <span class="hljs-number">1</span>] &gt; a[i]) &#123;<br>			temp = a[i - <span class="hljs-number">1</span>];<br>			a[i - <span class="hljs-number">1</span>] = a[i];<br>			a[i] = temp;<br>		&#125;<br>		present(a);<br>	&#125;<br>&#125;<br><br><span class="hljs-comment">//打印出更新后的数组</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span> &#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= <span class="hljs-number">4</span>;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i]);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行，得到</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs tex">第1次排序<br>78 89 69 68 50<br>78 89 69 50 68<br>78 89 50 69 68<br>78 50 89 69 68<br>50 78 89 69 68<br>第2次排序<br>50 78 89 69 68<br>50 78 69 89 68<br>50 69 78 89 68<br>50 69 78 89 68<br>第3次排序<br>50 69 78 89 68<br>50 69 78 89 68<br>50 69 78 89 68<br>第4次排序<br>50 69 78 89 68<br>50 69 78 89 68<br>第5次排序<br>50 69 78 89 68<br>得到最后的结果：<br>50 69 78 89 68<br></code></pre></td></tr></table></figure>
+
+<p>就这样，发现了我的循环次数并没有像哈基米说的那样不变，这才有了后来的事</p>
+<p>再来看：我将打印这个语句封装，其实是没事找事想试试，结果反而让我有了用于测试的工具</p>
+<p>真可谓是：<strong>有心栽花花不开，无心插柳柳成荫</strong></p>
+<hr>
+<p>后来我重新写了一个标准的冒泡法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">bubble_sort</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = &#123; <span class="hljs-number">78</span>, <span class="hljs-number">89</span>, <span class="hljs-number">69</span>, <span class="hljs-number">98</span>, <span class="hljs-number">50</span> &#125;;<br>	bubble_sort(a, <span class="hljs-number">5</span>);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-number">5</span>;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i]);<br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">bubble_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-type">int</span> temp;<br>	<span class="hljs-comment">//只需要跑n-1=4轮</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt;= n - <span class="hljs-number">1</span>;i++) &#123;<br>		<span class="hljs-comment">//第i轮需要交换n-i次</span><br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>;j &lt;= n - i - <span class="hljs-number">1</span>;j++) &#123;<br>			<span class="hljs-keyword">if</span> (a[j] &gt; a[j + <span class="hljs-number">1</span>]) &#123;<br>				temp = a[j];<br>				a[j] = a[j + <span class="hljs-number">1</span>];<br>				a[j + <span class="hljs-number">1</span>] = temp;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>基于出现的问题，修改了一下：</p>
+<ol>
+<li><p>将冒泡法的双循环一起放到bubble_sort函数中</p>
+</li>
+<li><p>修改了一下逻辑，每次将最大的往右边挪（冒泡）</p>
+<p>此外，每次从第0个元素开始检测，即实现每次循环交换的次数越来越少，又保证往右排的元素是检测的元素的最大值，且比已经排到右侧的元素小</p>
+</li>
+</ol>
+<p>这样才是一个标标准准的冒泡法</p>
+<p>真享受写代码，改代码的过程啊！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>排序算法</div>
+      <div>http://example.com/2025/11/29/排序算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>王柏森</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/29/%E6%89%93%E5%8D%B0%E5%9B%BE%E6%A1%88/" title="打印图案">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">打印图案</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/22/%E7%89%A9%E8%81%94%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/" title="物联网工程听课笔记">
+                        <span class="hidden-mobile">物联网工程听课笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
