@@ -21,19 +21,19 @@
   
     <meta name="description" content="计算getchar输入一、碰见个很烦的题目：*对输入的行、单词和字符进行计数。我们将单词的定义进行化简，认为单词是不包含空格、制表符\t及换行符的字符序列。例如：“a+b+c”，认为是1个单词，它由5个字符组成。又如：“xy abc”，为2个单词，6个字符。输入ctrl+z结束(提示：用ch!&#x3D;EOF或ch!&#x3D;-1作为循环条件)。 **输出格式要求：”Lines&#x3D;%d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算getchar输入">
-<meta property="og:url" content="http://example.com/2025/11/22/%E8%AE%A1%E7%AE%97getchar%E8%BE%93%E5%85%A5/index.html">
+<meta property="og:title" content="getchar">
+<meta property="og:url" content="http://example.com/2025/11/29/getchar/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="计算getchar输入一、碰见个很烦的题目：*对输入的行、单词和字符进行计数。我们将单词的定义进行化简，认为单词是不包含空格、制表符\t及换行符的字符序列。例如：“a+b+c”，认为是1个单词，它由5个字符组成。又如：“xy abc”，为2个单词，6个字符。输入ctrl+z结束(提示：用ch!&#x3D;EOF或ch!&#x3D;-1作为循环条件)。 **输出格式要求：”Lines&#x3D;%d">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-11-21T16:48:01.984Z">
-<meta property="article:modified_time" content="2025-11-21T16:46:13.664Z">
+<meta property="article:published_time" content="2025-11-29T12:39:55.426Z">
+<meta property="article:modified_time" content="2025-11-28T08:40:19.102Z">
 <meta property="article:author" content="王柏森">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>计算getchar输入 - Hexo</title>
+  <title>getchar - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="计算getchar输入"></span>
+            <span id="subtitle" data-typed-text="getchar"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-22 00:48" pubdate>
-          2025年11月22日 凌晨
+        <time datetime="2025-11-29 20:39" pubdate>
+          2025年11月29日 晚上
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.8k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          10 分钟
+          16 分钟
         
       </span>
     
@@ -270,7 +270,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">计算getchar输入</h1>
+            <h1 id="seo-header">getchar</h1>
             
             
               <div class="markdown-body">
@@ -278,7 +278,8 @@
                 <h1 id="计算getchar输入"><a href="#计算getchar输入" class="headerlink" title="计算getchar输入"></a>计算getchar输入</h1><h2 id="一、碰见个很烦的题目："><a href="#一、碰见个很烦的题目：" class="headerlink" title="一、碰见个很烦的题目："></a>一、碰见个很烦的题目：</h2><p>*对输入的行、单词和字符进行计数。我们将单词的定义进行化简，认为单词是不包含空格、制表符\t及换行符的字符序列。例如：“a+b+c”，认为是1个单词，它由5个字符组成。又如：“xy abc”，为2个单词，6个字符。输入ctrl+z结束(提示：用ch!&#x3D;EOF或ch!&#x3D;-1作为循环条件)。</p>
 <p>**输出格式要求：”Lines&#x3D;%d\nWords&#x3D;%d\nChars&#x3D;%d\n”<br>程序运行示例如下：<br>hi~<br>Good moring!<br>I’m Julie.</p>
 <p>Lines&#x3D;3<br>Words&#x3D;5<br>Chars&#x3D;28</p>
-<h2 id="二、代码实现："><a href="#二、代码实现：" class="headerlink" title="二、代码实现："></a>二、代码实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> lines = <span class="hljs-number">0</span>, words = <span class="hljs-number">0</span>, chars = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> ch;<br>	<span class="hljs-keyword">while</span> ((ch = getchar()) != EOF) &#123;<br>		chars++;<br>		<span class="hljs-keyword">if</span> (ch == <span class="hljs-string">&#x27;\n&#x27;</span>) &#123;<br>			lines++;<br>		&#125;<br>		<span class="hljs-keyword">if</span> (ch == <span class="hljs-string">&#x27; &#x27;</span> || ch == <span class="hljs-string">&#x27;\t&#x27;</span> || ch == <span class="hljs-string">&#x27;\n&#x27;</span>) &#123;<br>			words++;<br>		&#125;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Lines=%d\nWords=%d\nChars=%d\n&quot;</span>, lines, words, chars);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="二、代码实现："><a href="#二、代码实现：" class="headerlink" title="二、代码实现："></a>二、代码实现：</h2><p>我根本不会写啊，甚至连运行都运行不了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> lines = <span class="hljs-number">0</span>, words = <span class="hljs-number">0</span>, chars = <span class="hljs-number">0</span>;<br>	<span class="hljs-type">int</span> ch;<br>	<span class="hljs-keyword">while</span> ((ch = getchar()) != EOF) &#123;<br>		chars++;<br>		<span class="hljs-keyword">if</span> (ch == <span class="hljs-string">&#x27;\n&#x27;</span>) &#123;<br>			lines++;<br>		&#125;<br>		<span class="hljs-keyword">if</span> (ch == <span class="hljs-string">&#x27; &#x27;</span> || ch == <span class="hljs-string">&#x27;\t&#x27;</span> || ch == <span class="hljs-string">&#x27;\n&#x27;</span>) &#123;<br>			words++;<br>		&#125;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Lines=%d\nWords=%d\nChars=%d\n&quot;</span>, lines, words, chars);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="1-为什么-ch-要定义成-int-类型？我输入的不是字符吗？"><a href="#1-为什么-ch-要定义成-int-类型？我输入的不是字符吗？" class="headerlink" title="1,为什么 ch 要定义成 int 类型？我输入的不是字符吗？"></a>1,为什么 <code>ch</code> 要定义成 <code>int</code> 类型？我输入的不是字符吗？</h3><p>你说得对！你输入的确实是「字符」（比如 <code>h</code>、<code>i</code>、<code>\n</code>），但 <code>getchar()</code> 这个函数的设计很特殊 —— 它返回的不是 <code>char</code> 类型，而是 <code>int</code> 类型。</p>
 <h4 id="核心原因：要区分「普通字符」和「结束信号-EOF」"><a href="#核心原因：要区分「普通字符」和「结束信号-EOF」" class="headerlink" title="核心原因：要区分「普通字符」和「结束信号 EOF」"></a>核心原因：要区分「普通字符」和「结束信号 EOF」</h4><ul>
@@ -312,6 +313,14 @@
 <li>程序里写 <code>ch != EOF</code> 和 <code>ch != -1</code> 效果完全一样，但写 <code>EOF</code> 更规范、更容易看懂（别人一看就知道是 “判断输入是否结束”）。</li>
 </ul>
 <h4 id="3-为什么要用-EOF？"><a href="#3-为什么要用-EOF？" class="headerlink" title="3. 为什么要用 EOF？"></a>3. 为什么要用 <code>EOF</code>？</h4><p>比如你之前的题目，要求 “输入 <code>Ctrl+Z</code> 结束”—— 程序怎么知道你按下了 <code>Ctrl+Z</code>？就是通过 <code>EOF</code> 信号。<code>getchar()</code> 读取到 <code>EOF</code> 后，会返回 <code>-1</code>（也就是 <code>EOF</code>），循环条件 <code>(ch=getchar())!=EOF</code> 就会不成立，循环退出，程序结束统计。</p>
+<hr>
+<h1 id="判断getchar"><a href="#判断getchar" class="headerlink" title="判断getchar"></a>判断getchar</h1><h3 id="又碰见一个："><a href="#又碰见一个：" class="headerlink" title="又碰见一个："></a>又碰见一个：</h3><p>编写一个程序，判断输入的一行字符是否构成一个合法的C标识符（以下划线_或字母开头，由下划线、字母和数字组成视为合法的C标识符）。（假设输入的字符串非关键字且最大长度为32）<br>**输入格式要求：getchar()<br>**输出格式要求：”is\n” “is not\n”<br>程序运行示例1如下：<br>$223<br>is not<br>程序运行示例2如下：<br>hello world<br>is not<br>程序运行示例3如下：<br>hello<br>is<br>程序运行示例4如下：<br>a.net<br>is not<br>程序运行示例5如下：<br>123<br>is not</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现:"></a>代码实现:</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">judge</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> content[<span class="hljs-number">31</span>] = &#123; <span class="hljs-number">0</span> &#125;;<br>	<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>	content[<span class="hljs-number">0</span>] = getchar();<br>	<span class="hljs-keyword">do</span> &#123;<br>		<span class="hljs-keyword">if</span> (judge(content[i], i)) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;is not&quot;</span>);<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		&#125;<br>		i++;<br>		content[i] = getchar();<br>	&#125; <span class="hljs-keyword">while</span> (judge(content[i], i) == <span class="hljs-number">0</span>);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;is\n&quot;</span>);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">judge</span><span class="hljs-params">(<span class="hljs-type">int</span> temp, <span class="hljs-type">int</span> i)</span> &#123;<br>	<span class="hljs-type">char</span> content[<span class="hljs-number">32</span>];<br>	content[i] = temp;<br>	<span class="hljs-keyword">if</span> (content[<span class="hljs-number">0</span>] == <span class="hljs-string">&#x27;_&#x27;</span> || (content[<span class="hljs-number">0</span>] &gt; <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; content[<span class="hljs-number">0</span>] &lt; <span class="hljs-string">&#x27;z&#x27;</span>) || (content[<span class="hljs-number">0</span>] &gt; <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; content[<span class="hljs-number">0</span>] &lt; <span class="hljs-string">&#x27;Z&#x27;</span>)) &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (content[i] == <span class="hljs-string">&#x27;_&#x27;</span> || (content[i] &gt; <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; content[i] &lt; <span class="hljs-string">&#x27;z&#x27;</span>) || (content[i] &gt; <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; content[i] &lt; <span class="hljs-string">&#x27;Z&#x27;</span>) || (content[i] &gt;= <span class="hljs-number">0</span> &amp;&amp; content[i] &lt;= <span class="hljs-number">9</span>)) &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>看看AI写的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">char</span> str[<span class="hljs-number">100</span>]; <span class="hljs-comment">// 定义字符数组</span><br>    <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">char</span> c;<br>    <span class="hljs-type">int</span> is_valid = <span class="hljs-number">1</span>; <span class="hljs-comment">// 1代表合法(is)，0代表不合法(is not)</span><br><br>    <span class="hljs-comment">// 1. 读取输入 (题目要求用 getchar)</span><br>    <span class="hljs-keyword">while</span> ((c = getchar()) != <span class="hljs-string">&#x27;\n&#x27;</span> &amp;&amp; c != EOF) &#123;<br>        <span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">32</span>) &#123; <span class="hljs-comment">// 限制长度，防止溢出</span><br>            str[i] = c;<br>            i++;<br>        &#125;<br>    &#125;<br>    str[i] = <span class="hljs-string">&#x27;\0&#x27;</span>; <span class="hljs-comment">// 别忘了给字符串加结束符</span><br><br>    <span class="hljs-comment">// 2. 如果输入为空，直接算不合法</span><br>    <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span>) &#123;<br>        is_valid = <span class="hljs-number">0</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 3. 检查第一个字符：必须是 字母 或 下划线</span><br>        <span class="hljs-comment">// 不能是数字！</span><br>        <span class="hljs-type">char</span> first = str[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">if</span> ( !((first &gt;= <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; first &lt;= <span class="hljs-string">&#x27;z&#x27;</span>) || <br>               (first &gt;= <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; first &lt;= <span class="hljs-string">&#x27;Z&#x27;</span>) || <br>               first == <span class="hljs-string">&#x27;_&#x27;</span>) ) &#123;<br>            is_valid = <span class="hljs-number">0</span>;<br>        &#125; <br>        <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 4. 检查剩下的字符：必须是 字母、数字 或 下划线</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; i; j++) &#123;<br>                <span class="hljs-type">char</span> current = str[j];<br>                <span class="hljs-comment">// 如果 它不是小写字母 且 不是大写字母 且 不是数字 且 不是下划线</span><br>                <span class="hljs-comment">// 那么它就是非法字符</span><br>                <span class="hljs-keyword">if</span> ( !((current &gt;= <span class="hljs-string">&#x27;a&#x27;</span> &amp;&amp; current &lt;= <span class="hljs-string">&#x27;z&#x27;</span>) || <br>                       (current &gt;= <span class="hljs-string">&#x27;A&#x27;</span> &amp;&amp; current &lt;= <span class="hljs-string">&#x27;Z&#x27;</span>) || <br>                       (current &gt;= <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; current &lt;= <span class="hljs-string">&#x27;9&#x27;</span>) || <br>                       current == <span class="hljs-string">&#x27;_&#x27;</span>) ) &#123;<br>                    is_valid = <span class="hljs-number">0</span>;<br>                    <span class="hljs-keyword">break</span>; <span class="hljs-comment">// 发现一个错的就不用看后面了</span><br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 5. 输出结果</span><br>    <span class="hljs-keyword">if</span> (is_valid == <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;is\n&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;is not\n&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h3><p>可以用数组储存getchar得到的东西</p>
 
                 
               </div>
@@ -329,8 +338,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>计算getchar输入</div>
-      <div>http://example.com/2025/11/22/计算getchar输入/</div>
+      <div>getchar</div>
+      <div>http://example.com/2025/11/29/getchar/</div>
     </div>
     <div class="license-meta">
       
@@ -342,7 +351,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月22日</div>
+          <div>2025年11月29日</div>
         </div>
       
       
@@ -374,12 +383,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2025/11/29/%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/" title="静态变量">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">静态变量</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/11/22/%E7%89%A9%E8%81%94%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%90%AC%E8%AF%BE%E7%AC%94%E8%AE%B0/" title="物联网工程听课笔记">
-                        <span class="hidden-mobile">物联网工程听课笔记</span>
+                      <a href="/2025/11/29/%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8/" title="九九乘法表">
+                        <span class="hidden-mobile">九九乘法表</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
