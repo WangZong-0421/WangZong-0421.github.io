@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="王柏森">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="排序算法（选择法）我瞎写的代码：上课老师讲选择法的时候我睡着了（实在是困） 现在我利用老师讲个课件中的大致逻辑自己尝试写了一份： 12345678910111213141516171819202122232425262728293031323334353637#include &lt;stdio.h&gt;void selection_sort(int*, int);void present(in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="排序算法（选择法）">
+<meta property="og:url" content="http://example.com/2025/11/30/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88%E9%80%89%E6%8B%A9%E6%B3%95%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="排序算法（选择法）我瞎写的代码：上课老师讲选择法的时候我睡着了（实在是困） 现在我利用老师讲个课件中的大致逻辑自己尝试写了一份： 12345678910111213141516171819202122232425262728293031323334353637#include &lt;stdio.h&gt;void selection_sort(int*, int);void present(in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-30T06:22:35.153Z">
+<meta property="article:modified_time" content="2025-11-30T06:47:46.454Z">
+<meta property="article:author" content="王柏森">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>排序算法（选择法） - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="排序算法（选择法）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-30 14:22" pubdate>
+          2025年11月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">排序算法（选择法）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="排序算法（选择法）"><a href="#排序算法（选择法）" class="headerlink" title="排序算法（选择法）"></a>排序算法（选择法）</h1><h2 id="我瞎写的代码："><a href="#我瞎写的代码：" class="headerlink" title="我瞎写的代码："></a>我瞎写的代码：</h2><p>上课老师讲选择法的时候我睡着了（实在是困）</p>
+<p>现在我利用老师讲个课件中的大致逻辑自己尝试写了一份：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">7</span>] = &#123; <span class="hljs-number">13</span>,<span class="hljs-number">38</span>,<span class="hljs-number">65</span>,<span class="hljs-number">97</span>,<span class="hljs-number">76</span>,<span class="hljs-number">49</span>,<span class="hljs-number">27</span> &#125;;<br>	selection_sort(a, <span class="hljs-number">7</span>);<br>	<span class="hljs-comment">//printf(&quot;\n最后的结果&quot;);</span><br>	present(a, <span class="hljs-number">7</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-comment">//只需要循环n-1=6轮</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= n - <span class="hljs-number">2</span>;i++) &#123;<br>		<span class="hljs-type">int</span> temp;<br>		<span class="hljs-comment">//printf(&quot;\n第%d循环&quot;, i + 1);</span><br>		<span class="hljs-comment">//每轮循环找出剩下元素的最小值，并放到第i个位置</span><br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i;j &lt;= n - <span class="hljs-number">2</span>;j++) &#123;<br>			<span class="hljs-keyword">if</span> (a[j + <span class="hljs-number">1</span>] &lt; a[i]) &#123;<br>				<span class="hljs-comment">//将暂时找到的最小值与a[i]交换</span><br>				temp = a[j + <span class="hljs-number">1</span>];<br>				a[j + <span class="hljs-number">1</span>] = a[i];<br>				a[i] = temp;<br>			&#125;<br>			<span class="hljs-comment">//present(a, 7);</span><br>		&#125;<br>		<span class="hljs-comment">//printf(&quot;\n第%d循环的结果：&quot;, i + 1);present(a, 7);</span><br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= n - <span class="hljs-number">1</span>;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d&quot;</span>, a[i]);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>去除注释：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">7</span>] = &#123; <span class="hljs-number">13</span>,<span class="hljs-number">38</span>,<span class="hljs-number">65</span>,<span class="hljs-number">97</span>,<span class="hljs-number">76</span>,<span class="hljs-number">49</span>,<span class="hljs-number">27</span> &#125;;<br>	selection_sort(a, <span class="hljs-number">7</span>);<br>	present(a, <span class="hljs-number">7</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= n - <span class="hljs-number">2</span>;i++) &#123;<br>		<span class="hljs-type">int</span> temp;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = i;j &lt;= n - <span class="hljs-number">2</span>;j++) &#123;<br>			<span class="hljs-keyword">if</span> (a[j + <span class="hljs-number">1</span>] &lt; a[i]) &#123;<br>				temp = a[j + <span class="hljs-number">1</span>];<br>				a[j + <span class="hljs-number">1</span>] = a[i];<br>				a[i] = temp;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt;= n - <span class="hljs-number">1</span>;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d&quot;</span>, a[i]);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当然这并不是标准的选择排序，而是我自创的交换排序</p>
+<p>哈基米说：</p>
+<blockquote>
+<p><strong>真正的选择排序：</strong> 在每一轮循环中，<strong>只记录</strong>最小值的下标（index），循环结束后<strong>只交换一次</strong>。</p>
+<p><strong>你的写法：</strong> 在每一轮循环中，只要发现比 <code>a[i]</code> 小的数，<strong>立刻交换</strong>。</p>
+<p><strong>这种写法的缺点：</strong></p>
+<ul>
+<li><strong>交换次数过多：</strong> 交换（读写内存）通常比比较（读取内存）更消耗性能。如果数列很乱，你的写法在每一轮里可能会发生多次交换。而标准选择排序每一轮只需交换 0 次或 1 次。</li>
+</ul>
+</blockquote>
+<p>以及一个小不足：</p>
+<p><strong>循环写法：</strong> <code>i &lt;= n - 2</code> 这种写法数学上是对的，但程序员通常习惯写 <code>i &lt; n - 1</code>。两者等价，但后者可读性更强。</p>
+<p>看看哈基米写的标准选择排序算法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">standard_selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">7</span>] = &#123; <span class="hljs-number">13</span>, <span class="hljs-number">38</span>, <span class="hljs-number">65</span>, <span class="hljs-number">97</span>, <span class="hljs-number">76</span>, <span class="hljs-number">49</span>, <span class="hljs-number">27</span> &#125;;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;排序前:&quot;</span>);<br>    present(a, <span class="hljs-number">7</span>);<br><br>    standard_selection_sort(a, <span class="hljs-number">7</span>);<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;排序后:&quot;</span>);<br>    present(a, <span class="hljs-number">7</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">standard_selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-type">int</span> i, j, minIndex, temp;<br><br>    <span class="hljs-comment">// 外层循环：i 代表当前要确定的位置</span><br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++) &#123;<br>        <br>        <span class="hljs-comment">// 1. 假设当前位置 i 就是最小值</span><br>        minIndex = i;<br><br>        <span class="hljs-comment">// 2. 内层循环：在剩下的元素中寻找真正的最小值</span><br>        <span class="hljs-keyword">for</span> (j = i + <span class="hljs-number">1</span>; j &lt; n; j++) &#123;<br>            <span class="hljs-keyword">if</span> (a[j] &lt; a[minIndex]) &#123;<br>                <span class="hljs-comment">// 只记录下标，不进行交换！</span><br>                minIndex = j; <br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 3. 只有当找到的最小值不是原来的 a[i] 时，才交换一次</span><br>        <span class="hljs-keyword">if</span> (minIndex != i) &#123;<br>            temp = a[i];<br>            a[i] = a[minIndex];<br>            a[minIndex] = temp;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d&quot;</span>, a[i]);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我草啊啊啊啊，呃呃呃~~，哦哦哦！！！🥵🥵🥵</p>
+<p>也是直接高潮了好吧，这个代码的思路太好了！</p>
+<p>选择用<code>minIndex</code>储存下标值，最后检查下标值是否改变，就是检查后面的元素中有没有出现更小的值，再决定是否交换</p>
+<p>反观我的代码，只要有更小的值就交换一次，如果多次检测到最小值的情况，就会交换多次，是一种效率上的浪费</p>
+<p>我看了这个代码后重新写了一遍：</p>
+<h2 id="我认真写的代码："><a href="#我认真写的代码：" class="headerlink" title="我认真写的代码："></a>我认真写的代码：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>	<span class="hljs-type">int</span> a[<span class="hljs-number">7</span>] = &#123; <span class="hljs-number">13</span>,<span class="hljs-number">38</span>,<span class="hljs-number">65</span>,<span class="hljs-number">97</span>,<span class="hljs-number">76</span>,<span class="hljs-number">49</span>,<span class="hljs-number">27</span> &#125;;<br>	selection_sort(a, <span class="hljs-number">7</span>);<br>	present(a, <span class="hljs-number">7</span>);<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++) &#123;<br>		<span class="hljs-type">int</span> min_subscript = i,temp;<br>		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = i + <span class="hljs-number">1</span>;k &lt; n;k++) &#123;<br>			<span class="hljs-keyword">if</span> (a[k] &lt; a[min_subscript]) &#123;<br>				min_subscript = k;<br>			&#125;<br>			<span class="hljs-keyword">if</span> (min_subscript != i) &#123;<br>				temp = a[min_subscript];<br>				a[min_subscript] = a[i];<br>				a[i] = temp;<br>			&#125;<br>		&#125;<br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span> a[],<span class="hljs-type">int</span> n)</span> &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; n;i++) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d&quot;</span>, a[i]);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>能得出正确的排序，但我还是喂给了AI</p>
+<p>看来我并没有那么聪明！🤣</p>
+<p>哈基米思考了一会：</p>
+<p>目前的写法虽然结果正确，但它<strong>仍然犯了和上一次类似的逻辑问题</strong>，导致它失去了选择排序最大的优势（最少的交换次数）。</p>
+<p>这里有两个具体的建议和修改意见：</p>
+<h3 id="1-致命问题：交换代码的位置不对"><a href="#1-致命问题：交换代码的位置不对" class="headerlink" title="1. 致命问题：交换代码的位置不对"></a>1. 致命问题：交换代码的位置不对</h3><p>在“真正的选择排序”中，我们必须遍历完剩下的<strong>所有</strong>数字，找到那个<strong>唯一</strong>的最小值下标后，<strong>再</strong>进行交换。</p>
+<p><strong>你的代码问题：</strong> 你把交换的代码块 <code>if (min_subscript != i) &#123; ... &#125;</code> 放到了内层循环 <code>for (int k ...)</code> 的<strong>里面</strong>。</p>
+<p><strong>后果：</strong> 这意味着，在寻找最小值的过程中，只要你发现一个新的 <code>min_subscript</code>（或者甚至没发现），你都在尝试交换。这会导致每一轮外层循环中发生多次交换，效率变低。</p>
+<p><strong>修改方法：</strong> 只需移动<strong>一个花括号 <code>&#125;</code> 的位置</strong>。把交换逻辑移到内层循环的<strong>外面</strong>。</p>
+<h3 id="2-小建议：外层循环的边界"><a href="#2-小建议：外层循环的边界" class="headerlink" title="2. 小建议：外层循环的边界"></a>2. 小建议：外层循环的边界</h3><p>虽然写 <code>i &lt; n</code> 没错，但对于选择排序，当循环到倒数第二个元素排好序时，最后一个元素自动就是最大的了。 所以标准写法通常是 <code>i &lt; n - 1</code>。这能少跑一轮空循环（虽然对性能影响微乎其微，但显得更专业）。</p>
+<h2 id="修改后："><a href="#修改后：" class="headerlink" title="修改后："></a>修改后：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span>*, <span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">7</span>] = &#123; <span class="hljs-number">13</span>,<span class="hljs-number">38</span>,<span class="hljs-number">65</span>,<span class="hljs-number">97</span>,<span class="hljs-number">76</span>,<span class="hljs-number">49</span>,<span class="hljs-number">27</span> &#125;;<br>    selection_sort(a, <span class="hljs-number">7</span>);<br>    present(a, <span class="hljs-number">7</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <span class="hljs-comment">// 养成好习惯，main函数最后加 return 0</span><br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">selection_sort</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-comment">// 只需要处理到 n-1，最后一个数自动归位</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++) &#123;<br>        <span class="hljs-type">int</span> min_subscript = i;<br>        <span class="hljs-type">int</span> temp;<br>        <br>        <span class="hljs-comment">// 这一步只找最小值在哪里，绝对不碰数组里的值</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = i + <span class="hljs-number">1</span>; k &lt; n; k++) &#123;<br>            <span class="hljs-keyword">if</span> (a[k] &lt; a[min_subscript]) &#123;<br>                min_subscript = k;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 找完之后，如果发现最小值不在开头，才进行唯一的交换</span><br>        <span class="hljs-keyword">if</span> (min_subscript != i) &#123;<br>            temp = a[min_subscript];<br>            a[min_subscript] = a[i];<br>            a[i] = temp;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">present</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> n)</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot; %d&quot;</span>, a[i]);<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>); <span class="hljs-comment">// 加上换行符，输出更美观</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我也是牛逼哈，不断地犯错，甚至主函数的<code>return 0;</code>都忘记写了。</p>
+<p>在哈基米的帮助下，我总算写对了。</p>
+<p>哈基米有一句话让我受益匪浅：</p>
+<p><strong>总结：</strong> 你的逻辑核心（找最小值）是对的，只是<strong>动手的时机（交换）太早了</strong>。选择排序的精髓就是：<strong>多看（比较），少动（交换）</strong>。</p>
+<h2 id="排序和冒泡的优劣"><a href="#排序和冒泡的优劣" class="headerlink" title="排序和冒泡的优劣"></a>排序和冒泡的优劣</h2><p>研究这两个算法花了我不少时间，我于是向哈基米问了一下这两个算法的区别：</p>
+<p>这两个排序算法（选择排序 vs 冒泡排序）其实是一对“难兄难弟”。</p>
+<p>它们的时间复杂度在最坏和平均情况下都是 $O(n^2)$，也就是说，当数据量变大时，它们都会变得很慢。在实际的大型软件开发中（处理成千上万的数据），通常都不会用这两个，而是用更快的“快速排序”或“归并排序”。</p>
+<p>不过，作为编程入门，它们非常重要。如果非要让它们两个PK一下，<strong>互有优劣</strong>，具体取决于你的使用场景：</p>
+<h3 id="1-谁写内存（交换）更少？-——-选择排序胜-🏆"><a href="#1-谁写内存（交换）更少？-——-选择排序胜-🏆" class="headerlink" title="1. 谁写内存（交换）更少？ —— 选择排序胜 🏆"></a>1. 谁写内存（交换）更少？ —— <strong>选择排序胜</strong> 🏆</h3><p>这是<strong>选择排序</strong>最大的优势。</p>
+<ul>
+<li><strong>选择排序：</strong> 无论数据多乱，它每一轮<strong>最多只交换 1 次</strong>。如果有 $n$ 个数，最多交换 $n-1$ 次。</li>
+<li><strong>冒泡排序：</strong> 如果数据很乱（比如是倒序的），它每次比较都要交换。如果有 $n$ 个数，最坏情况下要交换 $n*(n-1)&#x2F;2$ 次。</li>
+</ul>
+<p>应用场景：</p>
+<p>假设你在给老旧的单片机编程，或者在这个硬件上<strong>“写操作”非常消耗资源&#x2F;寿命</strong>（比如早期的 Flash 存储器，写多了会坏），那么选择排序是更好的选择，因为它极大地减少了写入（交换）的次数。</p>
+<h3 id="2-谁能利用“已经排好序”的部分？-——-冒泡排序胜-🏆"><a href="#2-谁能利用“已经排好序”的部分？-——-冒泡排序胜-🏆" class="headerlink" title="2. 谁能利用“已经排好序”的部分？ —— 冒泡排序胜 🏆"></a>2. 谁能利用“已经排好序”的部分？ —— <strong>冒泡排序胜</strong> 🏆</h3><ul>
+<li><strong>选择排序：</strong> 它是“死脑筋”。给它一个已经排好序的数列 <code>&#123;1, 2, 3, 4, 5&#125;</code>，它依然会傻傻地两层循环走完，去确认谁是最小值。</li>
+<li><strong>冒泡排序（优化版）：</strong> 它是“机灵鬼”。如果在某一轮扫描中，发现<strong>一次交换都没有发生</strong>，它就知道“哦，数列已经排好了”，然后直接结束程序。</li>
+</ul>
+<p>应用场景：</p>
+<p>如果你知道你的数据大部分已经是排好序的，只有少数几个数乱了，用冒泡排序会快得飞起（接近 $O(n)$）。</p>
+<h3 id="3-稳定性（Stability）-——-冒泡排序胜-🏆"><a href="#3-稳定性（Stability）-——-冒泡排序胜-🏆" class="headerlink" title="3. 稳定性（Stability） —— 冒泡排序胜 🏆"></a>3. 稳定性（Stability） —— <strong>冒泡排序胜</strong> 🏆</h3><p>这是一个进阶概念。假设你有两个 38，我们叫它们 <code>38(A)</code> 和 <code>38(B)</code>，且原本 <code>38(A)</code> 在 <code>38(B)</code> 前面。</p>
+<ul>
+<li><strong>冒泡排序：</strong> 是<strong>稳定</strong>的。因为它是相邻比较，遇到相等的数不会交换。排完序后，<code>38(A)</code> 依然在 <code>38(B)</code> 前面。</li>
+<li><strong>选择排序：</strong> 是<strong>不稳定</strong>的。因为它可能会把前面的 <code>38(A)</code> 交换到很后面的位置，破坏原有的相对顺序。</li>
+</ul>
+<p>应用场景：</p>
+<p>如果你在排“学生成绩单”，先按“学号”排了一次，现在要按“分数”再排一次。如果用不稳定的选择排序，分数相同的学生，学号顺序可能会被打乱。用冒泡排序则能保留学号的顺序。</p>
+<hr>
+<h3 id="总结对比表"><a href="#总结对比表" class="headerlink" title="总结对比表"></a>总结对比表</h3><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>选择排序 (Selection Sort)</strong></th>
+<th><strong>冒泡排序 (Bubble Sort)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>交换次数</strong></td>
+<td><strong>少</strong> (固定 $O(n)$)</td>
+<td><strong>多</strong> (取决于数据乱度)</td>
+</tr>
+<tr>
+<td><strong>比较次数</strong></td>
+<td>多 (固定 $O(n^2)$)</td>
+<td>多 (通常 $O(n^2)$)</td>
+</tr>
+<tr>
+<td><strong>最佳情况速度</strong></td>
+<td>慢 (依然 $O(n^2)$)</td>
+<td><strong>快</strong> (若已排序可达 $O(n)$)</td>
+</tr>
+<tr>
+<td><strong>稳定性</strong></td>
+<td>不稳定</td>
+<td><strong>稳定</strong></td>
+</tr>
+<tr>
+<td><strong>逻辑复杂度</strong></td>
+<td>简单直观</td>
+<td>简单直观</td>
+</tr>
+</tbody></table>
+<h3 id="既然都学了，下一步做什么？"><a href="#既然都学了，下一步做什么？" class="headerlink" title="既然都学了，下一步做什么？"></a>既然都学了，下一步做什么？</h3><p>既然你已经掌握了这两种 $O(n^2)$ 的算法，而且代码写得越来越规范，我建议你挑战一个新的排序法，它也是 $O(n^2)$，但在小规模数据下，它通常比冒泡和选择都要快，而且更符合人类直觉。</p>
+<p>它就是 **插入排序 (Insertion Sort)**。</p>
+<p><strong>原理就像打扑克牌：</strong> 摸一张牌，把它插到手里已经理好的牌中的正确位置。</p>
+<p><strong>想不想试试写一下插入排序？</strong> (我可以给你提示，或者你自己先去查查原理)</p>
+<h3 id="详细探究一下排序法的不稳定性："><a href="#详细探究一下排序法的不稳定性：" class="headerlink" title="详细探究一下排序法的不稳定性："></a>详细探究一下排序法的不稳定性：</h3><p>我看了AI给出的二者区别后，大受震撼，且对于排序法的不稳定性很好奇，于是我又问了问哈基米：</p>
+<p>这个问题问得太好了！“稳定性”这个概念非常抽象，光看定义很难懂，但一旦画个图，你立刻就会明白。</p>
+<p>所谓的 <code>38(A)</code> 和 <code>38(B)</code>，在计算机眼里数值都是 38。但为了区分它们，我们假设它们是两个不同的人：</p>
+<ul>
+<li><strong>38(A)<strong>：是一个穿</strong>红衣服</strong>的人，排在前面。</li>
+<li><strong>38(B)<strong>：是一个穿</strong>蓝衣服</strong>的人，排在后面。</li>
+</ul>
+<p>我们希望：排完序后，红衣服依然在蓝衣服前面（这就叫稳定）。</p>
+<p>如果排完序后，蓝衣服跑到红衣服前面去了（这就叫不稳定）。</p>
+<h4 id="1-为什么选择排序是“不稳定”的？（案发现场）"><a href="#1-为什么选择排序是“不稳定”的？（案发现场）" class="headerlink" title="1. 为什么选择排序是“不稳定”的？（案发现场）"></a>1. 为什么选择排序是“不稳定”的？（案发现场）</h4><p>选择排序的问题在于：它进行了一次<strong>“远距离暴力交换”</strong>。它为了把最小值拉到前面，不小心把本来坐在前面的 <code>38(A)</code> 扔到了后面去。</p>
+<p>举个例子：</p>
+<p>假设数列是：{ 38(A), 38(B), 10 }</p>
+<p><strong>目标：</strong> 从小到大排序。</p>
+<p><strong>第一轮循环 (i&#x3D;0)：</strong></p>
+<ol>
+<li>我们要给第 0 个位置（现在坐着 <code>38(A)</code>）找一个最小值。</li>
+<li>我们在后面找啊找，发现了 <strong>10</strong> 是最小的。</li>
+<li><strong>关键时刻来了！</strong> 选择排序说：“我要把 10 放到第 0 个位置”。</li>
+<li>于是，它把 <strong>10</strong> 和 <strong>38(A)</strong> 交换位置。</li>
+</ol>
+<p>结果变成了：</p>
+<p>{ 10, 38(B), 38(A) }</p>
+<p>看！悲剧发生了：</p>
+<p>本来 38(A) 在 38(B) 的前面。</p>
+<p>但是因为 38(A) 运气不好，它占据了“坑位”，被用来交换那个最小的 10，结果被一脚踢到了数列的最后面。</p>
+<p>现在的顺序变成了：蓝衣服(B) 在 红衣服(A) 的前面。</p>
+<p>这就是<strong>不稳定</strong>。原有的顺序被打乱了。</p>
+<h4 id="2-为什么冒泡排序是“稳定”的？（和谐社会）"><a href="#2-为什么冒泡排序是“稳定”的？（和谐社会）" class="headerlink" title="2. 为什么冒泡排序是“稳定”的？（和谐社会）"></a>2. 为什么冒泡排序是“稳定”的？（和谐社会）</h4><p>冒泡排序是<strong>相邻</strong>两两比较。如果两个数一样大，它就不换。</p>
+<p>还是那个例子：</p>
+<p>数列：{ 38(A), 38(B), 10 }</p>
+<p><strong>第一轮冒泡：</strong></p>
+<ol>
+<li>比较 <code>38(A)</code> 和 <code>38(B)</code>。<ul>
+<li>它俩一样大。冒泡排序的逻辑是 <code>if (a[j] &gt; a[j+1])</code> 才换。</li>
+<li>既然不大于（是等于），<strong>就不换</strong>。</li>
+<li><strong>结果：</strong> <code>38(A)</code> 依然稳稳地坐在 <code>38(B)</code> 前面。</li>
+</ul>
+</li>
+<li>接着比较 <code>38(B)</code> 和 <code>10</code>。<ul>
+<li>38 比 10 大，交换！</li>
+<li><strong>结果：</strong> <code>&#123; 38(A), 10, 38(B) &#125;</code>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>第二轮冒泡：</strong></p>
+<ol>
+<li>比较 <code>38(A)</code> 和 <code>10</code>。<ul>
+<li>38 比 10 大，交换！</li>
+<li><strong>结果：</strong> <code>&#123; 10, 38(A), 38(B) &#125;</code>。</li>
+</ul>
+</li>
+</ol>
+<p>最终结果：</p>
+<p>{ 10, 38(A), 38(B) }</p>
+<p>看到没？红衣服(A) 依然在 蓝衣服(B) 的前面。因为冒泡排序很温柔，不会跨越“人头”去扔东西，所以顺序保住了。</p>
+<h4 id="3-这对“学生学号”有什么影响？"><a href="#3-这对“学生学号”有什么影响？" class="headerlink" title="3. 这对“学生学号”有什么影响？"></a>3. 这对“学生学号”有什么影响？</h4><p>你可能会问：<em>“这有啥用？反正都是38，谁在前谁在后不一样吗？”</em></p>
+<p>对于简单的整数排序，确实没区别。但如果我们排的是<strong>复杂的对象（结构体）</strong>，区别就大了。</p>
+<p>场景模拟：</p>
+<p>你在Excel里有一张成绩单，<strong>一开始是按学号排好序的：</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>学号</strong></th>
+<th><strong>姓名</strong></th>
+<th><strong>分数</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>001</strong></td>
+<td>张三</td>
+<td>90</td>
+</tr>
+<tr>
+<td><strong>002</strong></td>
+<td>李四</td>
+<td>90</td>
+</tr>
+<tr>
+<td><strong>003</strong></td>
+<td>王五</td>
+<td>80</td>
+</tr>
+</tbody></table>
+<p>现在，老师要求：<strong>“按分数从低到高排序。”</strong></p>
+<p>如果是稳定的排序（如冒泡）：</p>
+<p>排完分数后，分数相同的人，学号依然是有序的。</p>
+<ol>
+<li>王五 (80分)</li>
+<li><strong>张三 (001号, 90分)</strong></li>
+<li><strong>李四 (002号, 90分)</strong> -&gt; 看着很舒服，同分的按学号排。</li>
+</ol>
+<p>如果是不稳定的排序（如选择排序）：</p>
+<p>排完分数后，可能会变成这样：</p>
+<ol>
+<li>王五 (80分)</li>
+<li><strong>李四 (002号, 90分)</strong> -&gt; 莫名其妙跑前面去了</li>
+<li><strong>张三 (001号, 90分)</strong></li>
+</ol>
+<p>这时候老师就会很困惑：“怎么李四排在张三前面？不是应该按学号顺延吗？”</p>
+<p><strong>总结：</strong></p>
+<ul>
+<li><strong>不稳定</strong> &#x3D; 容易“误伤友军”，为了换位置，把无辜的相同元素扔到了后面。</li>
+<li><strong>稳定</strong> &#x3D; 讲究“先来后到”，原本谁在前面，排完序后（如果数值相等）它还在前面。</li>
+</ul>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>卧槽，要不是我多问一嘴，我还真不知道冒泡法和排序法有这么多不同，有这么多不同的运用场景</p>
+<p>尤其是这个稳定性，看来我需要走的路还有很远！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>排序算法（选择法）</div>
+      <div>http://example.com/2025/11/30/排序算法（选择法）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>王柏森</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/29/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88%E5%86%92%E6%B3%A1%E6%B3%95%EF%BC%89/" title="排序算法（冒泡法）">
+                        <span class="hidden-mobile">排序算法（冒泡法）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
