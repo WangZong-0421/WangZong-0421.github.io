@@ -1,0 +1,730 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="王柏森">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="吃掉缓冲区背景：对输入的一个数判断是否是素数。所谓素数是指这个数只能被1和自身整除。要求在主函数输入一个数，调用函数Fun()判断该数是否是素数。打印信息在主函数中进行。例如：从键盘输入5，5是素数则打印如下信息：”5 is a prime number”。又如:从键盘输入4, 4不是素数则打印如下信息:”4 is not a prime number”。负数、0和1均不是素数。对输入的数据要考虑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吃掉缓冲区">
+<meta property="og:url" content="http://example.com/2025/12/02/%E5%90%83%E6%8E%89%E7%BC%93%E5%86%B2%E5%8C%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="吃掉缓冲区背景：对输入的一个数判断是否是素数。所谓素数是指这个数只能被1和自身整除。要求在主函数输入一个数，调用函数Fun()判断该数是否是素数。打印信息在主函数中进行。例如：从键盘输入5，5是素数则打印如下信息：”5 is a prime number”。又如:从键盘输入4, 4不是素数则打印如下信息:”4 is not a prime number”。负数、0和1均不是素数。对输入的数据要考虑">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-01T16:18:47.494Z">
+<meta property="article:modified_time" content="2025-12-01T16:19:38.587Z">
+<meta property="article:author" content="王柏森">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>吃掉缓冲区 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="吃掉缓冲区"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-02 00:18" pubdate>
+          2025年12月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">吃掉缓冲区</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="吃掉缓冲区"><a href="#吃掉缓冲区" class="headerlink" title="吃掉缓冲区"></a>吃掉缓冲区</h1><h2 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h2><p>对输入的一个数判断是否是素数。所谓素数是指这个数只能被1和自身整除。要求在主函数输入一个数，调用函数Fun()判断该数是否是素数。打印信息在主函数中进行。例如：从键盘输入5，5是素数则打印如下信息：”5 is a prime number”。又如:从键盘输入4, 4不是素数则打印如下信息:”4 is not a prime number”。负数、0和1均不是素数。对输入的数据要考虑数据的合法性，不满足条件的数要重新输入直到满足条件为止。不能使用全局变量,不按给定的函数原型编写程序<br>不给分。Fun()函数原型为： int Fun(int m)；<br>**输入数据提示信息：”Please input a number:\n”<br>                    注：该提示信息请放在循环体外<br>**输入数据格式为：”%d”<br>**输出格式要求：<br>  若是素数输出数据格式为：”%d is a prime number\n”<br>  若不是素数输出数据格式为： “%d is not a prime number\n”<br>程序运行示例1；<br>Please input a number:<br>11<br>11 is a prime number<br>程序运行示例2：<br>Please input a number:<br>56<br>56 is not a prime number</p>
+<h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;math.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">Fun</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> m;<br>	<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Please input a number:\n&quot;</span>);<br>		<span class="hljs-comment">/*f(scanf(&quot;%d&quot;, &amp;m) != 1) &#123;</span><br><span class="hljs-comment">			while (getchar() != &#x27;\n&#x27;);</span><br><span class="hljs-comment">			continue;</span><br><span class="hljs-comment">		&#125;*/</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot; %d&quot;</span>, &amp;m) != <span class="hljs-number">1</span>) &#123;<br>			<span class="hljs-comment">// 如果读取失败（比如用户输入了字母），需要清空缓冲区</span><br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Invalid input! Please enter an integer.\n&quot;</span>);<br>			<span class="hljs-keyword">while</span> (getchar() != <span class="hljs-string">&#x27;\n&#x27;</span>); <span class="hljs-comment">// 吃掉错误的字符</span><br>			<span class="hljs-keyword">continue</span>; <span class="hljs-comment">// 跳过本次循环，重新开始</span><br>		&#125;<br>		<span class="hljs-keyword">if</span> (!Fun(m)) &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d is not a prime number\n&quot;</span>, m);<br>		&#125;<br>		<span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d is a prime number\n&quot;</span>, m);<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">Fun</span><span class="hljs-params">(<span class="hljs-type">int</span> m)</span> &#123;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>;i &lt;= <span class="hljs-built_in">sqrt</span>(m);i++) &#123;<br>		<span class="hljs-keyword">if</span> (m % i == <span class="hljs-number">0</span>) &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//不是质数</span><br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="吃掉缓冲区："><a href="#吃掉缓冲区：" class="headerlink" title="吃掉缓冲区："></a>吃掉缓冲区：</h2><h3 id="代码实现：-1"><a href="#代码实现：-1" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> (<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot; %d&quot;</span>, &amp;m) != <span class="hljs-number">1</span>) &#123;<br><br><span class="hljs-comment">// 处理非数字输入的容错代码（这里简单处理：清空缓冲区）</span><br><br><span class="hljs-keyword">while</span>(getchar() != <span class="hljs-string">&#x27;\n&#x27;</span>);<br><br><span class="hljs-keyword">continue</span>;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="一、-什么是“缓冲区”-Buffer-？"><a href="#一、-什么是“缓冲区”-Buffer-？" class="headerlink" title="一、 什么是“缓冲区” (Buffer)？"></a>一、 什么是“缓冲区” (Buffer)？</h3><p>想象你在自动售货机买东西。</p>
+<ul>
+<li><strong>键盘</strong>：就是投币口。</li>
+<li>**变量 <code>m</code>**：就是最终存放饮料的地方。</li>
+<li><strong>缓冲区</strong>：就是机器内部的<strong>暂存通道</strong>。</li>
+</ul>
+<p>当你敲击键盘输入 <code>100A</code> 并按下回车时，数据并不会直接飞进变量 <code>m</code> 里。它们会先像排队一样，进入<strong>缓冲区</strong>（传送带）：</p>
+<p><strong>缓冲区现在的状态：</strong></p>
+<p>Plaintext</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scheme">[ <span class="hljs-symbol">&#x27;1</span>&#x27;, <span class="hljs-symbol">&#x27;0</span>&#x27;, <span class="hljs-symbol">&#x27;0</span>&#x27;, <span class="hljs-symbol">&#x27;A</span>&#x27;, &#x27;\n&#x27; ]<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意：</strong> <code>\n</code> 是你按的回车键，它也是一个字符，叫换行符。</p>
+</blockquote>
+<hr>
+<h3 id="二、-scanf-的原理：一个挑剔的搬运工"><a href="#二、-scanf-的原理：一个挑剔的搬运工" class="headerlink" title="二、 scanf 的原理：一个挑剔的搬运工"></a>二、 <code>scanf</code> 的原理：一个挑剔的搬运工</h3><p><code>scanf(&quot;%d&quot;, &amp;m)</code> 就像一个负责搬运数字的搬运工。它的工作规则如下：</p>
+<ol>
+<li><strong>跳过空白</strong>：一开始如果遇到空格、换行，它会直接扔掉。</li>
+<li><strong>贪婪读取</strong>：它会一直往后拿字符，直到遇到一个<strong>不是数字</strong>的字符为止。</li>
+<li><strong>放回</strong>：遇到不认识的字符，它不会拿走，而是<strong>留在传送带上</strong>。</li>
+</ol>
+<h4 id="还原你遇到的-100A-场景："><a href="#还原你遇到的-100A-场景：" class="headerlink" title="还原你遇到的 100A 场景："></a>还原你遇到的 <code>100A</code> 场景：</h4><p><strong>第一轮循环：</strong></p>
+<ol>
+<li><p>你输入了 <code>100A</code> + 回车。</p>
+</li>
+<li><p><code>scanf</code> 看到 <code>1</code>，是数字，拿走。</p>
+</li>
+<li><p><code>scanf</code> 看到 <code>0</code>，是数字，拿走。</p>
+</li>
+<li><p><code>scanf</code> 看到 <code>0</code>，是数字，拿走。</p>
+</li>
+<li><p><code>scanf</code> 看到 <code>A</code>，<strong>不是数字！停！</strong></p>
+</li>
+<li><p><code>scanf</code> 把拿到的 <code>100</code> 组装好，放进变量 <code>m</code> 里。返回 <code>1</code>（表示成功读到一个数）。</p>
+</li>
+<li><p><strong>重点：</strong> 此时传送带上还剩下 <code>A</code> 和 <code>\n</code>。</p>
+<p>Plaintext</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">缓冲区剩余：<span class="hljs-selector-attr">[ <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;\n&#x27;</span> ]</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>程序继续运行，判断 <code>100</code> 不是质数，打印结果。</p>
+</li>
+</ol>
+<p><strong>第二轮循环（死循环的开始）：</strong></p>
+<ol>
+<li><p>循环回来，再次执行 <code>scanf(&quot;%d&quot;, &amp;m)</code>。</p>
+</li>
+<li><p><code>scanf</code> 看了一眼传送带的第一个东西：<code>A</code>。</p>
+</li>
+<li><p><code>scanf</code> 说：“我要的是 <code>%d</code>（整数），这是个字母，我不干了。”</p>
+</li>
+<li><p><code>scanf</code> 读取失败，返回 <code>0</code>。变量 <code>m</code> 没被修改（还是旧值 100）。</p>
+</li>
+<li><p><strong>重点：</strong> 因为 <code>scanf</code> 读取失败，它没有拿走 <code>A</code>。</p>
+<p>Plaintext</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">缓冲区剩余：<span class="hljs-selector-attr">[ <span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;\n&#x27;</span> ]</span>  &lt;-- <span class="hljs-selector-tag">A</span> 还在！<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>程序往下跑，打印“100 不是质数”。</p>
+</li>
+<li><p>回到步骤 1，<code>scanf</code> 又看到 <code>A</code>…… <strong>死循环达成</strong>。</p>
+</li>
+</ol>
+<hr>
+<h3 id="三、-getchar-扮演的角色：不挑食的清洁工"><a href="#三、-getchar-扮演的角色：不挑食的清洁工" class="headerlink" title="三、 getchar() 扮演的角色：不挑食的清洁工"></a>三、 <code>getchar()</code> 扮演的角色：不挑食的清洁工</h3><p><code>getchar()</code> 的功能非常简单粗暴：<strong>从传送带上拿走一个字符，不管是什么，拿走就是了。</strong></p>
+<p>现在看这段“吃掉缓冲区”的代码：</p>
+<p>C</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable"><span class="hljs-keyword">while</span></span> (<span class="hljs-function"><span class="hljs-title">getchar</span>() <span class="hljs-variable">!</span>= <span class="hljs-string">&#x27;\n&#x27;</span>);</span><br></code></pre></td></tr></table></figure>
+
+<p>这句话翻译成白话就是：</p>
+<blockquote>
+<p>“只要拿到的东西不是回车符 (<code>\n</code>)，就继续拿，直到拿到回车符为止。”</p>
+</blockquote>
+<h4 id="加上这段代码后，第二轮循环发生了什么？"><a href="#加上这段代码后，第二轮循环发生了什么？" class="headerlink" title="加上这段代码后，第二轮循环发生了什么？"></a>加上这段代码后，第二轮循环发生了什么？</h4><ol>
+<li><p><code>scanf</code> 发现传送带开头是 <code>A</code>，读取失败，返回 0。</p>
+</li>
+<li><p>进入 <code>if</code> 判断失败的分支。</p>
+</li>
+<li><p>执行 <code>while(getchar() != &#39;\n&#39;);</code>：</p>
+<ul>
+<li>第 1 次 <code>getchar()</code>：拿走了 <code>A</code>。是不是回车？不是。继续。</li>
+<li>第 2 次 <code>getchar()</code>：拿走了 <code>\n</code>。是不是回车？是！循环结束。</li>
+</ul>
+</li>
+<li><p><strong>此时缓冲区状态：</strong> 空了！</p>
+<p>Plaintext</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">缓冲区：<span class="hljs-selector-attr">[ ]</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>continue</code> 跳回循环开头。</p>
+</li>
+<li><p>第三轮 <code>scanf</code>：传送带是空的，它会乖乖停下来，<strong>等待你键盘输入新的数字</strong>。</p>
+</li>
+</ol>
+<p>这就是“清空缓冲区”的原理。</p>
+<hr>
+<h3 id="四、-解答你的具体疑惑"><a href="#四、-解答你的具体疑惑" class="headerlink" title="四、 解答你的具体疑惑"></a>四、 解答你的具体疑惑</h3><h4 id="Q1-getchar-没有地址啊，读取了的东西放哪？"><a href="#Q1-getchar-没有地址啊，读取了的东西放哪？" class="headerlink" title="Q1: getchar 没有地址啊，读取了的东西放哪？"></a>Q1: <code>getchar</code> 没有地址啊，读取了的东西放哪？</h4><p><strong>答：被扔进了“垃圾桶”。</strong></p>
+<p>在 C 语言中，函数是有返回值的。</p>
+<ul>
+<li>如果你写 <code>char c = getchar();</code>，意思是把拿到的东西存进变量 <code>c</code>。</li>
+<li>如果你只写 <code>getchar();</code>，意思是调用函数，让它执行“拿走字符”这个动作，但是<strong>忽略它的返回值</strong>。</li>
+</ul>
+<p>就像你买了一瓶水（<code>getchar</code>），但是你没伸手接（没赋值给变量），这瓶水就直接掉在地上流走了。在这里，我们的目的就是让它流走（从缓冲区消失），我们并不关心它具体是 <code>A</code> 还是 <code>B</code>。</p>
+<h4 id="Q2-为什么-100A-会先读-100，下次再读-A？"><a href="#Q2-为什么-100A-会先读-100，下次再读-A？" class="headerlink" title="Q2: 为什么 100A 会先读 100，下次再读 A？"></a>Q2: 为什么 <code>100A</code> 会先读 100，下次再读 A？</h4><p><strong>答：这是 <code>scanf</code> 的“分隔符”机制。</strong> <code>scanf</code> 只要遇到不符合格式规定的字符，就会认为“当前这个数据的读取结束了”。</p>
+<ul>
+<li>对于 <code>%d</code>，字母就是结束符。</li>
+<li>对于 <code>%d</code>，空格、回车也是结束符。 正因为如此，你才能在一次输入中用空格隔开多个数字（比如输入 <code>10 20</code>），<code>scanf</code> 才能分两次读走它们。只不过在你的场景里，<code>A</code> 是个意外的非法字符，导致了后面的堵塞。</li>
+</ul>
+<h4 id="Q3-if-scanf-1-是什么意思？"><a href="#Q3-if-scanf-1-是什么意思？" class="headerlink" title="Q3: if (scanf(...) != 1) 是什么意思？"></a>Q3: <code>if (scanf(...) != 1)</code> 是什么意思？</h4><p><strong>答：利用返回值的“体检报告”。</strong> <code>scanf</code> 函数执行完后，会返回一个整数，代表<strong>它成功读取并填好了几个变量</strong>。</p>
+<ul>
+<li>我们写的是 <code>scanf(&quot;%d&quot;, &amp;m)</code>，只想读 1 个整数。</li>
+<li>如果成功，它返回 <code>1</code>。</li>
+<li>如果遇到 <code>A</code>，它读不了，返回 <code>0</code>。</li>
+<li>如果遇到文件结束（EOF），它返回 <code>-1</code>。</li>
+</ul>
+<p>所以 <code>if (scanf(...) != 1)</code> 的意思就是：“如果在读取过程中出了岔子（没读到 1 个数），那肯定是有问题了，赶紧进 <code>if</code> 里进行错误处理（清空缓冲区）。”</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>吃掉缓冲区</div>
+      <div>http://example.com/2025/12/02/吃掉缓冲区/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>王柏森</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/30/void%E7%9A%84%E5%90%AB%E4%B9%89/" title="void的含义">
+                        <span class="hidden-mobile">void的含义</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
