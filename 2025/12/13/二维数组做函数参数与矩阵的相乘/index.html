@@ -1,0 +1,665 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="王柏森">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="二维数组做函数参数与矩阵的相乘背景：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859二维数组实验题：利用矩阵相乘公式，编程计算M*N阶矩阵A和N*M阶矩阵B之积C(M*M阶矩阵)。要求如下：1.用宏定义形式分别定义M、N的值为3、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二维数组做函数参数与矩阵的相乘">
+<meta property="og:url" content="http://example.com/2025/12/13/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%81%9A%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%B8%8E%E7%9F%A9%E9%98%B5%E7%9A%84%E7%9B%B8%E4%B9%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="二维数组做函数参数与矩阵的相乘背景：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859二维数组实验题：利用矩阵相乘公式，编程计算M*N阶矩阵A和N*M阶矩阵B之积C(M*M阶矩阵)。要求如下：1.用宏定义形式分别定义M、N的值为3、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-13T06:29:32.643Z">
+<meta property="article:modified_time" content="2025-12-09T06:24:49.611Z">
+<meta property="article:author" content="王柏森">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>二维数组做函数参数与矩阵的相乘 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="二维数组做函数参数与矩阵的相乘"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-13 14:29" pubdate>
+          2025年12月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">二维数组做函数参数与矩阵的相乘</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="二维数组做函数参数与矩阵的相乘"><a href="#二维数组做函数参数与矩阵的相乘" class="headerlink" title="二维数组做函数参数与矩阵的相乘"></a>二维数组做函数参数与矩阵的相乘</h1><h2 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs c">二维数组实验题：利用矩阵相乘公式，编程计算M*N阶矩阵A和N*M阶矩阵B之积C(M*M阶矩阵)。<br>要求如下：<br><span class="hljs-number">1.</span>用宏定义形式分别定义M、N的值为<span class="hljs-number">3</span>、<span class="hljs-number">4</span>。<br><span class="hljs-number">2.</span>函数原型分别定义成：<br><span class="hljs-type">void</span> <span class="hljs-title function_">MultiplyMatrix</span><span class="hljs-params">(<span class="hljs-type">int</span> a[M][N], <span class="hljs-type">int</span> b[N][M], <span class="hljs-type">int</span> c[M][M])</span>;<span class="hljs-comment">/* 函数功能：计算矩阵相乘之积，结果存于二维数组c中 */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">InputMatrixA</span><span class="hljs-params">(<span class="hljs-type">int</span> a[M][N])</span>;<span class="hljs-comment">/* 函数功能：输入矩阵a中的元素 */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">InputMatrixB</span><span class="hljs-params">(<span class="hljs-type">int</span> b[N][M])</span>;<span class="hljs-comment">/* 函数功能：输入矩阵b中的元素 */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">OutputMatrix</span><span class="hljs-params">(<span class="hljs-type">int</span> a[M][M])</span>;<span class="hljs-comment">/* 函数功能：输出矩阵a中的元素 */</span><br><span class="hljs-number">3.</span>主函数定义成：<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">int</span> a[M][N], b[N][M], c[M][M];<br>	InputMatrixA(a);<br>	InputMatrixB(b);<br>	MultiplyMatrix(a,b,c);<br>	OutputMatrix(c);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-number">4.</span>输入输出格式：<br>输入矩阵A的提示：<span class="hljs-string">&quot;Input %d*%d matrix a:\n&quot;</span><br>输入矩阵A中元素的提示：<span class="hljs-string">&quot;a[%d,%d]:&quot;</span><br>输入矩阵A中元素的格式：<span class="hljs-string">&quot;%d&quot;</span><br>输入矩阵B的提示：<span class="hljs-string">&quot;Input %d*%d matrix b:\n&quot;</span><br>输入矩阵B中元素的提示：<span class="hljs-string">&quot;b[%d,%d]:&quot;</span><br>输入矩阵B中元素的格式：<span class="hljs-string">&quot;%d&quot;</span><br>输出结果提示：<span class="hljs-string">&quot;Results:\n&quot;</span><br>输出元素格式：<span class="hljs-string">&quot;%6d&quot;</span>(注：每行末有<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);)<br>程序运行示例：<br>Input <span class="hljs-number">3</span>*<span class="hljs-number">4</span> matrix a:↙<br>a[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]:<span class="hljs-number">1</span><br>a[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]:<span class="hljs-number">2</span><br>a[<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]:<span class="hljs-number">3</span><br>a[<span class="hljs-number">0</span>,<span class="hljs-number">3</span>]:<span class="hljs-number">4</span><br>a[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]:<span class="hljs-number">1</span><br>a[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]:<span class="hljs-number">2</span><br>a[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]:<span class="hljs-number">3</span><br>a[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]:<span class="hljs-number">4</span><br>a[<span class="hljs-number">2</span>,<span class="hljs-number">0</span>]:<span class="hljs-number">1</span><br>a[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]:<span class="hljs-number">2</span><br>a[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]:<span class="hljs-number">3</span><br>a[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]:<span class="hljs-number">4</span><br>Input <span class="hljs-number">4</span>*<span class="hljs-number">3</span> matrix b:↙<br>b[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]:<span class="hljs-number">1</span><br>b[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]:<span class="hljs-number">2</span><br>b[<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]:<span class="hljs-number">1</span><br>b[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]:<span class="hljs-number">2</span><br>b[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]:<span class="hljs-number">1</span><br>b[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]:<span class="hljs-number">2</span><br>b[<span class="hljs-number">2</span>,<span class="hljs-number">0</span>]:<span class="hljs-number">1</span><br>b[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]:<span class="hljs-number">2</span><br>b[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]:<span class="hljs-number">1</span><br>b[<span class="hljs-number">3</span>,<span class="hljs-number">0</span>]:<span class="hljs-number">2</span><br>b[<span class="hljs-number">3</span>,<span class="hljs-number">1</span>]:<span class="hljs-number">1</span><br>b[<span class="hljs-number">3</span>,<span class="hljs-number">2</span>]:<span class="hljs-number">2</span><br>Results:↙<br>    <span class="hljs-number">16</span>    <span class="hljs-number">14</span>    <span class="hljs-number">16</span>↙<br>    <span class="hljs-number">16</span>    <span class="hljs-number">14</span>    <span class="hljs-number">16</span>↙<br>    <span class="hljs-number">16</span>    <span class="hljs-number">14</span>    <span class="hljs-number">16</span>↙<br>↙<br></code></pre></td></tr></table></figure>
+
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> M 3</span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 4</span><br><br><span class="hljs-type">void</span> <span class="hljs-title function_">inputa</span><span class="hljs-params">(<span class="hljs-type">int</span> a[][N])</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">inputb</span><span class="hljs-params">(<span class="hljs-type">int</span> b[][M])</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">multi</span><span class="hljs-params">(<span class="hljs-type">int</span> a[][N], <span class="hljs-type">int</span> b[][M], <span class="hljs-type">int</span> c[][M])</span>;<br><span class="hljs-type">void</span> <span class="hljs-title function_">output</span><span class="hljs-params">(<span class="hljs-type">int</span> c[][M])</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;<br>    <span class="hljs-type">int</span> a[M][N], b[N][M], c[M][M] = &#123; <span class="hljs-number">0</span> &#125;;<br><br>    inputa(a);<br>    inputb(b);<br>    multi(a, b, c);<br>    output(c);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">inputa</span><span class="hljs-params">(<span class="hljs-type">int</span> a[][N])</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input %d*%d matrix a:\n&quot;</span>, M, N);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; M; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; N; j++)<br>        &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[%d,%d]:&quot;</span>, i, j);<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;a[i][j]);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">inputb</span><span class="hljs-params">(<span class="hljs-type">int</span> b[][M])</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input %d*%d matrix b:\n&quot;</span>, N, M);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; M; j++)<br>        &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;b[%d,%d]:&quot;</span>, i, j);<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;b[i][j]);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">multi</span><span class="hljs-params">(<span class="hljs-type">int</span> a[][N], <span class="hljs-type">int</span> b[][M], <span class="hljs-type">int</span> c[][M])</span><br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; M; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; M; j++)<br>        &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; N; k++)<br>            &#123;<br>                c[i][j] += a[i][k] * b[k][j];<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">output</span><span class="hljs-params">(<span class="hljs-type">int</span> c[][M])</span><br>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Results:\n&quot;</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; M; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; M; j++)<br>        &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%6d&quot;</span>, c[i][j]);<br>        &#125;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="矩阵的相乘："><a href="#矩阵的相乘：" class="headerlink" title="矩阵的相乘："></a>矩阵的相乘：</h3><p>假设：</p>
+<p>$$A &#x3D; \begin{bmatrix}  \mathbf{1} &amp; \mathbf{2} &amp; \mathbf{3} \  4 &amp; 5 &amp; 6  \end{bmatrix}  \quad B &#x3D; \begin{bmatrix}  \mathbf{7} &amp; 8 \  \mathbf{9} &amp; 1 \  \mathbf{10} &amp; 2  \end{bmatrix}$$</p>
+<p>我们想算结果矩阵 <strong>左上角</strong> 的数：</p>
+<ol>
+<li>取出 A 的第一行：<code>[1, 2, 3]</code></li>
+<li>取出 B 的第一列：<code>[7, 9, 10]</code> （注意是竖着的）</li>
+<li><strong>计算动作</strong>：<ul>
+<li>$1$ 碰到了 $7 \rightarrow 1 \times 7 &#x3D; 7$</li>
+<li>$2$ 碰到了 $9 \rightarrow 2 \times 9 &#x3D; 18$</li>
+<li>$3$ 碰到了 $10 \rightarrow 3 \times 10 &#x3D; 30$</li>
+</ul>
+</li>
+<li><strong>求和</strong>：$7 + 18 + 30 &#x3D; \mathbf{55}$</li>
+</ol>
+<p>所以，结果矩阵的左上角就是 55。</p>
+<p>怎么填满整个结果矩阵？</p>
+<p>你就按照顺序重复上面的动作：</p>
+<ol>
+<li><p><strong>A的第一行</strong> $\times$ <strong>B的第一列</strong> $\rightarrow$ 填在结果的 (0,0)</p>
+</li>
+<li><p>A的第一行 $\times$ B的第二列 $\rightarrow$ 填在结果的 (0,1)</p>
+<p>(A的第一行用完了，换下一行)</p>
+</li>
+<li><p><strong>A的第二行</strong> $\times$ <strong>B的第一列</strong> $\rightarrow$ 填在结果的 (1,0)</p>
+</li>
+<li><p><strong>A的第二行</strong> $\times$ <strong>B的第二列</strong> $\rightarrow$ 填在结果的 (1,1)</p>
+</li>
+</ol>
+<hr>
+<p>我的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">multi</span><span class="hljs-params">(<span class="hljs-type">int</span> a[][N], <span class="hljs-type">int</span> b[][M], <span class="hljs-type">int</span> c[][M])</span><br>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; M; i++)<br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; M; j++)<br>        &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; N; k++)<br>            &#123;<br>                c[i][j] += a[i][k] * b[k][j];<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>需要在二维数组的循环基础上再套一个循环（如上定义变量k）</p>
+<p>外层两个循环的  <strong>i</strong>  ，<strong>j</strong>   为**c[i] [j]**服务，</p>
+<p>内层循环计算c[i] [j]的值</p>
+<p>第一次先计算c[0] [0]</p>
+<p>c[0] [0] &#x3D;   a[0] [0] * b[0] [0]<br>            +a[0] [1] * b[1] [0]<br>            +a[0] [2] * b[2] [0]<br>            +a[0] [3] * b[3] [0]</p>
+<p>a的列在变化，小于a的列（N）</p>
+<p>b的行在变化，小于b的行（N）</p>
+<p>&#x3D;&#x3D;总结&#x3D;&#x3D;：c[i] [j] 指的是用<strong>a的第i行中的每一个数</strong> 乘 <strong>b的第j列中对应的数</strong> 再全部加起来</p>
+<h3 id="二维数组做参数的注意事项："><a href="#二维数组做参数的注意事项：" class="headerlink" title="二维数组做参数的注意事项："></a>二维数组做参数的注意事项：</h3><p>在函数声明中，可以省略第一维（行数），但绝对不能省略第二维（列数）。</p>
+<ul>
+<li><p><strong>语法</strong>：<code>void func(int arr[][N], int rows)</code></p>
+</li>
+<li><p>为什么：C语言中的二维数组在内存中是连续线性存储的（按行优先）。为了找到 arr[i][j]，编译器在后台执行的计算公式是：</p>
+<p>$$Address &#x3D; Base + (i \times \text{列数} + j) \times \text{数据大小}$$</p>
+<p>如果编译器不知道“列数”，它就无法算出下一行从哪里开始。</p>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>二维数组做函数参数与矩阵的相乘</div>
+      <div>http://example.com/2025/12/13/二维数组做函数参数与矩阵的相乘/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>王柏森</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/13/%E4%B8%B4%E6%97%B6%E7%AC%94%E8%AE%B0%EF%BC%881%EF%BC%89/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
