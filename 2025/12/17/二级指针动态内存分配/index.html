@@ -19,21 +19,21 @@
   <meta name="author" content="王柏森">
   <meta name="keywords" content="">
   
-    <meta name="description" content="函数指针背景：123456789编写一个函数，输入n为偶数时，调用函数求1&#x2F;2+1&#x2F;4+...+1&#x2F;n,当输入n为奇数时，调用函数 求1&#x2F;1+1&#x2F;3+...+1&#x2F;n(要求利用函数指针编程)输入格式：&quot;%d&quot;程序运行示例1如下：10Even&#x3D;1.141666程序运行示例2如下：9Odd&#x3D;1.787302  代码实现：12345678910111213141516171819202">
+    <meta name="description" content="二级指针动态内存分配背景代码实现：123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;int main(void)&#123;	int m,n;	int **score;	printf(&quot;Inp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="函数指针">
-<meta property="og:url" content="http://example.com/2025/12/14/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88/index.html">
+<meta property="og:title" content="二级指针动态内存分配">
+<meta property="og:url" content="http://example.com/2025/12/17/%E4%BA%8C%E7%BA%A7%E6%8C%87%E9%92%88%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="函数指针背景：123456789编写一个函数，输入n为偶数时，调用函数求1&#x2F;2+1&#x2F;4+...+1&#x2F;n,当输入n为奇数时，调用函数 求1&#x2F;1+1&#x2F;3+...+1&#x2F;n(要求利用函数指针编程)输入格式：&quot;%d&quot;程序运行示例1如下：10Even&#x3D;1.141666程序运行示例2如下：9Odd&#x3D;1.787302  代码实现：12345678910111213141516171819202">
+<meta property="og:description" content="二级指针动态内存分配背景代码实现：123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;stdio.h&gt;#include &lt;stdlib.h&gt;int main(void)&#123;	int m,n;	int **score;	printf(&quot;Inp">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-12-14T15:17:46.762Z">
-<meta property="article:modified_time" content="2025-12-14T15:16:26.941Z">
+<meta property="article:published_time" content="2025-12-17T06:37:41.061Z">
+<meta property="article:modified_time" content="2025-12-17T06:37:11.489Z">
 <meta property="article:author" content="王柏森">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>函数指针 - Hexo</title>
+  <title>二级指针动态内存分配 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="函数指针"></span>
+            <span id="subtitle" data-typed-text="二级指针动态内存分配"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-12-14 23:17" pubdate>
-          2025年12月14日 晚上
+        <time datetime="2025-12-17 14:37" pubdate>
+          2025年12月17日 下午
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          228 字
+          242 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -270,16 +270,15 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">函数指针</h1>
+            <h1 id="seo-header">二级指针动态内存分配</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><h2 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tex">编写一个函数，输入n为偶数时，调用函数求1/2+1/4+...+1/n,当输入n为奇数时，调用函数 求1/1+1/3+...+1/n(要求利用函数指针编程)<br><br>输入格式：&quot;<span class="hljs-comment">%d&quot;</span><br>程序运行示例1如下：<br>10<br>Even=1.141666<br>程序运行示例2如下：<br>9<br>Odd=1.787302<br></code></pre></td></tr></table></figure>
+                <h1 id="二级指针动态内存分配"><a href="#二级指针动态内存分配" class="headerlink" title="二级指针动态内存分配"></a>二级指针动态内存分配</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span><br>&#123;	<span class="hljs-type">int</span> m,n;<br>	<span class="hljs-type">int</span> **score;<br><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input array size m,n:&quot;</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d,%d&quot;</span>,&amp;m,&amp;n);<br><br>	score=(<span class="hljs-type">int</span>**)<span class="hljs-built_in">malloc</span>(m*<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>*));<br>	<span class="hljs-keyword">if</span>(score==<span class="hljs-literal">NULL</span>)&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	&#125;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;<br>		score[i]=(<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(n*<span class="hljs-keyword">sizeof</span>(<span class="hljs-type">int</span>));<br>		<span class="hljs-keyword">if</span>(score[i]==<span class="hljs-literal">NULL</span>)&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-type">int</span> script[]=&#123;<span class="hljs-number">0</span>,<span class="hljs-number">0</span>&#125;,max_score=<span class="hljs-number">0</span>;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Input %d*%d array:\n&quot;</span>,m,n);<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;m;i++)&#123;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)&#123;<br>			<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;score[i][j]);<br>			<span class="hljs-keyword">if</span>(score[i][j]&gt;max_score)&#123;<br>				max_score=score[i][j];<br>				script[<span class="hljs-number">0</span>]=i;<br>				script[<span class="hljs-number">1</span>]=j;<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;maxScore = %d, class = %d,number = %d\n&quot;</span>,max_score,script[<span class="hljs-number">0</span>]+<span class="hljs-number">1</span>,script[<span class="hljs-number">1</span>]+<span class="hljs-number">1</span>);<br> <br> <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;<br>        <span class="hljs-built_in">free</span>(score[i]);<br>    &#125;<br>    <span class="hljs-built_in">free</span>(score);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">double</span> <span class="hljs-title function_">even_sum</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span>;<br><span class="hljs-type">double</span> <span class="hljs-title function_">odd_sum</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span>;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;	<span class="hljs-type">int</span> n;<br>	<span class="hljs-type">double</span> (*current)(<span class="hljs-type">int</span>);<br>	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;n);<br>	<span class="hljs-keyword">if</span>(n%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)&#123;<br>		current=even_sum;<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		current=odd_sum;<br>	&#125;<br>	<span class="hljs-type">double</span> result=current(n);<br>	<span class="hljs-keyword">if</span>(n%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>)&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Even=%f&quot;</span>,result);<br>	&#125;<span class="hljs-keyword">else</span>&#123;<br>		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Odd=%f&quot;</span>,result);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-type">double</span> <span class="hljs-title function_">even_sum</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>&#123;<br>	<span class="hljs-type">double</span> result=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">2</span>;i&lt;=n;i+=<span class="hljs-number">2</span>)&#123;<br>		result+=<span class="hljs-number">1.0</span>/i;<br>	&#125;<br>	<span class="hljs-keyword">return</span> result;<br>&#125;<br><br><span class="hljs-type">double</span> <span class="hljs-title function_">odd_sum</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>&#123;<br>	<span class="hljs-type">double</span> result=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i+=<span class="hljs-number">2</span>)&#123;<br>		result+=<span class="hljs-number">1.0</span>/i;<br>	&#125;<br>	<span class="hljs-keyword">return</span> result;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<p>定义函数指针，current不仅是一个函数名，还是一个专门用来存地址的指针变量</p>
+<p><strong>二维动态数组的内存分配</strong>在C语言中通常使用“<strong>二级指针</strong>”来实现。</p>
+<p>简单来说，需要先申请一个用来存放“行指针”的数组，然后再为每一行申请存放“具体数值”的空间。</p>
 
                 
               </div>
@@ -297,8 +296,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>函数指针</div>
-      <div>http://example.com/2025/12/14/函数指针/</div>
+      <div>二级指针动态内存分配</div>
+      <div>http://example.com/2025/12/17/二级指针动态内存分配/</div>
     </div>
     <div class="license-meta">
       
@@ -310,7 +309,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年12月14日</div>
+          <div>2025年12月17日</div>
         </div>
       
       
@@ -342,18 +341,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/12/17/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" title="动态内存分配">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">动态内存分配</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/12/14/%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%E7%9A%84%E6%9C%80%E7%AE%80%E5%BD%A2%E6%80%81/" title="辗转相除法的最简形态">
-                        <span class="hidden-mobile">辗转相除法的最简形态</span>
+                      <a href="/2025/12/17/%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" title="动态内存分配">
+                        <span class="hidden-mobile">动态内存分配</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
