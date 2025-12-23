@@ -1,0 +1,730 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="王柏森">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数组地址背景123假设有int a[5]，请问表示数组a中首元素的地址是什么？A: aB: &amp;a  答案： a  深究数组地址：一、取地址运算符 &amp;如果 a 是一个 int 类型的变量，那么 &amp;a 的结果类型是 **int \***（读作：指向 int 的指针） 怎么理解 &amp; 符号？你可以把它当成一个动作。  a：代表“变量里的值”（在这个房间里住着谁？）。 &amp;am">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组地址">
+<meta property="og:url" content="http://example.com/2025/12/23/%E6%95%B0%E7%BB%84%E5%9C%B0%E5%9D%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数组地址背景123假设有int a[5]，请问表示数组a中首元素的地址是什么？A: aB: &amp;a  答案： a  深究数组地址：一、取地址运算符 &amp;如果 a 是一个 int 类型的变量，那么 &amp;a 的结果类型是 **int \***（读作：指向 int 的指针） 怎么理解 &amp; 符号？你可以把它当成一个动作。  a：代表“变量里的值”（在这个房间里住着谁？）。 &amp;am">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-23T15:48:15.837Z">
+<meta property="article:modified_time" content="2025-12-23T15:47:59.728Z">
+<meta property="article:author" content="王柏森">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数组地址 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数组地址"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-12-23 23:48" pubdate>
+          2025年12月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">数组地址</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="数组地址"><a href="#数组地址" class="headerlink" title="数组地址"></a>数组地址</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">假设有int a[5]，请问表示数组a中首元素的地址是什么？<br>A: a<br>B: <span class="hljs-built_in">&amp;</span>a<br></code></pre></td></tr></table></figure>
+
+<p><strong>答案：</strong> a </p>
+<h2 id="深究数组地址："><a href="#深究数组地址：" class="headerlink" title="深究数组地址："></a>深究数组地址：</h2><h3 id="一、取地址运算符"><a href="#一、取地址运算符" class="headerlink" title="一、取地址运算符 &amp;"></a>一、取地址运算符 &amp;</h3><p>如果 <code>a</code> 是一个 <code>int</code> 类型的变量，那么 <code>&amp;a</code> 的结果类型是 **<code>int \*</code>**（读作：指向 int 的指针）</p>
+<h4 id="怎么理解-符号？"><a href="#怎么理解-符号？" class="headerlink" title="怎么理解 &amp; 符号？"></a>怎么理解 <code>&amp;</code> 符号？</h4><p>你可以把它当成一个<strong>动作</strong>。</p>
+<ul>
+<li><strong><code>a</code><strong>：代表“</strong>变量里的值</strong>”（在这个房间里住着谁？）。</li>
+<li><strong><code>&amp;a</code><strong>：代表“</strong>变量的地址</strong>”（这个房间的门牌号是多少？）。</li>
+</ul>
+<h4 id="a是一个地址，是什么类型的？"><a href="#a是一个地址，是什么类型的？" class="headerlink" title="&amp;a是一个地址，是什么类型的？"></a>&amp;a是一个地址，是什么类型的？</h4><p>是 <code>int *</code> 而不是 <code>int</code></p>
+<p>虽然“地址”看起来像是一串数字（比如 <code>6422300</code>），在物理上它确实是个整数，但在 C 语言的规则里，它属于<strong>指针类型</strong>。</p>
+<h3 id="二、怎么打印地址？"><a href="#二、怎么打印地址？" class="headerlink" title="二、怎么打印地址？"></a>二、怎么打印地址？</h3><h4 id="用什么符号打印？"><a href="#用什么符号打印？" class="headerlink" title="用什么符号打印？"></a>用什么符号打印？</h4><p><strong>新知识：</strong>%p</p>
+<p>就像用 <code>%d</code> 来打印整数（<strong>d</strong>ecimal），用 <code>%f</code> 来打印小数（<strong>f</strong>loat）一样：</p>
+<ul>
+<li><strong><code>%p</code></strong> 是专门用来打印<strong>指针（Pointer）&#x2F;地址</strong>的占位符。</li>
+</ul>
+<p><strong>它有什么特别的？</strong> 如果你用 <code>%d</code> 打印地址，它会显示成一个很长很乱的负数或整数。而 <code>%p</code> 会自动把地址显示成<strong>十六进制</strong>（比如 <code>000000000061FE14</code>），这是计算机里表示内存地址的标准方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs te">a 的地址:   504363848<br>a 的地址:   0000009B1E0FFB48<br></code></pre></td></tr></table></figure>
+
+<h4 id="怎么用printf打印格式？"><a href="#怎么用printf打印格式？" class="headerlink" title="怎么用printf打印格式？"></a>怎么用printf打印格式？</h4><p><code>printf</code> 函数有点“洁癖”。对于 <code>%p</code> 这个占位符，C 语言的标准规定：<strong>你必须给我喂一个 <code>void \*</code> 类型的指针。</strong></p>
+<p>所以要使用<strong>强制类型转换</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> a;<br><span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的地址:       %p\n&quot;</span>, (<span class="hljs-type">void</span>*)&amp;a);<br></code></pre></td></tr></table></figure>
+
+<p>虽然直接传 <code>&amp;a</code>（它是 <code>int *</code> 类型）在很多电脑上也能运行，也能打印出结果，但严格来说，<strong>类型不匹配</strong>。严谨的编译器（或者开启了严格警告模式）会报错或报警告。</p>
+<p>所以，<code>(void*)&amp;a</code> 的意思就是：</p>
+<p>​	“编译器大哥，我知道 <code>&amp;a</code> 是个 <code>int</code> 指针，但在打印这一刻，请把它<strong>当做</strong>一个通用指针（<code>void*</code>）传进去，	别报错了。”</p>
+<p>当你想要打印任何变量的地址时，标准写法就是“<strong>三件套</strong>”：</p>
+<ol>
+<li>用 <strong><code>%p</code></strong> 做占位符。</li>
+<li>用 <strong><code>&amp;</code></strong> 取出变量的地址。</li>
+<li>用 <strong><code>(void\*)</code></strong> 把地址转换成通用格式（为了不报错）。</li>
+</ol>
+<h3 id="三、a和-a分别代表什么？"><a href="#三、a和-a分别代表什么？" class="headerlink" title="三、a和&amp;a分别代表什么？"></a>三、a和&amp;a分别代表什么？</h3><p><strong>数值上，它们是同一个地址；但类型（Type）上，它们完全不同。</strong></p>
+<ul>
+<li><strong><code>a</code><strong>：在大多数表达式中，它“退化”为</strong>数组首元素（第0个元素）的地址</strong>。</li>
+<li><strong><code>&amp;a</code><strong>：它是</strong>整个数组的地址</strong>。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> &#125;;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的地址:   %p\n&quot;</span>, (<span class="hljs-type">void</span>*)a);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的地址:   %p\n&quot;</span>, (<span class="hljs-type">void</span>*)&amp;a);<br>    <span class="hljs-comment">// 你会发现上面打印的值完全一样</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>虽然它俩打印出来的十六进制数字一模一样，但在 C 语言的法律（语法规则）里，它们的身份有着云泥之别。</p>
+<p>想象你在网上买了一箱苹果（共 5 个），快递送到你家门口了。</p>
+<ul>
+<li><strong>内存地址（那个数值）</strong>：就是你家门口的地板坐标。</li>
+<li><strong><code>a</code> (即 <code>&amp;a[0]</code>)<strong>：指的是</strong>“这箱子里的第一个苹果”</strong>。</li>
+<li><strong><code>&amp;a</code><strong>：指的是</strong>“这整个箱子”</strong>。</li>
+</ul>
+<p><strong>问：</strong> 为什么坐标一样？ <strong>答：</strong> 因为<strong>箱子的起始位置</strong>，和<strong>箱子里第一个苹果的位置</strong>，物理上是在同一个点重合的！如果你把箱子拆了，第一个苹果就在箱子底部的最左边。</p>
+<h4 id="那首元素的地址到底是啥？"><a href="#那首元素的地址到底是啥？" class="headerlink" title="那首元素的地址到底是啥？"></a>那首元素的地址到底是啥？</h4><p>标准答案是 <code>a</code> （或者 <code>&amp;a[0]</code>）。</p>
+<h3 id="四、C语言数组退化（Array-Decay）"><a href="#四、C语言数组退化（Array-Decay）" class="headerlink" title="四、C语言数组退化（Array Decay）"></a>四、C语言数组退化<strong>（Array Decay）</strong></h3><p>我们弄清a和&amp;a的区别后，会惊奇的发现a指的<strong>不是</strong>整个数组的地址，而是“退化”为<strong>数组首元素（第0个元素）的地址</strong>。</p>
+<p>那我们在函数调用的时候，按照惯性思维，在主函数中传入的不应该是整个数组的地址&amp;a吗？</p>
+<p>大家只传 <code>a</code>（首地址）而不传 <code>&amp;a</code>（整个数组指针），是因为 C 语言在处理函数传参时，有一个非常“抠门”且“赖皮”的规则，即<strong>数组退化</strong></p>
+<p>怎么解释呢，我的说法是C语言在被创造出来的时候，压根就没想让函数接受一整个数组</p>
+<p>不管你在函数定义里写得多像数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">work</span><span class="hljs-params">(<span class="hljs-type">int</span> b[<span class="hljs-number">5</span>])</span> &#123; ... &#125; <span class="hljs-comment">// 看着像数组</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">work</span><span class="hljs-params">(<span class="hljs-type">int</span> b[])</span>  &#123; ... &#125; <span class="hljs-comment">// 看着也像数组</span><br></code></pre></td></tr></table></figure>
+
+<p>编译器在编译时，都会冷酷无情地把它们统统改成：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">work</span><span class="hljs-params">(<span class="hljs-type">int</span> *b)</span> &#123; ... &#125;   <span class="hljs-comment">// 实质：就是一个普通的整数指针</span><br></code></pre></td></tr></table></figure>
+
+<p>说白了，数组退化指的就是<strong>数组退化成指针</strong>，在函数中通过地址进行对数组的操作</p>
+<p><strong>这意味着什么？</strong> 这意味着当你调用函数时，<strong>“箱子”的概念消失了</strong>。函数根本不知道这是一个由 5 个元素组成的整体。它只收到了一个<strong>起始坐标</strong>。</p>
+<p>打个比方，就像让工人（函数）削苹果</p>
+<ul>
+<li><p>惯性思维：把封装好的“苹果箱”递给工人。</p>
+</li>
+<li><p><strong>C 语言的做法</strong>：你把工人带到仓库门口，指着地上的<strong>第一个苹果</strong>说：“从这开始削！”（传入 <code>a</code>）。</p>
+<ul>
+<li>如果你不告诉工人要削几个（传入长度），工人可能会顺着地址一直削下去，削完这 5 个，继续削后面的烂泥巴（内存越界），直到被保安（操作系统）抓走（程序崩溃）。</li>
+</ul>
+</li>
+</ul>
+<p>看看这个代码，更深层次地理解数组在函数中退化成指针：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-comment">// 这里的 arr[] 看起来像个数组吧？</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">test_size</span><span class="hljs-params">(<span class="hljs-type">int</span> arr[])</span> &#123;<br>    <span class="hljs-comment">// 试图在函数内部计算数组大小</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;函数里的 sizeof: %zu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(arr));<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = &#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;main里的 sizeof: %zu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a));<br>    <br>    test_size(a); <span class="hljs-comment">// 把数组传进去</span><br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">main里的 sizeof: 20<br>函数里的 sizeof: 8(缩水了！)<br></code></pre></td></tr></table></figure>
+
+<h4 id="为什么会“缩水”？"><a href="#为什么会“缩水”？" class="headerlink" title="为什么会“缩水”？"></a>为什么会“缩水”？</h4><p>这再次印证了我们刚才说的原理：<strong>数组退化</strong>。</p>
+<ol>
+<li><p><strong>在 <code>main</code> 函数里</strong>： 编译器非常清楚 <code>a</code> 是一个 <code>int[5]</code>。它手里握着图纸，知道这块地盘占了 20 个字节。所以 <code>sizeof(a)</code> 返回 <strong>20</strong>。</p>
+</li>
+<li><p><strong>在 <code>test_size</code> 函数里</strong>： 虽然你写的是 <code>int arr[]</code>，但编译器在编译那一瞬间，就已经把它偷梁换柱改成了 <code>int *arr</code>。</p>
+<p>这时候，<code>sizeof(arr)</code> 测量的<strong>不再是那一整箱苹果</strong>，而是<strong>“存放地址的那张小纸条”（指针变量）</strong>的大小！</p>
+<ul>
+<li>在 64 位系统里，一个地址（指针）占 <strong>8</strong> 字节。</li>
+<li>在 32 位系统（如大多物联网芯片）里，一个地址（指针）占 <strong>4</strong> 字节。</li>
+</ul>
+</li>
+</ol>
+<h3 id="五、指针运算"><a href="#五、指针运算" class="headerlink" title="五、指针运算"></a>五、指针运算</h3><p>看看这两行代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span> a;<br>    <br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a + 1 的地址:   %p\n&quot;</span>, (<span class="hljs-type">void</span>*)(a + <span class="hljs-number">1</span>));  <span class="hljs-comment">// 前进 4 字节 (一个int)</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a + 1 的地址:  %p\n&quot;</span>, (<span class="hljs-type">void</span>*)(&amp;a + <span class="hljs-number">1</span>)); <span class="hljs-comment">// 前进 20 字节 (整个数组)</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>运行得到：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">a + 1 的地址:   0000009EE75EF76C<br><span class="hljs-built_in">&amp;</span>a + 1 的地址:  0000009EE75EF77C<br></code></pre></td></tr></table></figure>
+
+<p>很明显，指针运算的+1并不是数学里，<code>1 + 1 = 2</code></p>
+<p>在 C 语言的指针世界里，<code>1 + 1</code> 的结果取决于<strong>你是谁</strong>。</p>
+<h4 id="指针的“一步”有多大？"><a href="#指针的“一步”有多大？" class="headerlink" title="指针的“一步”有多大？"></a>指针的“一步”有多大？</h4><p>在指针的世界里，<code>+1</code> 不代表“加 1 个字节”，而是代表<strong>“加 1 个单位（Item）”</strong>。或者更通俗地说：<strong>“下一个”</strong>。</p>
+<p>这就好比：</p>
+<ul>
+<li><strong>对于蚂蚁（char）来说</strong>：走一步（+1）就是挪动 <strong>1</strong> 厘米。</li>
+<li><strong>对于人类（int）来说</strong>：走一步（+1）就是挪动 <strong>4</strong> 厘米。</li>
+<li><strong>对于巨人（array）来说</strong>：走一步（+1）就是挪动 <strong>20</strong> 厘米。</li>
+</ul>
+<p><strong>计算机怎么知道“步长”是多少？</strong> 就是靠<strong>类型</strong>！</p>
+<ul>
+<li><code>a</code> 的类型是 <code>int *</code>（指向一个整数）。电脑知道一个整数占 <strong>4</strong> 字节。所以 <code>a+1</code> 意味着：<strong>地址往后跳 4 个字节</strong>。</li>
+<li><code>&amp;a</code> 的类型是 <code>int (*)[5]</code>（指向一个包含5个整数的数组）。电脑知道这个大数组总共占 <code>5 * 4 = 20</code> 字节。所以 <code>&amp;a+1</code> 意味着：<strong>地址往后跳 20 个字节</strong>。</li>
+</ul>
+<p>如果把数组改成 <code>char a[5]</code>（char占1个字节），a+1<code>和</code>&amp;a+1&#96; 分别会增加多少字节？</p>
+<ul>
+<li>答：1个和5个</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数组地址</div>
+      <div>http://example.com/2025/12/23/数组地址/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>王柏森</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年12月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/12/23/%E4%BA%8C%E7%BB%B4%E5%86%85%E5%AD%98%E5%81%9A%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0/" title="二维内存分配做函数参数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">二维内存分配做函数参数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/12/17/%E4%BA%8C%E7%BA%A7%E6%8C%87%E9%92%88%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" title="二级指针动态内存分配">
+                        <span class="hidden-mobile">二级指针动态内存分配</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
