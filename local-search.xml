@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>自编strcmp的标准写法</title>
+    <link href="/2025/12/31/%E8%87%AA%E7%BC%96strcmp%E7%9A%84%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95/"/>
+    <url>/2025/12/31/%E8%87%AA%E7%BC%96strcmp%E7%9A%84%E6%A0%87%E5%87%86%E5%86%99%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="自编strcmp的标准写法"><a href="#自编strcmp的标准写法" class="headerlink" title="自编strcmp的标准写法"></a>自编strcmp的标准写法</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>我自己写的strcmp函数比较笨，闹出笑话是小事，真的不会写才是大事</p><p>所以我决定纠正一下：</p><h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// 自定义字符串比较函数</span><br><span class="hljs-type">int</span> <span class="hljs-title function_">MyStrcmp</span><span class="hljs-params">(<span class="hljs-type">char</span> *s, <span class="hljs-type">char</span> *t)</span> &#123;<br>    <span class="hljs-comment">// 当s和t指向的字符相等时，继续循环</span><br>    <span class="hljs-keyword">while</span> (*s == *t) &#123;<br>        <span class="hljs-comment">// 如果当前字符是结束符 &#x27;\0&#x27;，说明两个字符串同时结束且完全相等</span><br>        <span class="hljs-keyword">if</span> (*s == <span class="hljs-string">&#x27;\0&#x27;</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-comment">// 指针后移，比较下一个字符</span><br>        s++;<br>        t++;<br>    &#125;<br>    <span class="hljs-comment">// 循环结束说明遇到了不相等的字符，返回两者的差值</span><br>    <span class="hljs-keyword">return</span> *s - *t;<br>&#125;<br></code></pre></td></tr></table></figure><p>巧妙地运用了指针，指针的移动</p><p>反正非常标准，你就学吧</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>写出最短的代码</title>
     <link href="/2025/12/30/%E5%86%99%E5%87%BA%E6%9C%80%E7%9F%AD%E7%9A%84%E4%BB%A3%E7%A0%81/"/>
     <url>/2025/12/30/%E5%86%99%E5%87%BA%E6%9C%80%E7%9F%AD%E7%9A%84%E4%BB%A3%E7%A0%81/</url>
