@@ -27,7 +27,7 @@
 <meta property="og:description" content="动态内存分配背景以前如果需要从键盘输入数组的范围并定义是行不通的。 只能定义一个较大的值作为数组的大小，此时数组长度必须在编译的时候确定 而动态数组允许你在程序运行过程中（Runtime）才决定数组的大小。 有： 12345678910111213语言: C)产生动态数组，编写程序，输入数组大小后，通过动态分配内存函数malloc产生数组。**输入格式要求：&quot;%d&quot; 提示信息：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-12-17T06:37:41.059Z">
-<meta property="article:modified_time" content="2025-12-17T06:38:50.660Z">
+<meta property="article:modified_time" content="2026-01-13T13:54:22.633Z">
 <meta property="article:author" content="王柏森">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.4k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          11 分钟
+          12 分钟
         
       </span>
     
@@ -305,6 +305,8 @@
 <li>在内存里，地址 <code>0</code> 是受操作系统严格保护的，任何程序都不允许读写这个地址。</li>
 <li>所以，当我们把一个指针指向 <code>NULL</code>，就是明确表示：<strong>这个指针目前不指向任何有效的东西</strong>。</li>
 </ul>
+<p><strong><code>NULL</code> 的值</strong>： 在 C 语言中，<code>NULL</code> 是一个宏，用于表示空指针。在大多数编译器和标准库实现中，它通常被定义为整数 <code>0</code> 或者 <code>((void *)0)</code>。无论哪种定义，其底层的数值表示都是 <strong>0</strong>。</p>
+<p><strong>打印结果</strong>： 当 <code>printf(&quot;%d\n&quot;, NULL);</code> 执行时，它会将 <code>NULL</code> 对应的值（即 0）按照整数格式打印出来。因此，输出结果将会是 <code>0</code>。</p>
 <h4 id="array-NULL是怎么实现检查内存是否分配成功的？"><a href="#array-NULL是怎么实现检查内存是否分配成功的？" class="headerlink" title="array &#x3D;&#x3D; NULL是怎么实现检查内存是否分配成功的？"></a>array &#x3D;&#x3D; NULL是怎么实现检查内存是否分配成功的？</h4><p>​	<code>malloc</code> 的内部逻辑大致如下（简化版）：</p>
 <ol>
 <li>你去告诉操作系统：“我要 100 字节内存”。</li>

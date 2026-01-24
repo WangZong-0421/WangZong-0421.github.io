@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="王柏森">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="C语言关键字1. 核心特征 固定含义： 编译器看到这些词，就知道要做特定的事情（比如 int 就是定义整数，if 就是做判断）。 不可占用： 你不能用这些词来给你的变量、函数或数组命名。 ❌ int if &#x3D; 10; （错误！if 是关键字，不能当变量名） ✅ int my_value &#x3D; 10; （正确）   全部小写： C语言的所有关键字都是小写的。VOID 或 If 就不是关键字，可以作为变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言关键字">
+<meta property="og:url" content="http://example.com/2026/01/13/C%E8%AF%AD%E8%A8%80%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C语言关键字1. 核心特征 固定含义： 编译器看到这些词，就知道要做特定的事情（比如 int 就是定义整数，if 就是做判断）。 不可占用： 你不能用这些词来给你的变量、函数或数组命名。 ❌ int if &#x3D; 10; （错误！if 是关键字，不能当变量名） ✅ int my_value &#x3D; 10; （正确）   全部小写： C语言的所有关键字都是小写的。VOID 或 If 就不是关键字，可以作为变">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-13T13:55:29.436Z">
+<meta property="article:modified_time" content="2026-01-13T13:58:15.926Z">
+<meta property="article:author" content="王柏森">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>C语言关键字 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C语言关键字"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-13 21:55" pubdate>
+          2026年1月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          634 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C语言关键字</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="C语言关键字"><a href="#C语言关键字" class="headerlink" title="C语言关键字"></a>C语言关键字</h1><h3 id="1-核心特征"><a href="#1-核心特征" class="headerlink" title="1. 核心特征"></a>1. 核心特征</h3><ul>
+<li><strong>固定含义：</strong> 编译器看到这些词，就知道要做特定的事情（比如 <code>int</code> 就是定义整数，<code>if</code> 就是做判断）。</li>
+<li><strong>不可占用：</strong> 你<strong>不能</strong>用这些词来给你的变量、函数或数组命名。<ul>
+<li>❌ <code>int if = 10;</code> （错误！<code>if</code> 是关键字，不能当变量名）</li>
+<li>✅ <code>int my_value = 10;</code> （正确）</li>
+</ul>
+</li>
+<li><strong>全部小写：</strong> C语言的所有关键字都是小写的。<code>VOID</code> 或 <code>If</code> 就不是关键字，可以作为变量名（虽然不建议这么做）。</li>
+</ul>
+<hr>
+<h3 id="2-标准的32个关键字（C89标准）"><a href="#2-标准的32个关键字（C89标准）" class="headerlink" title="2. 标准的32个关键字（C89标准）"></a>2. 标准的32个关键字（C89标准）</h3><p>大学考试和基础教程中，通常只要求掌握这32个。为了好记，我们可以按功能分类：</p>
+<h4 id="A-数据类型类-12个"><a href="#A-数据类型类-12个" class="headerlink" title="A. 数据类型类 (12个)"></a>A. 数据类型类 (12个)</h4><p>用来定义变量是什么“材质”的。</p>
+<ul>
+<li><strong>基本类型：</strong> <code>char</code>, <code>double</code>, <code>float</code>, <code>int</code>, <code>long</code>, <code>short</code>, <code>void</code></li>
+<li><strong>修饰类型：</strong> <code>signed</code> (有符号), <code>unsigned</code> (无符号)</li>
+<li><strong>复杂类型：</strong> <code>struct</code> (结构体), <code>union</code> (共用体), <code>enum</code> (枚举)</li>
+</ul>
+<h4 id="B-流程控制类-12个"><a href="#B-流程控制类-12个" class="headerlink" title="B. 流程控制类 (12个)"></a>B. 流程控制类 (12个)</h4><p>指挥程序该往哪里走。</p>
+<ul>
+<li><strong>循环：</strong> <code>for</code>, <code>do</code>, <code>while</code></li>
+<li><strong>分支&#x2F;选择：</strong> <code>if</code>, <code>else</code>, <code>switch</code>, <code>case</code>, <code>default</code></li>
+<li><strong>跳转&#x2F;中断：</strong> <code>break</code> (跳出), <code>continue</code> (继续下次), <code>return</code> (返回), <code>goto</code> (跳转)</li>
+</ul>
+<h4 id="C-存储类型与修饰类-4个"><a href="#C-存储类型与修饰类-4个" class="headerlink" title="C. 存储类型与修饰类 (4个)"></a>C. 存储类型与修饰类 (4个)</h4><p>决定变量存在哪里，或者有什么特性。</p>
+<ul>
+<li><code>auto</code> (自动变量，默认的，平时很少写)</li>
+<li><code>static</code> (静态变量，很重要！)</li>
+<li><code>extern</code> (外部声明)</li>
+<li><code>register</code> (寄存器变量，建议编译器放寄存器里)</li>
+</ul>
+<h4 id="D-其他类-4个"><a href="#D-其他类-4个" class="headerlink" title="D. 其他类 (4个)"></a>D. 其他类 (4个)</h4><ul>
+<li><code>const</code> (定义常量，只读)</li>
+<li><code>sizeof</code> (计算大小，<strong>注意：它不是函数，是关键字</strong>)</li>
+<li><code>typedef</code> (给类型起别名)</li>
+<li><code>volatile</code> (易变的，防止编译器过度优化，嵌入式开发中常用)</li>
+</ul>
+<hr>
+<h3 id="3-容易混淆的“假关键字”"><a href="#3-容易混淆的“假关键字”" class="headerlink" title="3. 容易混淆的“假关键字”"></a>3. 容易混淆的“假关键字”</h3><p>以下这些<strong>都不是</strong>关键字：</p>
+<ol>
+<li><strong>预处理指令：</strong><ul>
+<li><code>include</code>, <code>define</code></li>
+<li><strong>原因：</strong> 它们以 <code>#</code> 开头（<code>#include</code>），在编译之前的“预处理”阶段就被处理掉了，编译器真正开始工作时看不到它们。</li>
+</ul>
+</li>
+<li><strong>标准库函数：</strong><ul>
+<li><code>printf</code>, <code>scanf</code>, <code>pow</code>, <code>main</code></li>
+<li><strong>原因：</strong> <code>main</code> 是函数名，<code>printf</code> 是库里写好的函数。虽然它们很重要，但从语法上讲，你完全可以自己写个函数叫 <code>printf</code>（虽然会覆盖标准库的，不推荐），编译器不会报语法错误。</li>
+</ul>
+</li>
+</ol>
+<h3 id="4-总结图示"><a href="#4-总结图示" class="headerlink" title="4. 总结图示"></a>4. 总结图示</h3><p>你可以这样记忆：</p>
+<blockquote>
+<p><strong>关键字</strong> &#x3D; <strong>C语言的法律条文</strong>（不可更改，不可挪用） </p>
+<p><strong>库函数</strong> (<code>printf</code>) &#x3D; <strong>政府提供的公共设施</strong>（通常直接用，但理论上你可以自己造一个） </p>
+<p><strong>预处理</strong> (<code>define</code>) &#x3D; <strong>施工前的图纸批注</strong>（不属于建筑物本身）</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C语言关键字</div>
+      <div>http://example.com/2026/01/13/C语言关键字/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>王柏森</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/24/%E4%B8%80%E9%94%AE%E5%88%A4%E6%96%AD%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E6%8C%82%E7%A7%91/" title="一键判断你有没有挂科">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一键判断你有没有挂科</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/13/%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96/" title="【C语言】数组初始化">
+                        <span class="hidden-mobile">【C语言】数组初始化</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
