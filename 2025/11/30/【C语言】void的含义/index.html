@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【C语言】void的含义 | 王总的博客</title><meta name="author" content="Wang Bo Sen,wangbosen0421@126.com"><meta name="copyright" content="Wang Bo Sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="void的含义背景写一个函数，如果它首次被调用，则返回字母A，第二次被调用，则返回字母B，第三次调用，则返回字母C，以此类推。（提示：使用一个static数据类型）函数原型为：char call_times(void)。编写main函数测试它。**输出格式要求：”第一次调用返回字符%c!\n” “第二次调用返回字符%c!\n” “第三次调用返回字符%c!\n” 代码实现：1234567891011">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C语言】void的含义">
+<meta property="og:url" content="http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91void%E7%9A%84%E5%90%AB%E4%B9%89/index.html">
+<meta property="og:site_name" content="王总的博客">
+<meta property="og:description" content="void的含义背景写一个函数，如果它首次被调用，则返回字母A，第二次被调用，则返回字母B，第三次调用，则返回字母C，以此类推。（提示：使用一个static数据类型）函数原型为：char call_times(void)。编写main函数测试它。**输出格式要求：”第一次调用返回字符%c!\n” “第二次调用返回字符%c!\n” “第三次调用返回字符%c!\n” 代码实现：1234567891011">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg">
+<meta property="article:published_time" content="2025-11-30T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-27T17:38:38.739Z">
+<meta property="article:author" content="Wang Bo Sen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【C语言】void的含义",
+  "url": "http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91void%E7%9A%84%E5%90%AB%E4%B9%89/",
+  "image": "https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg",
+  "datePublished": "2025-11-30T04:00:00.000Z",
+  "dateModified": "2026-03-27T17:38:38.739Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Wang Bo Sen",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91void%E7%9A%84%E5%90%AB%E4%B9%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a1b26')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【C语言】void的含义',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa-fw fas fa-book"></i><span> 开发工具</span></a></li><li><a class="site-page child" href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/"><i class="fa-fw fas fa-lightbulb"></i><span> 疑难解答</span></a></li><li><a class="site-page child" href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/"><i class="fa-fw fas fa-smoking"></i><span> 烟草纲目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">王总的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【C语言】void的含义</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa-fw fas fa-book"></i><span> 开发工具</span></a></li><li><a class="site-page child" href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/"><i class="fa-fw fas fa-lightbulb"></i><span> 疑难解答</span></a></li><li><a class="site-page child" href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/"><i class="fa-fw fas fa-smoking"></i><span> 烟草纲目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【C语言】void的含义</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-30T04:00:00.000Z" title="发表于 2025-11-30 12:00:00">2025-11-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-27T17:38:38.739Z" title="更新于 2026-03-28 01:38:38">2026-03-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="void的含义"><a href="#void的含义" class="headerlink" title="void的含义"></a>void的含义</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>写一个函数，如果它首次被调用，则返回字母A，第二次被调用，则返回字母B，第三次调用，则返回字母C，以此类推。（提示：使用一个static数据类型）<br>函数原型为：char call_times(void)。<br>编写main函数测试它。<br>**输出格式要求：”第一次调用返回字符%c!\n” “第二次调用返回字符%c!\n” “第三次调用返回字符%c!\n”</p>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> <span class="title function_">call_times</span><span class="params">(<span class="type">void</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;	<span class="built_in">printf</span>(<span class="string">&quot;第一次调用返回字符%c!\n&quot;</span>,call_times());</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;第二次调用返回字符%c!\n&quot;</span>,call_times());</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;第三次调用返回字符%c!\n&quot;</span>,call_times());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> <span class="title function_">call_times</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line">	<span class="type">static</span> <span class="type">char</span> ch=<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> ch++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="void在这里的含义："><a href="#void在这里的含义：" class="headerlink" title="void在这里的含义："></a>void在这里的含义：</h2><p>函数的括号里面放的是<strong>参数列表（Parameters）</strong> ，也就是<strong>你需要传给这个函数什么东西</strong> ，它才能开始工作。</p>
+<ul>
+<li><strong><code>call_times(void)</code></strong> : 这里的 <code>void</code> 表示“空”。意思是：<strong>调用这个函数不需要给我任何数据</strong> 。它就像一个自动报时器，只要拍它一下（调用它），它自己内部就有逻辑生成 ‘A’, ‘B’, ‘C’，不需要告诉它任何信息。</li>
+<li><strong>如果写成<code>call_times(int n)</code></strong>: 这意味着调用它时必须给它一个整数，比如 <code>call_times(5)</code>。但在这个题目里，我们需要函数自动从 ‘A’ 变到 ‘B’，不需要外部传入数字，所以不需要 <code>int</code>。</li>
+</ul>
+<p>在 C 语言中，<code>void</code> 的字面意思是**“无”** 或**“空”** 。它主要出现在两个位置，含义略有不同：<br><strong>A. 放在函数名后面的括号里：<code>int main(void)</code></strong></p>
+<ul>
+<li><strong>含义：</strong> 表示该函数<strong>不接受任何参数</strong> 。</li>
+<li><strong>例子：</strong> <code>char call_times(void)</code> —— “我是个自给自足的函数，干活不需要你给我提供原料。”</li>
+</ul>
+<p><strong>B. 放在函数名最前面：<code>void selection_sort(...)</code></strong></p>
+<ul>
+<li><strong>含义：</strong> 表示该函数<strong>没有返回值</strong> （不返回任何结果）。</li>
+<li><strong>例子：</strong> 你之前的排序函数 <code>void selection_sort(int a[], int n)</code>。它只负责在内存里把数组排好序，不需要带回一个具体的数字给 <code>main</code> 函数，所以它是 <code>void</code> 类型。</li>
+<li><strong>对比：</strong> 题目中的 <code>char call_times(...)</code> 前面是 <code>char</code>，因为它算完之后，必须<strong>交回</strong> 一个字符（’A’ 或 ‘B’ 等）给调用者打印。</li>
+</ul>
+<h2 id="void能省略吗？"><a href="#void能省略吗？" class="headerlink" title="void能省略吗？"></a>void能省略吗？</h2><ul>
+<li>char call_times(void)中的void能省略吗？<ul>
+<li><strong>能。</strong> 在 C 语言中，<code>char call_times()</code> 也是合法的写法，程序能跑。</li>
+</ul>
+</li>
+<li>int main() 和 int main(void)意思一样吗？<ul>
+<li><strong>不一样！</strong> 在 C 语言里，<code>()</code> 和 <code>(void)</code> 有微妙但重要的区别。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-和-void-的区别（C-语言特有）"><a href="#1-和-void-的区别（C-语言特有）" class="headerlink" title="1. () 和 (void) 的区别（C 语言特有）"></a>1. <code>()</code> 和 <code>(void)</code> 的区别（C 语言特有）</h3><p>在 <strong>C 语言</strong> 中：</p>
+<ul>
+<li><strong><code>char call_times(void)</code></strong><ul>
+<li><p><strong>含义：</strong> “我发誓，这个函数<strong>绝对没有</strong> 参数。”</p>
+</li>
+<li><p><strong>后果：</strong> 如果你在 main 函数里手滑写了 <code>call_times(123);</code>（传了个参数进去），编译器会<strong>直接报错</strong> ，阻止你编译。这是一种<strong>安全保护</strong> 。</p>
+</li>
+<li><p>#include &lt;stdio.h&gt;</p>
+<pre><code>char call_times(void);
+
+int main()
+{
+    printf(&quot;第一次调用返回字符%c!\n&quot;, call_times(123));
+    printf(&quot;第二次调用返回字符%c!\n&quot;, call_times(321));
+    printf(&quot;第三次调用返回字符%c!\n&quot;, call_times(10086));
+    return 0;
+}
+
+char call_times(void) {
+    static char ch = &#39;A&#39;;
+    return ch++;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- ```tex</span><br><span class="line">  发生生成错误。是否继续并运行上次的成功生成？</span><br><span class="line">  </span><br><span class="line">  “<span class="type">char</span> <span class="title function_">call_times</span><span class="params">(<span class="keyword">void</span>)</span>”: 用于调用的参数太多</span><br></pre></td></tr></table></figure>
+
+
+<p>​          </p>
+<ul>
+<li><strong><code>char call_times()</code></strong><ul>
+<li><p><strong>含义：</strong> “这个函数可能有参数，也可能没有，<strong>我不告诉你</strong> （参数未定）。”</p>
+</li>
+<li><p><strong>后果：</strong> 这是一个历史遗留的“后门”。如果你写 <code>call_times(123);</code>，编译器<strong>不会报错</strong> ，它会允许你传参数进去（虽然函数内部根本不会去用这个参数）。</p>
+</li>
+<li><p>#include &lt;stdio.h&gt;</p>
+<pre><code>char call_times();//我不告诉你
+
+int main()
+{
+    printf(&quot;第一次调用返回字符%c!\n&quot;, call_times(123));
+    printf(&quot;第二次调用返回字符%c!\n&quot;, call_times(321));
+    printf(&quot;第三次调用返回字符%c!\n&quot;, call_times(10086));//给你中国移动
+    return 0;
+}
+
+char call_times() {
+    static char ch = &#39;A&#39;;
+    return ch++;
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- ```tex</span><br><span class="line">  第一次调用返回字符A!</span><br><span class="line">  第二次调用返回字符B!</span><br><span class="line">  第三次调用返回字符C!</span><br></pre></td></tr></table></figure>
+
+
+<p>​          </p>
+<h4 id="看个代码例子："><a href="#看个代码例子：" class="headerlink" title="看个代码例子："></a>看个代码例子：</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法 1：括号留空（不安全）</span></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">func_A</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;A&#x27;</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写法 2：写明 void（安全）</span></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">func_B</span><span class="params">(<span class="type">void</span>)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;B&#x27;</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 情况 1：</span></span><br><span class="line">    <span class="built_in">func_A</span>(<span class="number">100</span>, <span class="number">200</span>, <span class="string">&quot;hello&quot;</span>); </span><br><span class="line">    <span class="comment">// ↑ 竟然编译通过了！虽然 func_A 不需要参数，但你硬塞给它，C语言也忍了。</span></span><br><span class="line">    <span class="comment">// 这可能会掩盖你代码里的逻辑错误。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 情况 2：</span></span><br><span class="line">    <span class="built_in">func_B</span>(<span class="number">100</span>); </span><br><span class="line">    <span class="comment">// ↑ 报错！编译器说：too many arguments to function &#x27;func_B&#x27;</span></span><br><span class="line">    <span class="comment">// 因为 func_B 明确说了是 (void)，任何参数都不准进。</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>结论：</strong> 为了代码的安全和严谨，<strong>在 C 语言中，如果函数不需要参数，建议一定要写<code>(void)</code>。</strong></p>
+<h3 id="2-那为什么-int-main-可以不写？"><a href="#2-那为什么-int-main-可以不写？" class="headerlink" title="2. 那为什么 int main() 可以不写？"></a>2. 那为什么 <code>int main()</code> 可以不写？</h3><p><code>main</code> 函数非常特殊，它是程序的入口。关于 <code>main</code>，C 语言标准（C99&#x2F;C11）规定了两种标准写法：</p>
+<ol>
+<li><code>int main(void)</code> —— 不接收命令行参数。</li>
+<li><code>int main(int argc, char *argv[])</code> —— 接收命令行参数。</li>
+</ol>
+<p><strong>那<code>int main()</code> 算什么？</strong> 虽然标准推荐写 <code>(void)</code>，但因为历史原因（早期的 C 语言非常随意），编译器对 <code>main</code> 特别宽容。当你写 <code>int main()</code> 时，现代编译器通常默认你就是指 <code>int main(void)</code>。<br>但是，如果你去看最严格的 C 语言教材或规范，它们都会建议你写成：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="3-一个额外的小知识（C-vs-C-）"><a href="#3-一个额外的小知识（C-vs-C-）" class="headerlink" title="3. 一个额外的小知识（C vs C++）"></a>3. 一个额外的小知识（C vs C++）</h3><p>如果你以后学 <strong>C++</strong>，情况就变了：</p>
+<ul>
+<li>在 <strong>C++</strong> 中：<code>call_times()</code> 和 <code>call_times(void)</code> <strong>完全等价</strong> ，都表示“没有参数”。</li>
+<li>在 <strong>C 语言</strong> 中：<code>call_times()</code> 表示“参数不确定”，<code>(void)</code> 表示“没有参数”。</li>
+</ul>
+<p><strong>我的建议：</strong> 既然你现在是在学 C 语言，养成好习惯：<strong>如果不传参数，就老老实实写上 <code>void</code></strong>。这样别人看你的代码，就知道你是一个严谨的程序员。</p>
+<h2 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h2><h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 把变量搬到函数外面，它的寿命就是整个程序的寿命</span></span><br><span class="line"><span class="type">char</span> global_ch = <span class="string">&#x27;A&#x27;</span>; </span><br><span class="line"></span><br><span class="line"><span class="type">char</span> <span class="title function_">call_times</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 函数内部直接去修改外面的这个变量</span></span><br><span class="line">    <span class="keyword">return</span> global_ch++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, call_times()); <span class="comment">// 输出 A</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, call_times()); <span class="comment">// 输出 B</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数改为：你给我一个字符地址，我帮你改，并返回改之前的</span></span><br><span class="line"><span class="type">char</span> <span class="title function_">call_times</span><span class="params">(<span class="type">char</span>* p_ch)</span> &#123;</span><br><span class="line">    <span class="type">char</span> current = *p_ch; <span class="comment">// 记下现在的</span></span><br><span class="line">    (*p_ch)++;            <span class="comment">// 把外面的变量加1</span></span><br><span class="line">    <span class="keyword">return</span> current;       <span class="comment">// 返回加之前的</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> state = <span class="string">&#x27;A&#x27;</span>; <span class="comment">// 状态由 main 函数自己维护</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, call_times(&amp;state)); <span class="comment">// 输出 A</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, call_times(&amp;state)); <span class="comment">// 输出 B</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Wang Bo Sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91void%E7%9A%84%E5%90%AB%E4%B9%89/">http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91void%E7%9A%84%E5%90%AB%E4%B9%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">王总的博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/dc4541c0ae13ecb24b651d725f18d57d.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/dc4541c0ae13ecb24b651d725f18d57d.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/29/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F/" title="【C语言】静态变量"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【C语言】静态变量</div></div><div class="info-2"><div class="info-item-1">静态变量一、背景12345678910111213141516#include&lt;stdio.h&gt;int square(int i);void main()&#123;	int i=0;	i=square(i);	for(;i&lt;3;i++)&#123;		static int i=1;		i+=square(i);		printf(&quot;%d,&quot;,i);	&#125;	printf(&quot;%d\n&quot;,i);&#125;int square(int i)&#123;	return i*i;&#125;   输出： 12, 6, 42, 3    main函数初始化： int i&#x3D;0; → 主函数中的 i 初始值为0。 i &#x3D; square(i); → 调用 square(0) ，返回 0*0&#x3D;0 ，主函数的 i 仍为0。   for循环执行（循环条件： i&lt;3 ，主函数的 i 初始为0）： 第一次循环（主函数 i&#x3D;0 ）： 定义 static int i&#x3D;1; （静态变量，仅初始...</div></div></div></a><a class="pagination-related" href="/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E5%B1%8E%E5%B1%B1%E4%BB%A3%E7%A0%81/" title="【C语言】屎山代码"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【C语言】屎山代码</div></div><div class="info-2"><div class="info-item-1">屎山代码💩💩💩💩💩🥳🥳🥳🎉🎉🎉先让我们恭喜这个代码成为了一坨耙耙🥳🥳🥳🎉🎉🎉 背景：今天我看见了U4-基本类型变量作为函数参数 这个标题后，我想这不是普通的函数调用的题目吗？对于早在U3就开始使用函数调用的我来说，我很有信心能5分钟速通即将到来的题目，想着做完这道题就能马上收拾书包回寝了然而那时的我并不知道当我做完这道题已经是几点了于是我选择了中等这个难度，并毫不犹豫的点击了开始，这就是二战转折点，我的人生命运齿轮开始了一次崩坏的转动首先我看见了没有几行的题目。在我的印象中，C语言的题目越短越好做。但今天，这条定律成了我的墓志铭。我当时还在窃喜，做这道题可能5分钟都不需要。随后我就看到了这几个字：​ 第7章实验任务6我的心态发生了一些小小的变化，不过眼睛并没有在这几个字上停留多久，我开始了读题干“质因数分解”当我看见这几个字的时候，不由得觉得眼前发昏，我仿佛看见了太奶在向我招手，求生的本能迫使我点击了题目上方的“此题不会，以后在做”当我缓过神来，全身上下已经湿透了，包括我的内裤，大概率是因为我尿了。我颤颤巍巍地起身，拿起我的烟，腿软得像面条，踉跄...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Wang Bo Sen</div><div class="author-info-description">学无止境</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/WangZong-0421"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/WangZong-0421" target="_blank" title="Github"><i class="fab fa-github" style="color: #181717;"></i></a><a class="social-icon" href="mailto:wangbosen0421@126.com" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #D44638;"></i></a><a class="social-icon" href="https://www.cqupt.edu.cn/" target="_blank" title="我的大学"><i class="fas fa-university" style="color: #2196F3;"></i></a><a class="social-icon" href="tel:15902745421" target="_blank" title="电话"><i class="fas fa-phone" style="color: #4CAF50;"></i></a><a class="social-icon" href="https://qm.qq.com/q/cE4rRmxj5C" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12B7F5;"></i></a><a class="social-icon" href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/e3119446ad040819186977c6abfbd447.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07C160;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">正在完善中</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#void%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text">void的含义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">代码实现：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#void%E5%9C%A8%E8%BF%99%E9%87%8C%E7%9A%84%E5%90%AB%E4%B9%89%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">void在这里的含义：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#void%E8%83%BD%E7%9C%81%E7%95%A5%E5%90%97%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">void能省略吗？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%92%8C-void-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%88C-%E8%AF%AD%E8%A8%80%E7%89%B9%E6%9C%89%EF%BC%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. () 和 (void) 的区别（C 语言特有）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9C%8B%E4%B8%AA%E4%BB%A3%E7%A0%81%E4%BE%8B%E5%AD%90%EF%BC%9A"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">看个代码例子：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%82%A3%E4%B8%BA%E4%BB%80%E4%B9%88-int-main-%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%86%99%EF%BC%9F"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 那为什么 int main() 可以不写？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%80%E4%B8%AA%E9%A2%9D%E5%A4%96%E7%9A%84%E5%B0%8F%E7%9F%A5%E8%AF%86%EF%BC%88C-vs-C-%EF%BC%89"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 一个额外的小知识（C vs C++）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E5%BC%8F"><span class="toc-number">1.5.</span> <span class="toc-text">其他方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-number">1.5.1.</span> <span class="toc-text">全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-number">1.5.2.</span> <span class="toc-text">指针</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/09/%E3%80%90Python%E3%80%91%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86,split+map/" title="【Python】数据处理,split+map">【Python】数据处理,split+map</a><time datetime="2026-04-09T08:44:00.000Z" title="发表于 2026-04-09 16:44:00">2026-04-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/06/host%E6%96%87%E4%BB%B6/" title="host文件">host文件</a><time datetime="2026-04-06T15:46:00.000Z" title="发表于 2026-04-06 23:46:00">2026-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/06/%E3%80%90Python%E3%80%91%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F,%E6%8E%A8%E5%AF%BC%E5%BC%8F/" title="【Python】列表排序,推导式">【Python】列表排序,推导式</a><time datetime="2026-04-06T15:24:00.000Z" title="发表于 2026-04-06 23:24:00">2026-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/06/%E3%80%90Python%E3%80%91%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6/" title="【Python】运算符、输入与转义字符">【Python】运算符、输入与转义字符</a><time datetime="2026-04-06T15:13:00.000Z" title="发表于 2026-04-06 23:13:00">2026-04-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/30/%E9%BB%84%E9%B9%A4%E6%A5%BC%E2%80%A2%E8%BD%AF%E8%93%9D/" title="【烟草纲目】黄鹤楼•软蓝"><img src="https://rec.yanpk.com/uploads/pictures/2023-01/thumb_54_1674008698.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【烟草纲目】黄鹤楼•软蓝"/></a><div class="content"><a class="title" href="/2026/03/30/%E9%BB%84%E9%B9%A4%E6%A5%BC%E2%80%A2%E8%BD%AF%E8%93%9D/" title="【烟草纲目】黄鹤楼•软蓝">【烟草纲目】黄鹤楼•软蓝</a><time datetime="2026-03-30T14:16:00.000Z" title="发表于 2026-03-30 22:16:00">2026-03-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">文档</div><div class="footer-flex-content"><a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" target="_blank" title="开发工具">开发工具</a><a href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/" target="_blank" title="疑难解答">疑难解答</a><a href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/" target="_blank" title="烟草纲目">烟草纲目</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">其他</div><div class="footer-flex-content"><a href="/music/" target="_blank" title="音乐">音乐</a><a href="/gallery/" target="_blank" title="图库">图库</a><a href="/link/" target="_blank" title="友情链接">友情链接</a><a href="/about/" target="_blank" title="关于">关于</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="Hexo">Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="Butterfly">Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">贊助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg' alt='JerryC' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Wang Bo Sen</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

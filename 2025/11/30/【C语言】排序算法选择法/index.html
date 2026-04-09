@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【C语言】排序算法（选择法） | 王总的博客</title><meta name="author" content="Wang Bo Sen,wangbosen0421@126.com"><meta name="copyright" content="Wang Bo Sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="排序算法（选择法）我瞎写的代码：上课老师讲选择法的时候我睡着了（实在是困）现在我利用老师讲个课件中的大致逻辑自己尝试写了一份： 12345678910111213141516171819202122232425262728293031323334353637#include &lt;stdio.h&gt;void selection_sort(int*, int);void present(int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【C语言】排序算法（选择法）">
+<meta property="og:url" content="http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9%E6%B3%95/index.html">
+<meta property="og:site_name" content="王总的博客">
+<meta property="og:description" content="排序算法（选择法）我瞎写的代码：上课老师讲选择法的时候我睡着了（实在是困）现在我利用老师讲个课件中的大致逻辑自己尝试写了一份： 12345678910111213141516171819202122232425262728293031323334353637#include &lt;stdio.h&gt;void selection_sort(int*, int);void present(int">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg">
+<meta property="article:published_time" content="2025-11-30T04:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-27T17:38:38.762Z">
+<meta property="article:author" content="Wang Bo Sen">
+<meta property="article:tag" content="排序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【C语言】排序算法（选择法）",
+  "url": "http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9%E6%B3%95/",
+  "image": "https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg",
+  "datePublished": "2025-11-30T04:00:00.000Z",
+  "dateModified": "2026-03-27T17:38:38.762Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Wang Bo Sen",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a1b26')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【C语言】排序算法（选择法）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa-fw fas fa-book"></i><span> 开发工具</span></a></li><li><a class="site-page child" href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/"><i class="fa-fw fas fa-lightbulb"></i><span> 疑难解答</span></a></li><li><a class="site-page child" href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/"><i class="fa-fw fas fa-smoking"></i><span> 烟草纲目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">王总的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【C语言】排序算法（选择法）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa-fw fas fa-book"></i><span> 开发工具</span></a></li><li><a class="site-page child" href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/"><i class="fa-fw fas fa-lightbulb"></i><span> 疑难解答</span></a></li><li><a class="site-page child" href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/"><i class="fa-fw fas fa-smoking"></i><span> 烟草纲目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【C语言】排序算法（选择法）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-30T04:00:00.000Z" title="发表于 2025-11-30 12:00:00">2025-11-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-27T17:38:38.762Z" title="更新于 2026-03-28 01:38:38">2026-03-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="排序算法（选择法）"><a href="#排序算法（选择法）" class="headerlink" title="排序算法（选择法）"></a>排序算法（选择法）</h1><h2 id="我瞎写的代码："><a href="#我瞎写的代码：" class="headerlink" title="我瞎写的代码："></a>我瞎写的代码：</h2><p>上课老师讲选择法的时候我睡着了（实在是困）<br>现在我利用老师讲个课件中的大致逻辑自己尝试写了一份：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">7</span>] = &#123; <span class="number">13</span>,<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">49</span>,<span class="number">27</span> &#125;;</span><br><span class="line">	selection_sort(a, <span class="number">7</span>);</span><br><span class="line">	<span class="comment">//printf(&quot;\n最后的结果&quot;);</span></span><br><span class="line">	present(a, <span class="number">7</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">	<span class="comment">//只需要循环n-1=6轮</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt;= n - <span class="number">2</span>;i++) &#123;</span><br><span class="line">		<span class="type">int</span> temp;</span><br><span class="line">		<span class="comment">//printf(&quot;\n第%d循环&quot;, i + 1);</span></span><br><span class="line">		<span class="comment">//每轮循环找出剩下元素的最小值，并放到第i个位置</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = i;j &lt;= n - <span class="number">2</span>;j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (a[j + <span class="number">1</span>] &lt; a[i]) &#123;</span><br><span class="line">				<span class="comment">//将暂时找到的最小值与a[i]交换</span></span><br><span class="line">				temp = a[j + <span class="number">1</span>];</span><br><span class="line">				a[j + <span class="number">1</span>] = a[i];</span><br><span class="line">				a[i] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//present(a, 7);</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//printf(&quot;\n第%d循环的结果：&quot;, i + 1);present(a, 7);</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt;= n - <span class="number">1</span>;i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>去除注释：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">7</span>] = &#123; <span class="number">13</span>,<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">49</span>,<span class="number">27</span> &#125;;</span><br><span class="line">	selection_sort(a, <span class="number">7</span>);</span><br><span class="line">	present(a, <span class="number">7</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt;= n - <span class="number">2</span>;i++) &#123;</span><br><span class="line">		<span class="type">int</span> temp;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = i;j &lt;= n - <span class="number">2</span>;j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (a[j + <span class="number">1</span>] &lt; a[i]) &#123;</span><br><span class="line">				temp = a[j + <span class="number">1</span>];</span><br><span class="line">				a[j + <span class="number">1</span>] = a[i];</span><br><span class="line">				a[i] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt;= n - <span class="number">1</span>;i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>当然这并不是标准的选择排序，而是我自创的交换排序<br>哈基米说：</p>
+<blockquote>
+<p><strong>真正的选择排序：</strong> 在每一轮循环中，<strong>只记录</strong> 最小值的下标（index），循环结束后<strong>只交换一次</strong> 。<br><strong>你的写法：</strong> 在每一轮循环中，只要发现比 <code>a[i]</code> 小的数，<strong>立刻交换</strong> 。<br><strong>这种写法的缺点：</strong></p>
+<ul>
+<li><strong>交换次数过多：</strong> 交换（读写内存）通常比比较（读取内存）更消耗性能。如果数列很乱，你的写法在每一轮里可能会发生多次交换。而标准选择排序每一轮只需交换 0 次或 1 次。</li>
+</ul>
+</blockquote>
+<p>以及一个小不足：<br><strong>循环写法：</strong> <code>i &lt;= n - 2</code> 这种写法数学上是对的，但程序员通常习惯写 <code>i &lt; n - 1</code>。两者等价，但后者可读性更强。<br>看看哈基米写的标准选择排序算法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">standard_selection_sort</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">7</span>] = &#123; <span class="number">13</span>, <span class="number">38</span>, <span class="number">65</span>, <span class="number">97</span>, <span class="number">76</span>, <span class="number">49</span>, <span class="number">27</span> &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;排序前:&quot;</span>);</span><br><span class="line">    present(a, <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">    standard_selection_sort(a, <span class="number">7</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;排序后:&quot;</span>);</span><br><span class="line">    present(a, <span class="number">7</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">standard_selection_sort</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i, j, minIndex, temp;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 外层循环：i 代表当前要确定的位置</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 1. 假设当前位置 i 就是最小值</span></span><br><span class="line">        minIndex = i;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 内层循环：在剩下的元素中寻找真正的最小值</span></span><br><span class="line">        <span class="keyword">for</span> (j = i + <span class="number">1</span>; j &lt; n; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[minIndex]) &#123;</span><br><span class="line">                <span class="comment">// 只记录下标，不进行交换！</span></span><br><span class="line">                minIndex = j; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3. 只有当找到的最小值不是原来的 a[i] 时，才交换一次</span></span><br><span class="line">        <span class="keyword">if</span> (minIndex != i) &#123;</span><br><span class="line">            temp = a[i];</span><br><span class="line">            a[i] = a[minIndex];</span><br><span class="line">            a[minIndex] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>我草啊啊啊啊，呃呃呃~~，哦哦哦！！！🥵🥵🥵<br>也是直接高潮了好吧，这个代码的思路太好了！<br>选择用<code>minIndex</code>储存下标值，最后检查下标值是否改变，就是检查后面的元素中有没有出现更小的值，再决定是否交换<br>反观我的代码，只要有更小的值就交换一次，如果多次检测到最小值的情况，就会交换多次，是一种效率上的浪费<br>我看了这个代码后重新写了一遍：</p>
+<h2 id="我认真写的代码："><a href="#我认真写的代码：" class="headerlink" title="我认真写的代码："></a>我认真写的代码：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">7</span>] = &#123; <span class="number">13</span>,<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">49</span>,<span class="number">27</span> &#125;;</span><br><span class="line">	selection_sort(a, <span class="number">7</span>);</span><br><span class="line">	present(a, <span class="number">7</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; n;i++) &#123;</span><br><span class="line">		<span class="type">int</span> min_subscript = i,temp;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> k = i + <span class="number">1</span>;k &lt; n;k++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (a[k] &lt; a[min_subscript]) &#123;</span><br><span class="line">				min_subscript = k;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (min_subscript != i) &#123;</span><br><span class="line">				temp = a[min_subscript];</span><br><span class="line">				a[min_subscript] = a[i];</span><br><span class="line">				a[i] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span> a[],<span class="type">int</span> n)</span> &#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; n;i++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>能得出正确的排序，但我还是喂给了AI<br>看来我并没有那么聪明！🤣<br>哈基米思考了一会：<br>目前的写法虽然结果正确，但它<strong>仍然犯了和上一次类似的逻辑问题</strong> ，导致它失去了选择排序最大的优势（最少的交换次数）。<br>这里有两个具体的建议和修改意见：</p>
+<h3 id="1-致命问题：交换代码的位置不对"><a href="#1-致命问题：交换代码的位置不对" class="headerlink" title="1. 致命问题：交换代码的位置不对"></a>1. 致命问题：交换代码的位置不对</h3><p>在“真正的选择排序”中，我们必须遍历完剩下的<strong>所有</strong> 数字，找到那个<strong>唯一</strong> 的最小值下标后，<strong>再</strong> 进行交换。<br><strong>你的代码问题：</strong> 你把交换的代码块 <code>if (min_subscript != i) { ... }</code> 放到了内层循环 <code>for (int k ...)</code> 的<strong>里面</strong> 。<br><strong>后果：</strong> 这意味着，在寻找最小值的过程中，只要你发现一个新的 <code>min_subscript</code>（或者甚至没发现），你都在尝试交换。这会导致每一轮外层循环中发生多次交换，效率变低。<br><strong>修改方法：</strong> 只需移动<strong>一个花括号<code>}</code> 的位置</strong>。把交换逻辑移到内层循环的<strong>外面</strong> 。</p>
+<h3 id="2-小建议：外层循环的边界"><a href="#2-小建议：外层循环的边界" class="headerlink" title="2. 小建议：外层循环的边界"></a>2. 小建议：外层循环的边界</h3><p>虽然写 <code>i &lt; n</code> 没错，但对于选择排序，当循环到倒数第二个元素排好序时，最后一个元素自动就是最大的了。 所以标准写法通常是 <code>i &lt; n - 1</code>。这能少跑一轮空循环（虽然对性能影响微乎其微，但显得更专业）。</p>
+<h2 id="修改后："><a href="#修改后：" class="headerlink" title="修改后："></a>修改后：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span>*, <span class="type">int</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">7</span>] = &#123; <span class="number">13</span>,<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">49</span>,<span class="number">27</span> &#125;;</span><br><span class="line">    selection_sort(a, <span class="number">7</span>);</span><br><span class="line">    present(a, <span class="number">7</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 养成好习惯，main函数最后加 return 0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">selection_sort</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="comment">// 只需要处理到 n-1，最后一个数自动归位</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="type">int</span> min_subscript = i;</span><br><span class="line">        <span class="type">int</span> temp;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 这一步只找最小值在哪里，绝对不碰数组里的值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = i + <span class="number">1</span>; k &lt; n; k++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[k] &lt; a[min_subscript]) &#123;</span><br><span class="line">                min_subscript = k;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找完之后，如果发现最小值不在开头，才进行唯一的交换</span></span><br><span class="line">        <span class="keyword">if</span> (min_subscript != i) &#123;</span><br><span class="line">            temp = a[min_subscript];</span><br><span class="line">            a[min_subscript] = a[i];</span><br><span class="line">            a[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">present</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot; %d&quot;</span>, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>); <span class="comment">// 加上换行符，输出更美观</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>我也是牛逼哈，不断地犯错，甚至主函数的<code>return 0;</code>都忘记写了。<br>在哈基米的帮助下，我总算写对了。<br>哈基米有一句话让我受益匪浅：<br><strong>总结：</strong> 你的逻辑核心（找最小值）是对的，只是<strong>动手的时机（交换）太早了</strong> 。选择排序的精髓就是：<strong>多看（比较），少动（交换）</strong> 。</p>
+<h2 id="排序和冒泡的优劣"><a href="#排序和冒泡的优劣" class="headerlink" title="排序和冒泡的优劣"></a>排序和冒泡的优劣</h2><p>研究这两个算法花了我不少时间，我于是向哈基米问了一下这两个算法的区别：<br>这两个排序算法（选择排序 vs 冒泡排序）其实是一对“难兄难弟”。<br>它们的时间复杂度在最坏和平均情况下都是 $O(n^2)$，也就是说，当数据量变大时，它们都会变得很慢。在实际的大型软件开发中（处理成千上万的数据），通常都不会用这两个，而是用更快的“快速排序”或“归并排序”。<br>不过，作为编程入门，它们非常重要。如果非要让它们两个PK一下，<strong>互有优劣</strong> ，具体取决于你的使用场景：</p>
+<h3 id="1-谁写内存（交换）更少？-——-选择排序胜-🏆"><a href="#1-谁写内存（交换）更少？-——-选择排序胜-🏆" class="headerlink" title="1. 谁写内存（交换）更少？ —— 选择排序胜 🏆"></a>1. 谁写内存（交换）更少？ —— <strong>选择排序胜</strong> 🏆</h3><p>这是<strong>选择排序</strong> 最大的优势。</p>
+<ul>
+<li><strong>选择排序：</strong> 无论数据多乱，它每一轮<strong>最多只交换 1 次</strong> 。如果有 $n$ 个数，最多交换 $n-1$ 次。</li>
+<li><strong>冒泡排序：</strong> 如果数据很乱（比如是倒序的），它每次比较都要交换。如果有 $n$ 个数，最坏情况下要交换 $n*(n-1)&#x2F;2$ 次。</li>
+</ul>
+<p>应用场景：<br>假设你在给老旧的单片机编程，或者在这个硬件上**“写操作”非常消耗资源&#x2F;寿命** （比如早期的 Flash 存储器，写多了会坏），那么选择排序是更好的选择，因为它极大地减少了写入（交换）的次数。</p>
+<h3 id="2-谁能利用“已经排好序”的部分？-——-冒泡排序胜-🏆"><a href="#2-谁能利用“已经排好序”的部分？-——-冒泡排序胜-🏆" class="headerlink" title="2. 谁能利用“已经排好序”的部分？ —— 冒泡排序胜 🏆"></a>2. 谁能利用“已经排好序”的部分？ —— <strong>冒泡排序胜</strong> 🏆</h3><ul>
+<li><strong>选择排序：</strong> 它是“死脑筋”。给它一个已经排好序的数列 <code>{1, 2, 3, 4, 5}</code>，它依然会傻傻地两层循环走完，去确认谁是最小值。</li>
+<li><strong>冒泡排序（优化版）：</strong> 它是“机灵鬼”。如果在某一轮扫描中，发现<strong>一次交换都没有发生</strong> ，它就知道“哦，数列已经排好了”，然后直接结束程序。</li>
+</ul>
+<p>应用场景：<br>如果你知道你的数据大部分已经是排好序的，只有少数几个数乱了，用冒泡排序会快得飞起（接近 $O(n)$）。</p>
+<h3 id="3-稳定性（Stability）-——-冒泡排序胜-🏆"><a href="#3-稳定性（Stability）-——-冒泡排序胜-🏆" class="headerlink" title="3. 稳定性（Stability） —— 冒泡排序胜 🏆"></a>3. 稳定性（Stability） —— <strong>冒泡排序胜</strong> 🏆</h3><p>这是一个进阶概念。假设你有两个 38，我们叫它们 <code>38(A)</code> 和 <code>38(B)</code>，且原本 <code>38(A)</code> 在 <code>38(B)</code> 前面。</p>
+<ul>
+<li><strong>冒泡排序：</strong> 是<strong>稳定</strong> 的。因为它是相邻比较，遇到相等的数不会交换。排完序后，<code>38(A)</code> 依然在 <code>38(B)</code> 前面。</li>
+<li><strong>选择排序：</strong> 是<strong>不稳定</strong> 的。因为它可能会把前面的 <code>38(A)</code> 交换到很后面的位置，破坏原有的相对顺序。</li>
+</ul>
+<p>应用场景：<br>如果你在排“学生成绩单”，先按“学号”排了一次，现在要按“分数”再排一次。如果用不稳定的选择排序，分数相同的学生，学号顺序可能会被打乱。用冒泡排序则能保留学号的顺序。</p>
+<hr>
+<h3 id="总结对比表"><a href="#总结对比表" class="headerlink" title="总结对比表"></a>总结对比表</h3><table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>选择排序 (Selection Sort)</strong></th>
+<th><strong>冒泡排序 (Bubble Sort)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>交换次数</strong></td>
+<td><strong>少</strong> (固定 $O(n)$)</td>
+<td><strong>多</strong> (取决于数据乱度)</td>
+</tr>
+<tr>
+<td><strong>比较次数</strong></td>
+<td>多 (固定 $O(n^2)$)</td>
+<td>多 (通常 $O(n^2)$)</td>
+</tr>
+<tr>
+<td><strong>最佳情况速度</strong></td>
+<td>慢 (依然 $O(n^2)$)</td>
+<td><strong>快</strong> (若已排序可达 $O(n)$)</td>
+</tr>
+<tr>
+<td><strong>稳定性</strong></td>
+<td>不稳定</td>
+<td><strong>稳定</strong></td>
+</tr>
+<tr>
+<td><strong>逻辑复杂度</strong></td>
+<td>简单直观</td>
+<td>简单直观</td>
+</tr>
+</tbody></table>
+<h3 id="既然都学了，下一步做什么？"><a href="#既然都学了，下一步做什么？" class="headerlink" title="既然都学了，下一步做什么？"></a>既然都学了，下一步做什么？</h3><p>既然你已经掌握了这两种 $O(n^2)$ 的算法，而且代码写得越来越规范，我建议你挑战一个新的排序法，它也是 $O(n^2)$，但在小规模数据下，它通常比冒泡和选择都要快，而且更符合人类直觉。<br>它就是 <strong>插入排序 (Insertion Sort)</strong>。<br><strong>原理就像打扑克牌：</strong> 摸一张牌，把它插到手里已经理好的牌中的正确位置。<br><strong>想不想试试写一下插入排序？</strong> (我可以给你提示，或者你自己先去查查原理)</p>
+<h3 id="详细探究一下排序法的不稳定性："><a href="#详细探究一下排序法的不稳定性：" class="headerlink" title="详细探究一下排序法的不稳定性："></a>详细探究一下排序法的不稳定性：</h3><p>我看了AI给出的二者区别后，大受震撼，且对于排序法的不稳定性很好奇，于是我又问了问哈基米：<br>这个问题问得太好了！“稳定性”这个概念非常抽象，光看定义很难懂，但一旦画个图，你立刻就会明白。<br>所谓的 <code>38(A)</code> 和 <code>38(B)</code>，在计算机眼里数值都是 38。但为了区分它们，我们假设它们是两个不同的人：</p>
+<ul>
+<li><strong>38(A)</strong>：是一个穿** 红衣服**的人，排在前面。</li>
+<li><strong>38(B)</strong>：是一个穿** 蓝衣服**的人，排在后面。</li>
+</ul>
+<p>我们希望：排完序后，红衣服依然在蓝衣服前面（这就叫稳定）。<br>如果排完序后，蓝衣服跑到红衣服前面去了（这就叫不稳定）。</p>
+<h4 id="1-为什么选择排序是“不稳定”的？（案发现场）"><a href="#1-为什么选择排序是“不稳定”的？（案发现场）" class="headerlink" title="1. 为什么选择排序是“不稳定”的？（案发现场）"></a>1. 为什么选择排序是“不稳定”的？（案发现场）</h4><p>选择排序的问题在于：它进行了一次**“远距离暴力交换”** 。它为了把最小值拉到前面，不小心把本来坐在前面的 <code>38(A)</code> 扔到了后面去。<br>举个例子：<br>假设数列是：{ 38(A), 38(B), 10 }<br><strong>目标：</strong> 从小到大排序。<br><strong>第一轮循环 (i&#x3D;0)：</strong></p>
+<ol>
+<li>我们要给第 0 个位置（现在坐着 <code>38(A)</code>）找一个最小值。</li>
+<li>我们在后面找啊找，发现了 <strong>10</strong> 是最小的。</li>
+<li><strong>关键时刻来了！</strong> 选择排序说：“我要把 10 放到第 0 个位置”。</li>
+<li>于是，它把 <strong>10</strong> 和 <strong>38(A)</strong> 交换位置。</li>
+</ol>
+<p>结果变成了：<br>{ 10, 38(B), 38(A) }<br>看！悲剧发生了：<br>本来 38(A) 在 38(B) 的前面。<br>但是因为 38(A) 运气不好，它占据了“坑位”，被用来交换那个最小的 10，结果被一脚踢到了数列的最后面。<br>现在的顺序变成了：蓝衣服(B) 在 红衣服(A) 的前面。<br>这就是<strong>不稳定</strong> 。原有的顺序被打乱了。</p>
+<h4 id="2-为什么冒泡排序是“稳定”的？（和谐社会）"><a href="#2-为什么冒泡排序是“稳定”的？（和谐社会）" class="headerlink" title="2. 为什么冒泡排序是“稳定”的？（和谐社会）"></a>2. 为什么冒泡排序是“稳定”的？（和谐社会）</h4><p>冒泡排序是<strong>相邻</strong> 两两比较。如果两个数一样大，它就不换。<br>还是那个例子：<br>数列：{ 38(A), 38(B), 10 }<br><strong>第一轮冒泡：</strong></p>
+<ol>
+<li>比较 <code>38(A)</code> 和 <code>38(B)</code>。<ul>
+<li>它俩一样大。冒泡排序的逻辑是 <code>if (a[j] &gt; a[j+1])</code> 才换。</li>
+<li>既然不大于（是等于），<strong>就不换</strong> 。</li>
+<li><strong>结果：</strong> <code>38(A)</code> 依然稳稳地坐在 <code>38(B)</code> 前面。</li>
+</ul>
+</li>
+<li>接着比较 <code>38(B)</code> 和 <code>10</code>。<ul>
+<li>38 比 10 大，交换！</li>
+<li><strong>结果：</strong> <code>{ 38(A), 10, 38(B) }</code>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>第二轮冒泡：</strong></p>
+<ol>
+<li>比较 <code>38(A)</code> 和 <code>10</code>。<ul>
+<li>38 比 10 大，交换！</li>
+<li><strong>结果：</strong> <code>{ 10, 38(A), 38(B) }</code>。</li>
+</ul>
+</li>
+</ol>
+<p>最终结果：<br>{ 10, 38(A), 38(B) }<br>看到没？红衣服(A) 依然在 蓝衣服(B) 的前面。因为冒泡排序很温柔，不会跨越“人头”去扔东西，所以顺序保住了。</p>
+<h4 id="3-这对“学生学号”有什么影响？"><a href="#3-这对“学生学号”有什么影响？" class="headerlink" title="3. 这对“学生学号”有什么影响？"></a>3. 这对“学生学号”有什么影响？</h4><p>你可能会问： <em>“这有啥用？反正都是38，谁在前谁在后不一样吗？”</em><br>对于简单的整数排序，确实没区别。但如果我们排的是<strong>复杂的对象（结构体）</strong> ，区别就大了。<br>场景模拟：<br>你在Excel里有一张成绩单，<strong>一开始是按学号排好序的：</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>学号</strong></th>
+<th><strong>姓名</strong></th>
+<th><strong>分数</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>001</strong></td>
+<td>张三</td>
+<td>90</td>
+</tr>
+<tr>
+<td><strong>002</strong></td>
+<td>李四</td>
+<td>90</td>
+</tr>
+<tr>
+<td><strong>003</strong></td>
+<td>王五</td>
+<td>80</td>
+</tr>
+<tr>
+<td>现在，老师要求：<strong>“按分数从低到高排序。”</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>如果是稳定的排序（如冒泡）：</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>排完分数后，分数相同的人，学号依然是有序的。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ol>
+<li>王五 (80分)</li>
+<li><strong>张三 (001号, 90分)</strong></li>
+<li><strong>李四 (002号, 90分)</strong> -&gt; 看着很舒服，同分的按学号排。</li>
+</ol>
+<p>如果是不稳定的排序（如选择排序）：<br>排完分数后，可能会变成这样：</p>
+<ol>
+<li>王五 (80分)</li>
+<li><strong>李四 (002号, 90分)</strong> -&gt; 莫名其妙跑前面去了</li>
+<li><strong>张三 (001号, 90分)</strong></li>
+</ol>
+<p>这时候老师就会很困惑：“怎么李四排在张三前面？不是应该按学号顺延吗？”<br><strong>总结：</strong></p>
+<ul>
+<li><strong>不稳定</strong> &#x3D; 容易“误伤友军”，为了换位置，把无辜的相同元素扔到了后面。</li>
+<li><strong>稳定</strong> &#x3D; 讲究“先来后到”，原本谁在前面，排完序后（如果数值相等）它还在前面。</li>
+</ul>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>卧槽，要不是我多问一嘴，我还真不知道冒泡法和排序法有这么多不同，有这么多不同的运用场景<br>尤其是这个稳定性，看来我需要走的路还有很远！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Wang Bo Sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9%E6%B3%95/">http://example.com/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">王总的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8E%92%E5%BA%8F/">排序</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/dc4541c0ae13ecb24b651d725f18d57d.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/dc4541c0ae13ecb24b651d725f18d57d.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/11/30/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E5%B1%8E%E5%B1%B1%E4%BB%A3%E7%A0%81/" title="【C语言】屎山代码"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【C语言】屎山代码</div></div><div class="info-2"><div class="info-item-1">屎山代码💩💩💩💩💩🥳🥳🥳🎉🎉🎉先让我们恭喜这个代码成为了一坨耙耙🥳🥳🥳🎉🎉🎉 背景：今天我看见了U4-基本类型变量作为函数参数 这个标题后，我想这不是普通的函数调用的题目吗？对于早在U3就开始使用函数调用的我来说，我很有信心能5分钟速通即将到来的题目，想着做完这道题就能马上收拾书包回寝了然而那时的我并不知道当我做完这道题已经是几点了于是我选择了中等这个难度，并毫不犹豫的点击了开始，这就是二战转折点，我的人生命运齿轮开始了一次崩坏的转动首先我看见了没有几行的题目。在我的印象中，C语言的题目越短越好做。但今天，这条定律成了我的墓志铭。我当时还在窃喜，做这道题可能5分钟都不需要。随后我就看到了这几个字：​ 第7章实验任务6我的心态发生了一些小小的变化，不过眼睛并没有在这几个字上停留多久，我开始了读题干“质因数分解”当我看见这几个字的时候，不由得觉得眼前发昏，我仿佛看见了太奶在向我招手，求生的本能迫使我点击了题目上方的“此题不会，以后在做”当我缓过神来，全身上下已经湿透了，包括我的内裤，大概率是因为我尿了。我颤颤巍巍地起身，拿起我的烟，腿软得像面条，踉跄...</div></div></div></a><a class="pagination-related" href="/2025/12/02/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E5%90%83%E6%8E%89%E7%BC%93%E5%86%B2%E5%8C%BA/" title="【C语言】吃掉缓冲区"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">【C语言】吃掉缓冲区</div></div><div class="info-2"><div class="info-item-1">吃掉缓冲区背景：对输入的一个数判断是否是素数。所谓素数是指这个数只能被1和自身整除。要求在主函数输入一个数，调用函数Fun()判断该数是否是素数。打印信息在主函数中进行。例如：从键盘输入5，5是素数则打印如下信息：”5 is a prime number”。又如:从键盘输入4, 4不是素数则打印如下信息:”4 is not a prime number”。负数、0和1均不是素数。对输入的数据要考虑数据的合法性，不满足条件的数要重新输入直到满足条件为止。不能使用全局变量,不按给定的函数原型编写程序不给分。Fun()函数原型为： int Fun(int m)；**输入数据提示信息：”Please input a number:\n”注：该提示信息请放在循环体外**输入数据格式为：”%d”**输出格式要求：若是素数输出数据格式为：”%d is a prime number\n”若不是素数输出数据格式为： “%d is not a prime number\n”程序运行示例1；Please input a number:1111 is a prime number程序运行示例2：Plea...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/11/16/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E6%8E%92%E5%BA%8F%E9%80%BB%E8%BE%91%E4%B8%8E%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6/" title="【C语言】排序逻辑与赋值运算符"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-16</div><div class="info-item-2">【C语言】排序逻辑与赋值运算符</div></div><div class="info-2"><div class="info-item-1">排序逻辑与赋值运算符背景今天上课做题的时候碰见一个有趣的题目，关于怎么排序这是题干： 1234请进行程序设计，从键盘上输入三个字符，根据其在计算机内的存储方式按照从小到大的顺序输出这三个字符。字符输入方式可以使用scanf()或者getchar()输入格式：&quot;%c%c%c&quot;输出格式：&quot;%c %c %c\n&quot;   根本不会写，后来问了豆包，我写的代码： 1234567891011121314151617181920212223#include &lt;stdio.h&gt;int main()&#123;    char k,f,c,pron;    scanf(&quot;%c%c%c&quot;,&amp;k,&amp;f,&amp;c);    if(k&gt;f)&#123;        pron=k;        k=f;        f=pron;    &#125;    if(k&gt;c)&#123;        pron=k;        k=c;        c=pron;    &#125;    if(f...</div></div></div></a><a class="pagination-related" href="/2025/11/29/%E3%80%90C%E8%AF%AD%E8%A8%80%E3%80%91%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%86%92%E6%B3%A1%E6%B3%95/" title="【C语言】排序算法（冒泡法）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-29</div><div class="info-item-2">【C语言】排序算法（冒泡法）</div></div><div class="info-2"><div class="info-item-1">排序算法（冒泡法）背景 循环输入一列数，并找出最大值  这是我写的代码： 123456789101112131415161718192021222324#include &lt;stdio.h&gt;int find_max(int);int main() &#123;	int a[4];	for (int i = 0;i &lt;= 4;i++) &#123;		printf(&quot;please input: \n&quot;);		scanf_s(&quot;%d&quot;, &amp;a[i]);	&#125;	int max = find_max(a);	printf(&quot;The max is %d&quot;, max);	return 0;&#125;int find_max(int a[]) &#123;	int max = a[0];	for (int i = 1;i &lt;= 4;i++) &#123;		if (a[i] &gt; max) &#123;			max = a[i];		&#125;	&#125;	return max;&#12...</div></div></div></a><a class="pagination-related" href="/2026/04/06/%E3%80%90Python%E3%80%91%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F,%E6%8E%A8%E5%AF%BC%E5%BC%8F/" title="【Python】列表排序,推导式"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-04-06</div><div class="info-item-2">【Python】列表排序,推导式</div></div><div class="info-2"><div class="info-item-1">【Python】列表排序,推导式一、列表排序使用sort()函数，语法格式 1listname.sort(key=None,reverse=False)   reverse是可选参数，默认情况进行升序排序  当reverse &#x3D; True，则表示为降序排序   key表示从每个元素中提取用于比较的键  当对字符串排序时，可以设置key参数，默认区分大小写进行排序，当key&#x3D;str.lower，此时排序不区分大小写 sorted函数 1sorted(listname,key=None,reverse=False)  与sort函数的作用基本相同，不过sorted函数不会改变原列表，而是通过返回值的方式进行排序 二、列表推导式列表推导式的基本结构如下，外面由方括号 [] 包裹： 1[表达式 for 变量 in 可迭代对象 if 条件]   表达式：你要放入新列表中的元素（可以是变量本身，也可以是对变量的计算或方法调用）。 for 变量 in 可迭代对象：负责遍历原有的数据。 if 条件：（可选）用于过滤数据的条件，只有满足条件的元素才会被送到前面的“表达式”中处理...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Wang Bo Sen</div><div class="author-info-description">学无止境</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">37</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/WangZong-0421"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/WangZong-0421" target="_blank" title="Github"><i class="fab fa-github" style="color: #181717;"></i></a><a class="social-icon" href="mailto:wangbosen0421@126.com" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #D44638;"></i></a><a class="social-icon" href="https://www.cqupt.edu.cn/" target="_blank" title="我的大学"><i class="fas fa-university" style="color: #2196F3;"></i></a><a class="social-icon" href="tel:15902745421" target="_blank" title="电话"><i class="fas fa-phone" style="color: #4CAF50;"></i></a><a class="social-icon" href="https://qm.qq.com/q/cE4rRmxj5C" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12B7F5;"></i></a><a class="social-icon" href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/e3119446ad040819186977c6abfbd447.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07C160;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">正在完善中</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%EF%BC%88%E9%80%89%E6%8B%A9%E6%B3%95%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">排序算法（选择法）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9E%8E%E5%86%99%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">我瞎写的代码：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E8%AE%A4%E7%9C%9F%E5%86%99%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">我认真写的代码：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%87%B4%E5%91%BD%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BA%A4%E6%8D%A2%E4%BB%A3%E7%A0%81%E7%9A%84%E4%BD%8D%E7%BD%AE%E4%B8%8D%E5%AF%B9"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 致命问题：交换代码的位置不对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B0%8F%E5%BB%BA%E8%AE%AE%EF%BC%9A%E5%A4%96%E5%B1%82%E5%BE%AA%E7%8E%AF%E7%9A%84%E8%BE%B9%E7%95%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 小建议：外层循环的边界</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%90%8E%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">修改后：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E5%92%8C%E5%86%92%E6%B3%A1%E7%9A%84%E4%BC%98%E5%8A%A3"><span class="toc-number">1.4.</span> <span class="toc-text">排序和冒泡的优劣</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B0%81%E5%86%99%E5%86%85%E5%AD%98%EF%BC%88%E4%BA%A4%E6%8D%A2%EF%BC%89%E6%9B%B4%E5%B0%91%EF%BC%9F-%E2%80%94%E2%80%94-%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E8%83%9C-%F0%9F%8F%86"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 谁写内存（交换）更少？ —— 选择排序胜 🏆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%B0%81%E8%83%BD%E5%88%A9%E7%94%A8%E2%80%9C%E5%B7%B2%E7%BB%8F%E6%8E%92%E5%A5%BD%E5%BA%8F%E2%80%9D%E7%9A%84%E9%83%A8%E5%88%86%EF%BC%9F-%E2%80%94%E2%80%94-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E8%83%9C-%F0%9F%8F%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 谁能利用“已经排好序”的部分？ —— 冒泡排序胜 🏆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%A8%B3%E5%AE%9A%E6%80%A7%EF%BC%88Stability%EF%BC%89-%E2%80%94%E2%80%94-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E8%83%9C-%F0%9F%8F%86"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 稳定性（Stability） —— 冒泡排序胜 🏆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94%E8%A1%A8"><span class="toc-number">1.4.4.</span> <span class="toc-text">总结对比表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A2%E7%84%B6%E9%83%BD%E5%AD%A6%E4%BA%86%EF%BC%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.4.5.</span> <span class="toc-text">既然都学了，下一步做什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%8E%A2%E7%A9%B6%E4%B8%80%E4%B8%8B%E6%8E%92%E5%BA%8F%E6%B3%95%E7%9A%84%E4%B8%8D%E7%A8%B3%E5%AE%9A%E6%80%A7%EF%BC%9A"><span class="toc-number">1.4.6.</span> <span class="toc-text">详细探究一下排序法的不稳定性：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E6%98%AF%E2%80%9C%E4%B8%8D%E7%A8%B3%E5%AE%9A%E2%80%9D%E7%9A%84%EF%BC%9F%EF%BC%88%E6%A1%88%E5%8F%91%E7%8E%B0%E5%9C%BA%EF%BC%89"><span class="toc-number">1.4.6.1.</span> <span class="toc-text">1. 为什么选择排序是“不稳定”的？（案发现场）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E6%98%AF%E2%80%9C%E7%A8%B3%E5%AE%9A%E2%80%9D%E7%9A%84%EF%BC%9F%EF%BC%88%E5%92%8C%E8%B0%90%E7%A4%BE%E4%BC%9A%EF%BC%89"><span class="toc-number">1.4.6.2.</span> <span class="toc-text">2. 为什么冒泡排序是“稳定”的？（和谐社会）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E8%BF%99%E5%AF%B9%E2%80%9C%E5%AD%A6%E7%94%9F%E5%AD%A6%E5%8F%B7%E2%80%9D%E6%9C%89%E4%BB%80%E4%B9%88%E5%BD%B1%E5%93%8D%EF%BC%9F"><span class="toc-number">1.4.6.3.</span> <span class="toc-text">3. 这对“学生学号”有什么影响？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">1.5.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/09/%E3%80%90Python%E3%80%91%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86,split+map/" title="【Python】数据处理,split+map">【Python】数据处理,split+map</a><time datetime="2026-04-09T08:44:00.000Z" title="发表于 2026-04-09 16:44:00">2026-04-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/06/host%E6%96%87%E4%BB%B6/" title="host文件">host文件</a><time datetime="2026-04-06T15:46:00.000Z" title="发表于 2026-04-06 23:46:00">2026-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/06/%E3%80%90Python%E3%80%91%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F,%E6%8E%A8%E5%AF%BC%E5%BC%8F/" title="【Python】列表排序,推导式">【Python】列表排序,推导式</a><time datetime="2026-04-06T15:24:00.000Z" title="发表于 2026-04-06 23:24:00">2026-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/06/%E3%80%90Python%E3%80%91%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6/" title="【Python】运算符、输入与转义字符">【Python】运算符、输入与转义字符</a><time datetime="2026-04-06T15:13:00.000Z" title="发表于 2026-04-06 23:13:00">2026-04-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/30/%E9%BB%84%E9%B9%A4%E6%A5%BC%E2%80%A2%E8%BD%AF%E8%93%9D/" title="【烟草纲目】黄鹤楼•软蓝"><img src="https://rec.yanpk.com/uploads/pictures/2023-01/thumb_54_1674008698.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【烟草纲目】黄鹤楼•软蓝"/></a><div class="content"><a class="title" href="/2026/03/30/%E9%BB%84%E9%B9%A4%E6%A5%BC%E2%80%A2%E8%BD%AF%E8%93%9D/" title="【烟草纲目】黄鹤楼•软蓝">【烟草纲目】黄鹤楼•软蓝</a><time datetime="2026-03-30T14:16:00.000Z" title="发表于 2026-03-30 22:16:00">2026-03-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">文档</div><div class="footer-flex-content"><a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" target="_blank" title="开发工具">开发工具</a><a href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/" target="_blank" title="疑难解答">疑难解答</a><a href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/" target="_blank" title="烟草纲目">烟草纲目</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">其他</div><div class="footer-flex-content"><a href="/music/" target="_blank" title="音乐">音乐</a><a href="/gallery/" target="_blank" title="图库">图库</a><a href="/link/" target="_blank" title="友情链接">友情链接</a><a href="/about/" target="_blank" title="关于">关于</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="Hexo">Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="Butterfly">Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">贊助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg' alt='JerryC' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Wang Bo Sen</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

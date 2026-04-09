@@ -1,0 +1,8 @@
+/* 科技风网格背景 */
+body {
+  background-color: #f8fafc !important;
+  background-image:
+    linear-gradient(rgba(91, 178, 227, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 178, 227, 0.1) 1px, transparent 1px) !important;
+  background-size: 20px 20px !important;
+}
