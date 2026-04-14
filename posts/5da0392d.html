@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【Python】文件输入输出 | 王总的博客</title><meta name="author" content="Wang Bo Sen,wangbosen0421@126.com"><meta name="copyright" content="Wang Bo Sen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 标准 I&#x2F;O vs 文件 I&#x2F;O平时你在电脑上自己运行代码时：  标准输入 (Standard Input)：代码运行到 input() 时会停下来，等你用键盘敲字回车。 标准输出 (Standard Output)：代码运行到 print() 时，结果会直接显示在**屏幕（控制台）**上。  但在算法竞赛或者学校的评测系统里，评测机要在几秒钟内测试成千上万份代码，不可能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python】文件输入输出">
+<meta property="og:url" content="http://example.com/posts/5da0392d.html">
+<meta property="og:site_name" content="王总的博客">
+<meta property="og:description" content="1. 标准 I&#x2F;O vs 文件 I&#x2F;O平时你在电脑上自己运行代码时：  标准输入 (Standard Input)：代码运行到 input() 时会停下来，等你用键盘敲字回车。 标准输出 (Standard Output)：代码运行到 print() 时，结果会直接显示在**屏幕（控制台）**上。  但在算法竞赛或者学校的评测系统里，评测机要在几秒钟内测试成千上万份代码，不可能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg">
+<meta property="article:published_time" content="2026-04-14T15:39:00.000Z">
+<meta property="article:modified_time" content="2026-04-14T15:41:57.135Z">
+<meta property="article:author" content="Wang Bo Sen">
+<meta property="article:tag" content="文件输入输出">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【Python】文件输入输出",
+  "url": "http://example.com/posts/5da0392d.html",
+  "image": "https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg",
+  "datePublished": "2026-04-14T15:39:00.000Z",
+  "dateModified": "2026-04-14T15:41:57.135Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Wang Bo Sen",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/posts/5da0392d.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a1b26')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【Python】文件输入输出',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">101</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa-fw fas fa-book"></i><span> 开发工具</span></a></li><li><a class="site-page child" href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/"><i class="fa-fw fas fa-lightbulb"></i><span> 疑难解答</span></a></li><li><a class="site-page child" href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/"><i class="fa-fw fas fa-smoking"></i><span> 烟草纲目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">王总的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">【Python】文件输入输出</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"><i class="fa-fw fas fa-book"></i><span> 开发工具</span></a></li><li><a class="site-page child" href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/"><i class="fa-fw fas fa-lightbulb"></i><span> 疑难解答</span></a></li><li><a class="site-page child" href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/"><i class="fa-fw fas fa-smoking"></i><span> 烟草纲目</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【Python】文件输入输出</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-04-14T15:39:00.000Z" title="发表于 2026-04-14 23:39:00">2026-04-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-04-14T15:41:57.135Z" title="更新于 2026-04-14 23:41:57">2026-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">671</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h3 id="1-标准-I-O-vs-文件-I-O"><a href="#1-标准-I-O-vs-文件-I-O" class="headerlink" title="1. 标准 I&#x2F;O vs 文件 I&#x2F;O"></a>1. 标准 I&#x2F;O vs 文件 I&#x2F;O</h3><p>平时你在电脑上自己运行代码时：</p>
+<ul>
+<li><strong>标准输入 (Standard Input)</strong>：代码运行到 <code>input()</code> 时会停下来，等你用<strong>键盘</strong>敲字回车。</li>
+<li><strong>标准输出 (Standard Output)</strong>：代码运行到 <code>print()</code> 时，结果会直接显示在**屏幕（控制台）**上。</li>
+</ul>
+<p>但在算法竞赛或者学校的评测系统里，评测机要在几秒钟内测试成千上万份代码，不可能有人工坐在那里对着你的程序敲键盘输入测试数据。</p>
+<p>所以，平台会提前把所有的测试用例写在一个文本文档里（比如题目要求的 <code>input.txt</code>）。评测要求你的程序：</p>
+<ol>
+<li><strong>不要等键盘输入</strong>，直接去读取 <code>input.txt</code> 里的数据。</li>
+<li><strong>不要打印在屏幕上</strong>，把算出来的结果直接写进 <code>output.txt</code> 里。 评测机最后只需要对比你的 <code>output.txt</code> 和标准答案文本文档是否完全一致，就能判断你对不对。</li>
+</ol>
+<h3 id="2-那几行代码到底在干嘛？"><a href="#2-那几行代码到底在干嘛？" class="headerlink" title="2. 那几行代码到底在干嘛？"></a>2. 那几行代码到底在干嘛？</h3><p>在 C 语言里，如果要解决这种文件重定向问题，通常会用到 <code>freopen</code> 函数。在 Python 里，原理非常相似，就是通过操作 <code>sys</code> 模块来实现流的替换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">sys.stdin = <span class="built_in">open</span>(<span class="string">&#x27;input.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">sys.stdout = <span class="built_in">open</span>(<span class="string">&#x27;output.txt&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong><code>import sys</code></strong>：引入 Python 的系统接口模块，用来和底层操作系统打交道。</li>
+<li><strong><code>sys.stdin</code></strong>：这就是 Python 里的“标准输入流”。它原本的默认接口是连接着键盘的。</li>
+<li><strong><code>open(&#39;input.txt&#39;, &#39;r&#39;)</code></strong>：打开当前目录下的 <code>input.txt</code> 文件，<code>&#39;r&#39;</code> 代表 read（只读模式）。</li>
+<li><strong><code>sys.stdin = ...</code></strong>：这一步是个“偷梁换柱”的操作。相当于你把原来插在键盘上的数据线拔了下来，插到了 <code>input.txt</code> 这个文件上。</li>
+</ul>
+<p>同理，<code>sys.stdout = open(&#39;output.txt&#39;, &#39;w&#39;)</code> 就是把原本插在显示器上的输出数据线拔下来，插到了 <code>output.txt</code> 文件上，<code>&#39;w&#39;</code> 代表 write（写入模式）。</p>
+<h3 id="3-为什么用这种写法？"><a href="#3-为什么用这种写法？" class="headerlink" title="3. 为什么用这种写法？"></a>3. 为什么用这种写法？</h3><p>这种写法最大的好处就是<strong>不用修改核心业务代码</strong>。</p>
+<p>你只需要在代码最开头加上这三行，剩下的部分该怎么写 <code>input()</code> 就怎么写，该怎么写 <code>print()</code> 就怎么写。Python 在底层遇到 <code>input()</code> 时，顺着线摸过去，发现连接的不是键盘而是文件，就会自动从文件里读一行数据出来；遇到 <code>print()</code> 时，也会默默地把数据写进文本里。</p>
+<p>这种把输入输出的“源头”和“终点”偷偷换掉的技术，叫做<strong>I&#x2F;O 重定向</strong>。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">Wang Bo Sen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/5da0392d.html">http://example.com/posts/5da0392d.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">王总的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">文件输入输出</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/dc4541c0ae13ecb24b651d725f18d57d.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/dc4541c0ae13ecb24b651d725f18d57d.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/posts/b2afb34c.html" title="【C语言】打印二进制"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">【C语言】打印二进制</div></div><div class="info-2"><div class="info-item-1">在C语言里打印二进制标准的 C 语言（C23 之前）里没有类似 %b 这样的二进制格式化输出符。想要打印二进制，必须老老实实地利用右移 (&gt;&gt;) 和 按位与 (&amp;)，把数字里面的每一位剥离出来，逐个打印。 123456789101112131415#include &lt;stdio.h&gt;int main() &#123;	int n;	scanf_s(&quot;%d&quot;, &amp;n);	for (int i = 0; i &lt; (1 &lt;&lt; n); i++) &#123;		for (int j = n - 1; j &gt;= 0; j--) &#123;			printf(&quot;%d&quot;, (i &gt;&gt; j) &amp; 1);		&#125;		printf(&quot;\n&quot;);	&#125;	return 0;&#125;  妈的，感觉C语言功力尽失。 下面是递归回溯法，现在我状态不是很好，所以不是我写的 12345678910111213141516171819202122232...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/head%20portrait/5729700ebfbf6d4a29c74a10ccb73e71.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Wang Bo Sen</div><div class="author-info-description">学无止境</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">101</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/WangZong-0421"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/WangZong-0421" target="_blank" title="Github"><i class="fab fa-github" style="color: #181717;"></i></a><a class="social-icon" href="mailto:wangbosen0421@126.com" target="_blank" title="邮箱"><i class="fas fa-envelope" style="color: #D44638;"></i></a><a class="social-icon" href="https://www.cqupt.edu.cn/" target="_blank" title="我的大学"><i class="fas fa-university" style="color: #2196F3;"></i></a><a class="social-icon" href="tel:15902745421" target="_blank" title="电话"><i class="fas fa-phone" style="color: #4CAF50;"></i></a><a class="social-icon" href="https://qm.qq.com/q/cE4rRmxj5C" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12B7F5;"></i></a><a class="social-icon" href="https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/e3119446ad040819186977c6abfbd447.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07C160;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">正在完善中</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%A0%87%E5%87%86-I-O-vs-%E6%96%87%E4%BB%B6-I-O"><span class="toc-number">1.</span> <span class="toc-text">1. 标准 I&#x2F;O vs 文件 I&#x2F;O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%82%A3%E5%87%A0%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%88%B0%E5%BA%95%E5%9C%A8%E5%B9%B2%E5%98%9B%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">2. 那几行代码到底在干嘛？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E8%BF%99%E7%A7%8D%E5%86%99%E6%B3%95%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">3. 为什么用这种写法？</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/5da0392d.html" title="【Python】文件输入输出">【Python】文件输入输出</a><time datetime="2026-04-14T15:39:00.000Z" title="发表于 2026-04-14 23:39:00">2026-04-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/b2afb34c.html" title="【C语言】打印二进制">【C语言】打印二进制</a><time datetime="2026-04-12T09:45:00.000Z" title="发表于 2026-04-12 17:45:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/e30d59bb.html" title="【Python】二进制序列生成与输出">【Python】二进制序列生成与输出</a><time datetime="2026-04-12T07:46:00.000Z" title="发表于 2026-04-12 15:46:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/5ebfd9ea.html" title="【Python】Python中强大的数据结构和字典升级版">【Python】Python中强大的数据结构和字典升级版</a><time datetime="2026-04-12T06:03:00.000Z" title="发表于 2026-04-12 14:03:00">2026-04-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/54458a92.html" title="【Python】输出与格式化">【Python】输出与格式化</a><time datetime="2026-04-09T14:04:00.000Z" title="发表于 2026-04-09 22:04:00">2026-04-09</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-flex"><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">文档</div><div class="footer-flex-content"><a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" target="_blank" title="开发工具">开发工具</a><a href="/categories/%E7%96%91%E9%9A%BE%E8%A7%A3%E7%AD%94/" target="_blank" title="疑难解答">疑难解答</a><a href="/categories/%E7%83%9F%E8%8D%89%E7%BA%B2%E7%9B%AE/" target="_blank" title="烟草纲目">烟草纲目</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">其他</div><div class="footer-flex-content"><a href="/music/" target="_blank" title="音乐">音乐</a><a href="/gallery/" target="_blank" title="图库">图库</a><a href="/link/" target="_blank" title="友情链接">友情链接</a><a href="/about/" target="_blank" title="关于">关于</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">框架</div><div class="footer-flex-content"><a href="https://hexo.io/zh-cn/" target="_blank" title="Hexo">Hexo</a><a href="https://butterfly.js.org/" target="_blank" title="Butterfly">Butterfly</a></div></div></div><div class="footer-flex-items"><div class="footer-flex-item"><div class="footer-flex-title">贊助</div><div class="footer-flex-content"><div><img src='https://cdn.jsdelivr.net/gh/WangZong-0421/Gallery@main/%E6%94%AF%E4%BB%98/fc07a4e7240e6c53c578ca9c1323ba4b.jpg' alt='JerryC' width='100px' height='100px'></div></div></div></div></div><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Wang Bo Sen</span><span class="framework-info"><span class="footer-separator">|</span><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
